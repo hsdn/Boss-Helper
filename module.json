@@ -1,19 +1,19 @@
 {
     "name": "Boss-Helper",
     "options": {
-        "niceName": "怪物提示",
-        "guiName": "怪物提示(Boss-Helper)",
+        "niceName": "Boss-Helper",
+        "guiName": "Boss-Helper",
         "settingsFile": "config.json",
         "settingsMigrator": "settings_migrator.js",
         "settingsVersion": 10
     },
-    "author": "ZC / mopihu / Owyn/ Lambda11",
-    "description": "指定NPC(怪物/世界王/流浪商人)在可视范围内出现时, 发送对应文字提示, 并标记位置",
-    "servers": ["https://raw.githubusercontent.com/tera-mod/Boss-Helper/master/"],
-    "supportUrl": "https://github.com/tera-mod/Boss-Helper/issues",
+    "author": "HSDN / ZC / mopihu / Owyn / Lambda11",
+    "description": "When the specified NPC (Monster / World Boss / Merchant) appears in the visible range, send a corresponding text prompt and mark the location",
+    "servers": ["https://raw.githubusercontent.com/hsdn/Boss-Helper/master/"],
+    "supportUrl": "https://github.com/hsdn/Boss-Helper/issues",
     "dependencies": {
         "notifier": "https://raw.githubusercontent.com/SerenTera/tera-notifier/master/module.json",
         "tera-message": "https://raw.githubusercontent.com/tera-mod/tera-message/master/module.json"
     },
-    "version": "87.05"
+    "version": "88.04"
 }
