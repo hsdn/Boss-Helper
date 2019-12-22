@@ -5,9 +5,7 @@
         "settings_migrator.js": "d3cd741fc33f1e67524c7cb233de89c0afcfd38e3b063897a8b23c7090bd2794"
     },
     "defs": {
-        "C_CHAT": 1,
         "S_BOSS_GAGE_INFO": 3,
-        "S_CURRENT_CHANNEL": 2,
         "S_DESPAWN_DROPITEM": 4,
         "S_DESPAWN_NPC": 3,
         "S_EACH_SKILL_RESULT": 14,
