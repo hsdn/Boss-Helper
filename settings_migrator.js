@@ -12,6 +12,7 @@ const DefaultSettings = {
         {huntingZoneId: 1023, templateId: 88888889, name: "(Ивент) Сундук с сокровищами"},
         {huntingZoneId: 1023, templateId:   160341, name: "(Ивент) Дед Мороз"},
         {huntingZoneId: 1023, templateId: 99999997, name: "(Ивент) Толстый Санта"},
+        {huntingZoneId: 1023, templateId:   200002, name: "(Ивент) Санта-король"},
         {huntingZoneId: 1023, templateId:   200003, name: "(Ивент) Крошечный Санта"},
         {huntingZoneId: 1023, templateId:     8000, name: "(Ивент) Кайман-бродяга"},
         {huntingZoneId:   26, templateId:     6001, name: "(Ивент) Кайман-бродяга"},
