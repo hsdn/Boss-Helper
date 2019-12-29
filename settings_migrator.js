@@ -45,6 +45,7 @@ const DefaultSettings = {
         {huntingZoneId:  27, templateId: 1271, name: "[Эссения] Эсат (Эссенийский хребет)"},
         {huntingZoneId:  28, templateId: 1271, name: "[Эссения] Эсат (Гибельный лес)"},
         {huntingZoneId:  29, templateId: 1271, name: "[Эссения] Эсат (Извечный лес)"},
+        {huntingZoneId:  29, templateId: 1272, name: "[Эссения] Эсат (Извечный лес)"},
         {huntingZoneId:  30, templateId: 1271, name: "[Район Веритас] Вэлса (Убежище Балдера)"},
         {huntingZoneId:  31, templateId: 1271, name: "[Вестония] Сторан (Предел Бурь)"},
         {huntingZoneId:  32, templateId: 1271, name: "[Вестония] Сторан (Гора Тираннас)"},
