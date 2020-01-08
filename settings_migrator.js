@@ -6,6 +6,7 @@ const DefaultSettings = {
     "marker":   true,
     "itemId":  98260,
     "bosses": [
+/* ==== Event =============================================================================================== */
         {huntingZoneId: 1023, templateId:     3000, name: "(Ивент) Тень Дуриона"},
         {huntingZoneId: 1023, templateId: 20150805, name: "(Ивент) Тень Дуриона"},
         {huntingZoneId: 1023, templateId: 88888888, name: "(Ивент) Сундук с сокровищами"},
@@ -21,7 +22,7 @@ const DefaultSettings = {
         {huntingZoneId:   30, templateId:     6001, name: "(Ивент) Кайман-бродяга"},
         {huntingZoneId:   38, templateId:     6001, name: "(Ивент) Кайман-бродяга"},
         {huntingZoneId:  181, templateId:     6001, name: "(Ивент) Кайман-бродяга"},
-/* ==== South Arun ======================================================================================== */
+/* ==== South Arun ========================================================================================== */
         {huntingZoneId:   2, templateId: 1271, name: "[Аркадия] Аркун (Дивный лес)"},
         {huntingZoneId:   3, templateId: 1271, name: "[Аркадия] Аркун (Леса Забвения)"},
         {huntingZoneId:   5, templateId: 1271, name: "[Аркадия] Аркун (Трясина Туванги)"},
@@ -40,12 +41,12 @@ const DefaultSettings = {
         {huntingZoneId:  19, templateId: 1271, name: "[Вал-Аурэум] Виадун (Вольноземье)"},
         {huntingZoneId:  21, templateId: 1271, name: "[Вал-Аурэум] Виадун (Утес Василисков)"},
         {huntingZoneId:  24, templateId: 1271, name: "[Вал-Аурэум] Виадун (Аурумская дорога)"},
-/* ==== South Shara ======================================================================================== */
+/* ==== South Shara =========================================================================================== */
         {huntingZoneId:  26, templateId: 1271, name: "[Эссения] Эсат (Блаженное озеро)"},
         {huntingZoneId:  27, templateId: 1271, name: "[Эссения] Эсат (Эссенийский хребет)"},
         {huntingZoneId:  28, templateId: 1271, name: "[Эссения] Эсат (Гибельный лес)"},
-        {huntingZoneId:  29, templateId: 1271, name: "[Эссения] Эсат (Извечный лес)"},
-        {huntingZoneId:  29, templateId: 1272, name: "[Эссения] Эсат (Извечный лес) NPC"},
+        {huntingZoneId:  29, templateId: 1271, name: "[Эссения] Эсат (Извечный лес 1)"},
+        {huntingZoneId:  29, templateId: 1272, name: "[Эссения] Эсат (Извечный лес 2)"},
         {huntingZoneId:  30, templateId: 1271, name: "[Район Веритас] Вэлса (Убежище Балдера)"},
         {huntingZoneId:  31, templateId: 1271, name: "[Вестония] Сторан (Предел Бурь)"},
         {huntingZoneId:  32, templateId: 1271, name: "[Вестония] Сторан (Гора Тираннас)"},
@@ -75,27 +76,27 @@ const DefaultSettings = {
         {huntingZoneId: 191, templateId: 1271, name: "[Вал-Орин] Варэку (Аркс-умбра)"},
 /* ==== Island of Dawn ======================================================================================== */
         {huntingZoneId:  13, templateId: 1271, name: "[Остров Зари] Бардун (Остров Зари)"},
-/* ==== 直辖領地 ======================================================================================== */
-        {huntingZoneId:  63, templateId: 1278, name: "Веракун(Окрестности Велики)"},
-        {huntingZoneId:  72, templateId: 1278, name: "Аллума(Аллемантея)"},
-        {huntingZoneId:  84, templateId: 1278, name: "Кай Тера(Кайатор окр.)"},
-/* ==== Secret store ======================================================================================== */
-        {huntingZoneId:  63, templateId: 1271, name: "Тайный Магазин (Велика-1)"},
-        {huntingZoneId:  63, templateId: 1279, name: "Тайный Магазин (Велика-2)"},
+/* ==== Territory ============================================================================================= */
+        {huntingZoneId:  63, templateId: 1278, name: "Веракун (окрестности Велики)"},
+        {huntingZoneId:  72, templateId: 1278, name: "Аллума (окрестности Аллемантеи)"},
+        {huntingZoneId:  84, templateId: 1278, name: "Кай Тера (окрестности Кайатора)"},
+/* ==== Secret store ========================================================================================== */
+        {huntingZoneId:  63, templateId: 1271, name: "Тайный Магазин (Велика 1)"},
+        {huntingZoneId:  63, templateId: 1279, name: "Тайный Магазин (Велика 2)"},
         {huntingZoneId:  72, templateId: 1271, name: "Тайный Магазин (Аллемантея)"},
         {huntingZoneId:  84, templateId: 1271, name: "Тайный Магазин (Кайатор)"},
         {huntingZoneId: 183, templateId: 1271, name: "Тайный Магазин (Верхний Дозор)"},
-/* ==== Goblin Starc ====================================================================================== */
-        {huntingZoneId:  63, templateId: 1276, logTime: 0, name: "1-Гоблин ответственнвый за доставку (Велика)"},
-        {huntingZoneId:  63, templateId: 1284,             name: "1-Гоблин ответственнвый за доставку (Велика)"},
-        {huntingZoneId:  84, templateId: 1276, logTime: 0, name: "2-Гоблин ответственнвый за доставку (Кайатор)"},
-        {huntingZoneId:  72, templateId: 1276, logTime: 0, name: "3-Гоблин ответственнвый за доставку (Аллемантея)"},
-        {huntingZoneId: 183, templateId: 1276, logTime: 0, name: "4-Гоблин ответственнвый за доставку (Окрестности Верхнего дозора)"},
-/* ==== Raid BOSS ======================================================================================== */
+/* ==== Goblin Starc ========================================================================================== */
+        {huntingZoneId:  63, templateId: 1276, logTime: 0, name: "1-й Гоблин ответственнвый за доставку (Велика)"},
+        {huntingZoneId:  63, templateId: 1284,             name: "1-й Гоблин ответственнвый за доставку (Велика)"},
+        {huntingZoneId:  84, templateId: 1276, logTime: 0, name: "2-ой Гоблин ответственнвый за доставку (Кайатор)"},
+        {huntingZoneId:  72, templateId: 1276, logTime: 0, name: "3-й Гоблин ответственнвый за доставку (Аллемантея)"},
+        {huntingZoneId: 183, templateId: 1276, logTime: 0, name: "4-й Гоблин ответственнвый за доставку (Верхний Дозор)"},
+/* ==== Raid BOSS ============================================================================================ */
         {huntingZoneId:  26, templateId: 5001, logTime: 0, name: "[Блаженное озеро] Ортан"},
         {huntingZoneId:  39, templateId:  501, logTime: 0, name: "[Арахнея] Хазар"},
         {huntingZoneId:  51, templateId: 4001, logTime: 0, name: "[Долина пиков] Кэлос"},
-/* ==== World BOSS ======================================================================================== */
+/* ==== World BOSS =========================================================================================== */
         {huntingZoneId: 10,   templateId: 99,   name: "[Остров Серпентис] Божественный грабитель"},
         {huntingZoneId: 4,    templateId: 5011, name: "[Фирмаунт] Бурный канаш"},
         {huntingZoneId: 38,   templateId: 35,   name: "[Каньон Сиенна] Никсаррас"},
@@ -103,18 +104,18 @@ const DefaultSettings = {
         {huntingZoneId: 51,   templateId: 7011, name: "[Долина пиков] Линифи"},
         {huntingZoneId: 52,   templateId: 9050, name: "[Долина Проклятых] Юнарас"},
 /* ==== Escodor elite mobs ======================================================================================== */
-        {huntingZoneId: 2020, templateId: 1100, name: "[Эскодор] Элитный высший дракон-преследователь"},
-        {huntingZoneId: 2020, templateId: 1101, name: "[Эскодор] Элитный высший дракон-советник"},
-        {huntingZoneId: 2020, templateId: 1102, name: "[Эскодор] Элитный высший дракон-покоритель"},
-        {huntingZoneId: 2020, templateId: 1200, name: "[Эскодор] Элитный наг-жрец"},
-        {huntingZoneId: 2020, templateId: 1201, name: "[Эскодор] Элитный наг-рыцарь"},
-        {huntingZoneId: 2020, templateId: 1202, name: "[Эскодор] Элитный наг-пристав"},
-        {huntingZoneId: 2020, templateId: 1300, name: "[Эскодор] Манук"},
-        {huntingZoneId: 2020, templateId: 1400, name: "[Эскодор] Аксилоп"},
-        {huntingZoneId: 2020, templateId: 1500, name: "[Эскодор] Джемезис"},
-        {huntingZoneId: 2020, templateId: 1600, name: "[Эскодор] Взбешенный красный лишайник"},
-        {huntingZoneId: 2020, templateId: 1601, name: "[Эскодор] Циклоп"},
-        {huntingZoneId: 2020, templateId: 1700, name: "[Эскодор] Бэкис"}
+        {huntingZoneId: 2020, templateId: 1100, name: "[Эксодор] Элитный высший дракон-преследователь"},
+        {huntingZoneId: 2020, templateId: 1101, name: "[Эксодор] Элитный высший дракон-советник"},
+        {huntingZoneId: 2020, templateId: 1102, name: "[Эксодор] Элитный высший дракон-покоритель"},
+        {huntingZoneId: 2020, templateId: 1200, name: "[Эксодор] Элитный наг-жрец"},
+        {huntingZoneId: 2020, templateId: 1201, name: "[Эксодор] Элитный наг-рыцарь"},
+        {huntingZoneId: 2020, templateId: 1202, name: "[Эксодор] Элитный наг-пристав"},
+        {huntingZoneId: 2020, templateId: 1300, name: "[Эксодор] Манук"},
+        {huntingZoneId: 2020, templateId: 1400, name: "[Эксодор] Аксилоп"},
+        {huntingZoneId: 2020, templateId: 1500, name: "[Эксодор] Джемезис"},
+        {huntingZoneId: 2020, templateId: 1600, name: "[Эксодор] Взбешенный красный лишайник"},
+        {huntingZoneId: 2020, templateId: 1601, name: "[Эксодор] Циклоп"},
+        {huntingZoneId: 2020, templateId: 1700, name: "[Эксодор] Бэкис"}
     ]
 };
 
