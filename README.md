@@ -23,4 +23,3 @@ boss ask | Отобразить время появления мировых б�
 ------
 
 - Все идентификаторы NPC: https://raw.githubusercontent.com/neowutran/TeraDpsMeterData/master/monsters/monsters-RU.xml
-- Отредактируйте config.json для удобства
