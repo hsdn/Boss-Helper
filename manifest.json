@@ -2,7 +2,7 @@
     "files": {
         "index.js": "71743fc1bd714b337292ee7decae90e24b4aea310d1efd84e89d0ed2972fed5e",
         "module.json": "1ad7b7f20fe8a478c9628c2f0582e6373b5d8e569013048b6c88b50a150dfb00",
-        "settings_migrator.js": "51e92f6234b397175049deb955a5313ecbd670d978231c660802ac999561f86d"
+        "settings_migrator.js": "29a3214ba758533e4a2ed0b324353765de7d0a2ef2c5993355bb57d19ffb67a4"
     },
     "defs": {
         "S_BOSS_GAGE_INFO": 3,
