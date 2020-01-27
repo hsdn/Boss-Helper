@@ -39,7 +39,7 @@ module.exports = function BossHelper(mod) {
 					MSG.chat("Отметка позиции: " + (mod.settings.marker ? MSG.BLU("Разрешено") : MSG.YEL("Запрещено")))
 					break
 				case "clear":
-					MSG.chat("Boss-Helper: " + TIP("Очищена отметка позиции"))
+					MSG.chat("Boss-Helper: " + MSG.TIP("Очищена отметка позиции"))
 					for (let i of mobid) {
 						despawnItem(i)
 					}
