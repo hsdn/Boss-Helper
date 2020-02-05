@@ -54,7 +54,7 @@ const DefaultSettings = {
         {huntingZoneId:  35, templateId: 1271, name: "[Вал-Элениум] Виас (Вирмовое ущелье, Эления)"},
         {huntingZoneId:  36, templateId: 1271, name: "[Вал-Элениум] Виас (Тор-Эксул)"},
         {huntingZoneId:  38, templateId: 1271, name: "[Вал-Элениум] Виас (Каньон Сиенна)"},
-        {huntingZoneId:  40, templateId: 1271, name: "[Вал-Палрада] Ваннева (Зона карантина)"},
+        {huntingZoneId:  40, templateId: 1271, name: "[Вал-Палрада] Ваннева (Зона карантина, Фронтера)"},
         {huntingZoneId:  41, templateId: 1271, name: "[Вал-Палрада] Ваннева (Свирепая долина)"},
 /* ==== North of Shara ======================================================================================== */
         {huntingZoneId:  45, templateId: 1271, name: "[Вал-Тиркай] Лотика (Питомник аргонов, Аванпост следопытов)"},
