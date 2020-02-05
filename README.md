@@ -23,3 +23,4 @@ boss ask | Отобразить время появления мировых б�
 ------
 
 - Все идентификаторы NPC: https://raw.githubusercontent.com/neowutran/TeraDpsMeterData/master/monsters/monsters-RU.xml
+- Места спавна всех странствующих торговцев: https://home.gamer.com.tw/creationCategory.php?owner=d0305011&c=444485

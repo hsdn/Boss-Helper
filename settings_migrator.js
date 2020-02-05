@@ -31,7 +31,7 @@ const DefaultSettings = {
         {huntingZoneId:   4, templateId: 1271, name: "[Остгарат] Иторо (Фирмаунт)"},
         {huntingZoneId:   9, templateId: 1271, name: "[Остгарат] Иторо (Лабиринт Азарела)"},
         {huntingZoneId:  10, templateId: 1271, name: "[Остгарат] Иторо (Остров Серпентис)"},
-        {huntingZoneId:  11, templateId: 1271, name: "[Остгарат] Иторо (Грот пиратов, Гавань Головорезов)"},
+        {huntingZoneId:  11, templateId: 1271, name: "[Остгарат] Иторо (Изрезанный берег, Гавань Головорезов)"},
         {huntingZoneId:  12, templateId: 1271, name: "[Остгарат] Иторо (Остров Мистмур)"},
         {huntingZoneId:  15, templateId: 1271, name: "[Попория] Форета (Утесы Безумия)"},
         {huntingZoneId:  16, templateId: 1271, name: "[Попория] Форета (Долина Клыка, Пополион)"},
