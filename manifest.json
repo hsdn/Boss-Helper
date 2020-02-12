@@ -1,12 +1,12 @@
 {
     "files": {
         "config.json": {
-            "hash": "80f0562c3574251af4004b379b2a137314cbb28752d955f363f44ebaebf54927",
+            "hash": "5698fb3b1e6bd0e8c1a1e1391b37e4513cddb4542c81251870ada6ada6e1beb9",
             "overwrite": true
         },
         "index.js": "71743fc1bd714b337292ee7decae90e24b4aea310d1efd84e89d0ed2972fed5e",
         "module.json": "1ad7b7f20fe8a478c9628c2f0582e6373b5d8e569013048b6c88b50a150dfb00",
-        "settings_migrator.js": "eacb8318bcb175e14af8c965566ffc245fbc1ff38915c5150c22e33b6867aa8f"
+        "settings_migrator.js": "59bc498cd64a59cecc9ed866c8267d80773c2676905c0e976027a601902cb9e7"
     },
     "defs": {
         "S_BOSS_GAGE_INFO": 3,
