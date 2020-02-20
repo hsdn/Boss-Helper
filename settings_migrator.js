@@ -15,6 +15,8 @@ const DefaultSettings = {
         {huntingZoneId: 1023, templateId: 99999997, name: "(Ивент) Толстый Санта"},
         {huntingZoneId: 1023, templateId:   200002, name: "(Ивент) Санта-король"},
         {huntingZoneId: 1023, templateId:   200003, name: "(Ивент) Крошечный Санта"},
+        {huntingZoneId: 1023, templateId:   200007, name: "(Ивент) Картоха"},
+        {huntingZoneId: 1023, templateId:   200008, name: "(Ивент) Картофелина"},
         {huntingZoneId: 1023, templateId:     8000, name: "(Ивент) Кайман-бродяга"},
         {huntingZoneId:   26, templateId:     6001, name: "(Ивент) Кайман-бродяга"},
         {huntingZoneId:   27, templateId:     6001, name: "(Ивент) Кайман-бродяга"},

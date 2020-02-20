@@ -50,6 +50,16 @@
             },
             {
                 "huntingZoneId": 1023,
+                "templateId": 200007,
+                "name": "(Ивент) Картоха"
+            },
+            {
+                "huntingZoneId": 1023,
+                "templateId": 200008,
+                "name": "(Ивент) Картофелина"
+            },
+            {
+                "huntingZoneId": 1023,
                 "templateId": 8000,
                 "name": "(Ивент) Кайман-бродяга"
             },
