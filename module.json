@@ -15,5 +15,6 @@
         "notifier": "https://raw.githubusercontent.com/SerenTera/tera-notifier/master/module.json",
         "tera-message": "https://raw.githubusercontent.com/tera-mod/tera-message/master/module.json"
     },
-    "version": "88.04"
+    "version": "91.04",
+    "disableAutoUpdate": false
 }
