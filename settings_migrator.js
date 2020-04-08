@@ -4,7 +4,7 @@ const DefaultSettings = {
     "notice":   true,
     "messager": true,
     "marker":   true,
-    "itemId":  98260,
+    "itemId":  88704,
     "bosses": [
 /* ==== Event =============================================================================================== */
         {huntingZoneId: 1023, templateId:     3000, name: "(Ивент) Тень Дуриона"},
@@ -12,6 +12,7 @@ const DefaultSettings = {
         {huntingZoneId: 1023, templateId: 88888888, name: "(Ивент) Сундук с сокровищами"},
         {huntingZoneId: 1023, templateId: 88888889, name: "(Ивент) Сундук с сокровищами"},
         {huntingZoneId: 1023, templateId:   160341, name: "(Ивент) Дед Мороз"},
+        {huntingZoneId: 1023, templateId:   300937, name: "(Ивент) Рождественский кошмар"},
         {huntingZoneId: 1023, templateId: 99999997, name: "(Ивент) Толстый Санта"},
         {huntingZoneId: 1023, templateId:   200002, name: "(Ивент) Санта-король"},
         {huntingZoneId: 1023, templateId:   200003, name: "(Ивент) Крошечный Санта"},
@@ -105,6 +106,16 @@ const DefaultSettings = {
         {huntingZoneId: 57,   templateId: 33,   name: "[Амена-Кватла] Бетсаэль"},
         {huntingZoneId: 51,   templateId: 7011, name: "[Долина пиков] Линифи"},
         {huntingZoneId: 52,   templateId: 9050, name: "[Долина Проклятых] Юнарас"},
+/* ==== Guild BOSS =========================================================================================== */
+        {huntingZoneId:  29, templateId: 2001, name: "Ананша (Извечный лес)"},
+        {huntingZoneId:  34, templateId: 2002, name: "Фрайгарас (Морозный предел)"},
+        {huntingZoneId:  34, templateId: 2003, name: "Сабранак (Морозный предел)"},
+        {huntingZoneId: 152, templateId: 2001, name: "Ананша (Велика: Эпоха смуты) 152-2001"},
+        {huntingZoneId: 152, templateId: 2002, name: "Фрайгарас (Велика: Эпоха смуты) 152-2002"},
+        {huntingZoneId: 152, templateId: 2003, name: "Сабранак (Велика: Эпоха смуты) 152-2003"},
+        {huntingZoneId: 152, templateId: 7001, name: "Ананша (Велика: Эпоха смуты) 152-7001"},
+        {huntingZoneId: 152, templateId: 7002, name: "Фрайгарас (Велика: Эпоха смуты) 152-7002"},
+        {huntingZoneId: 152, templateId: 7003, name: "Сабранак (Велика: Эпоха смуты) 152-7003"},
 /* ==== Escodor elite mobs ======================================================================================== */
         {huntingZoneId: 2020, templateId: 1100, name: "[Эксодор] Элитный высший дракон-преследователь"},
         {huntingZoneId: 2020, templateId: 1101, name: "[Эксодор] Элитный высший дракон-советник"},
@@ -139,12 +150,13 @@ module.exports = function MigrateSettings(from_ver, to_ver, settings) {
         // upgrade from any version to the latest version without additional effort!
         switch (to_ver) {
             default:
-                let oldsettings = settings
+                let oldsettings = settings;
                 settings = Object.assign(DefaultSettings, {});
                 for (let option in oldsettings) {
-                    if (option == "bosses") continue
+                    if (option == "itemId") continue;
+                    if (option == "bosses") continue;
                     if (settings[option]) {
-                        settings[option] = oldsettings[option]
+                        settings[option] = oldsettings[option];
                     }
                 }
                 break;
