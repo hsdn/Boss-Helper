@@ -98,7 +98,7 @@ const DefaultSettings = {
 /* ==== Raid BOSS ============================================================================================ */
         {huntingZoneId:  26, templateId: 5001, logTime: 0, name: "[Блаженное озеро] Ортан"},
         {huntingZoneId:  39, templateId:  501, logTime: 0, name: "[Зона карантина] Хазар"},
-        {huntingZoneId:  51, templateId: 4001, logTime: 0, name: "[Долина пиков] Кэлос"},
+        {huntingZoneId:  51, templateId: 4001, logTime: 0, name: "[Лоркада] Кэлос"},
 /* ==== World BOSS =========================================================================================== */
         {huntingZoneId: 10,   templateId: 99,   name: "[Остров Серпентис] Божественный грабитель"},
         {huntingZoneId: 4,    templateId: 5011, name: "[Фирмаунт] Бурный канаш"},
