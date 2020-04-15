@@ -8,7 +8,7 @@
         "settingsVersion": 12
     },
     "author": "HSDN / ZC / mopihu / Owyn / Lambda11",
-    "description": "When the specified NPC (Event Monster / Guild Boss / World Boss / Merchant) appears in the visible range, send a corresponding text prompt and mark the location",
+    "description": "Отображение информации и уведомлений о появлении странствующих/тайных торговцев, мировых боссов и ивентовых монстров.",
     "servers": ["https://raw.githubusercontent.com/hsdn/Boss-Helper/master/"],
     "supportUrl": "https://github.com/hsdn/Boss-Helper/issues",
     "dependencies": {
