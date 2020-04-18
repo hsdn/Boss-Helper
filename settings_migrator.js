@@ -96,8 +96,8 @@ const DefaultSettings = {
         {huntingZoneId:  72, templateId: 1276, logTime: 0, name: "3-й Гоблин, ответственнвый за доставку (Аллемантея)"},
         {huntingZoneId: 183, templateId: 1276, logTime: 0, name: "4-й Гоблин, ответственнвый за доставку (Верхний Дозор)"},
 /* ==== Raid BOSS ============================================================================================ */
-        {huntingZoneId:  26, templateId: 5001, logTime: 0, name: "[Блаженное озеро] Ортан"},
-        {huntingZoneId:  39, templateId:  501, logTime: 0, name: "[Зона карантина] Хазар"},
+        {huntingZoneId:  26, templateId: 5001, logTime: 0, name: "[Эссения] Ортан (Блаженное озеро)"},
+        {huntingZoneId:  39, templateId:  501, logTime: 0, name: "[Вал-Палрада] Хазар (Зона карантина)"},
         {huntingZoneId:  51, templateId: 4001, logTime: 0, name: "[Лоркада] Кэлос"},
 /* ==== World BOSS =========================================================================================== */
         {huntingZoneId: 10,   templateId: 99,   name: "[Остров Серпентис] Божественный грабитель"},
