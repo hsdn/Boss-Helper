@@ -18,6 +18,8 @@ const DefaultSettings = {
         {huntingZoneId: 1023, templateId:   200003, name: "(Ивент) Крошечный Санта"},
         {huntingZoneId: 1023, templateId:   200007, name: "(Ивент) Картоха"},
         {huntingZoneId: 1023, templateId:   200008, name: "(Ивент) Картофелина"},
+        {huntingZoneId: 2000, templateId:     3001, name: "(Ивент) Парфон"},
+        {huntingZoneId: 2000, templateId:     3202, name: "(Ивент) Блестящий жук"},
         {huntingZoneId: 1023, templateId:     8000, name: "(Ивент) Кайман-бродяга"},
         {huntingZoneId:   26, templateId:     6001, name: "(Ивент) Кайман-бродяга"},
         {huntingZoneId:   27, templateId:     6001, name: "(Ивент) Кайман-бродяга"},
