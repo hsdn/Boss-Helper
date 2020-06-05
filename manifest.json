@@ -1,16 +1,28 @@
 {
     "files": {
         "README.md": "74c29161328f9211d6126867976909f9faaaa3f2a610c1aca1abc3c2c2f8c01d",
-        "index.js": "71743fc1bd714b337292ee7decae90e24b4aea310d1efd84e89d0ed2972fed5e",
+        "index.js": "4fd88a08b83a6f3d7aa175408f30c3e5644366d18063923f26332fd29625dfda",
         "module.json": "731c8440cba82cceaa782eeb38fd718467701a17aac45cbe969e925284d81bce",
         "settings_migrator.js": "89e7bc0af968d785a6d434c38bd11584da38dc79189f66ae572c0523adfdc436"
     },
     "defs": {
+        "C_LOGIN_ARBITER": 2,
+        "S_ABNORMALITY_BEGIN": 4,
+        "S_ABNORMALITY_REFRESH": 2,
+        "S_ACTION_STAGE": 9,
         "S_BOSS_GAGE_INFO": 3,
+        "S_CHAT": 3,
+        "S_DESPAWN_BUILD_OBJECT": 2,
+        "S_DESPAWN_COLLECTION": 2,
         "S_DESPAWN_DROPITEM": 4,
         "S_DESPAWN_NPC": 3,
+        "S_DUNGEON_EVENT_MESSAGE": 2,
         "S_EACH_SKILL_RESULT": 14,
+        "S_LOAD_TOPO": 3,
         "S_NPC_STATUS": 2,
+        "S_QUEST_BALLOON": 1,
+        "S_SPAWN_BUILD_OBJECT": 2,
+        "S_SPAWN_COLLECTION": 4,
         "S_SPAWN_DROPITEM": 8,
         "S_SPAWN_NPC": 11,
         "S_SYSTEM_MESSAGE": 1
