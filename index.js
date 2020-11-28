@@ -240,12 +240,14 @@ module.exports = function BossHelper(mod) {
 	}
 	
 	function spawnItem(gameId, loc) {
-		mod.send('S_SPAWN_DROPITEM', mod.majorPatchVersion >= 99 ? 9 : 8, {
+		loc.z -= 100;
+		mod.send('S_SPAWN_DROPITEM', 9, {
 			gameId: gameId*10n,
 			loc: loc,
 			item: mod.settings.itemId,
 			amount: 1,
-			expiry: 999999
+			expiry: 0,
+			owners: []
 		})
 	}
 	
