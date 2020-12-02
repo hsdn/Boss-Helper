@@ -80,35 +80,35 @@ const DefaultSettings = {
 		{
 			"huntingZoneId": 72,
 			"templateId": 1276,
-			"logDiff": 10800,
+			"logTime": 0,
 			"name": "Coin Vendor (Allemantheia)",
 			"name_RU": "Гоблин (Аллемантея)"
 		},
 		{
 			"huntingZoneId": 183,
 			"templateId": 1276,
-			"logDiff": 32400,
+			"logTime": 0,
 			"name": "Coin Vendor (Highwatch)",
 			"name_RU": "Гоблин (Верхний Дозор)"
 		},
 		{
 			"huntingZoneId": 63,
 			"templateId": 1276,
-			"logDiff": 54000,
+			"logTime": 0,
 			"name": "Coin Vendor (Velika)",
 			"name_RU": "Гоблин (Велика)"
 		},
 		{
 			"huntingZoneId": 63,
 			"templateId": 1284,
-			"logDiff": 54000,
+			"logTime": 0,
 			"name": "Coin Vendor (Velika)",
 			"name_RU": "Гоблин (Велика)"
 		},
 		{
 			"huntingZoneId": 84,
 			"templateId": 1276,
-			"logDiff": 75600,
+			"logTime": 0,
 			"name": "Coin Vendor (Kaiator)",
 			"name_RU": "Гоблин (Кайатор)"
 		},

@@ -17,6 +17,7 @@ module.exports = function BossHelper(mod) {
 			"Raid Boss": "Рейдовый босс",
 			"World Boss": "Мировой босс",
 			"Merchant": "Торговец",
+			"Goblin": "Гоблин",
 			"Found": "Найден",
 			"Spawned": "Появился",
 			"Refreshed": "Обновлен",
@@ -77,7 +78,7 @@ module.exports = function BossHelper(mod) {
 					}
 					break;
 				case "ask":
-					MSG.chat(M("Raid Boss").toUpperCase());
+					MSG.chat(`======== ${M("Raid Boss").toUpperCase()} ========`);
 					for (const i of mod.settings.bosses) {
 						if (i.logTime == undefined) continue;
 						if (![5001, 501, 4001].includes(i.templateId)) continue;
@@ -91,7 +92,7 @@ module.exports = function BossHelper(mod) {
 							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(nextTime))}`);
 						}
 					}
-					MSG.chat(M("World Boss").toUpperCase());
+					MSG.chat(`======== ${M("World Boss").toUpperCase()} ========`);
 					for (const i of mod.settings.bosses) {
 						if (i.logTime == undefined || ![99, 5011, 35, 33, 7011, 9050].includes(i.templateId)) continue;
 						const name = getBossName(i);
@@ -104,25 +105,26 @@ module.exports = function BossHelper(mod) {
 							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(nextTime))}`);
 						}
 					}
-					MSG.chat(M("Merchant").toUpperCase());
+					MSG.chat(`======== ${M("Goblin").toUpperCase()} ========`);
+					for (const i of mod.settings.bosses) {
+						if (i.logTime == undefined) continue;
+						if (![63, 72, 84, 183].includes(i.huntingZoneId)) continue;
+						const name = getBossName(i);
+						const nextTime = i.logTime + 24 * 60 * 60 * 1000;
+						if (i.logTime == 0) {
+							MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
+						} else if (Date.now() < nextTime) {
+							MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTime))}`);
+						} else {
+							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(nextTime))}`);
+						}
+					}
+					MSG.chat(`======== ${M("Merchant").toUpperCase()} ========`);
 					for (const i of mod.settings.bosses) {
 						if (i.logDiff == undefined) continue;
 						const name = getBossName(i);
-						let nextTime = 0;
-						// Goblin Starc
-						if ([63, 72, 84, 183].includes(i.huntingZoneId)) {
-							nextTime = mod.settings.logTime + i.logDiff * 1000 + 24 * 60 * 60 * 1000;
-							if (mod.settings.logTime == 0) {
-								MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
-							} else if (Date.now() < nextTime) {
-								MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTime))}`);
-							} else {
-								MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(nextTime))}`);
-							}
-						}
-						// Traders
 						if (i.templateId == undefined && i.huntingZoneId == undefined) {
-							nextTime = mod.settings.logTime + i.logDiff * 1000;
+							let nextTime = mod.settings.logTime + i.logDiff * 1000;
 							if (mod.settings.logTime == 0) {
 								MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
 							} else if (nextTime < Date.now() && nextTime + 30 * 60 * 1000 >= Date.now()) {
