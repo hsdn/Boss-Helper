@@ -1,16 +1,18 @@
 {
     "files": {
         "README.md": "7fe166c52017600d099e5d3b53024cd2dfd6b5f2279831d8d64e69736651363d",
-        "index.js": "3606cc8072db6492dd476f56e2b722991d64197bc0f1c40c0ad15db4aa1a2793",
-        "module.json": "01867d8974ac9ccef7a20d15e8a88117b8f06abe9626b9a602a9f10a46bdef33",
+        "index.js": "47b0da290d101ab0cec38d463e94772a8730853b6aea7d997fbd80e475ca11d8",
+        "module.json": "67e67eed7ef7a578842994ff8906823e67b65f1a5847c7bafa6cfe21546f426b",
         "settings_migrator.js": "d3451da53079f77eac261ec540ccdaef24d7695aaadce0a5105f9db930ffff15"
     },
     "defs": {
         "C_CHAT": 1,
         "S_BOSS_GAGE_INFO": 3,
+        "S_CHAT": 3,
         "S_CURRENT_CHANNEL": 2,
         "S_DESPAWN_DROPITEM": 4,
         "S_DESPAWN_NPC": 3,
+        "S_DUNGEON_EVENT_MESSAGE": 2,
         "S_EACH_SKILL_RESULT": 14,
         "S_NOTIFY_GUILD_QUEST_URGENT": 1,
         "S_NPC_STATUS": 2,

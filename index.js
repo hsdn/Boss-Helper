@@ -1,7 +1,6 @@
 module.exports = function BossHelper(mod) {
 	// const notifier = mod.require ? mod.require.notifier : require("tera-notifier")(mod);
-	const Message = require("../tera-message");
-	const MSG = new Message(mod);
+	const MSG = new TeraMessage(mod);
 	const bossNames = {};
 
 	const strings = {
@@ -445,3 +444,56 @@ module.exports = function BossHelper(mod) {
 		*/
 	}
 };
+
+class TeraMessage {
+	constructor(mod) {
+		this.clr = function(text, hexColor) {
+			return `<font color="#${hexColor}">${text}</font>`;
+		};
+
+		this.RED = function(text) {
+			return `<font color="#FF0000">${text}</font>`;
+		};
+		this.BLU = function(text) {
+			return `<font color="#56B4E9">${text}</font>`;
+		};
+		this.YEL = function(text) {
+			return `<font color="#E69F00">${text}</font>`;
+		};
+		this.TIP = function(text) {
+			return `<font color="#00FFFF">${text}</font>`;
+		};
+		this.GRY = function(text) {
+			return `<font color="#A0A0A0">${text}</font>`;
+		};
+		this.PIK = function(text) {
+			return `<font color="#FF00DC">${text}</font>`;
+		};
+
+		this.chat = function(msg) {
+			mod.command.message(msg);
+		};
+		this.party = function(msg) {
+			mod.send("S_CHAT", 3, {
+				"channel": 21,
+				// "name": "TIP",
+				"message": msg
+			});
+		};
+		this.raids = function(msg) {
+			mod.send("S_CHAT", 3, {
+				"channel": 25,
+				// "name": "TIP",
+				"message": msg
+			});
+		};
+		this.alert = function(msg, type) {
+			mod.send("S_DUNGEON_EVENT_MESSAGE", 2, {
+				"type": type,
+				"chat": false,
+				"channel": 0,
+				"message": msg
+			});
+		};
+	}
+}
