@@ -122,24 +122,23 @@ module.exports = function BossHelper(mod) {
 					MSG.chat(`======== ${M("Merchant").toUpperCase()} ========`);
 					for (const i of mod.settings.bosses) {
 						if (i.logDiff == undefined) continue;
+						if (i.templateId != undefined || i.huntingZoneId != undefined) continue;
 						const name = getBossName(i);
-						if (i.templateId == undefined && i.huntingZoneId == undefined) {
-							let nextTime = mod.settings.logTime + i.logDiff * 1000;
-							if (mod.settings.logTime == 0) {
-								MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
-							} else if (nextTime < Date.now() && nextTime + 30 * 60 * 1000 >= Date.now()) {
-								MSG.chat(` ${MSG.PIK(bossNames[i.logDiff] || name)} ${M("spawned at")} ${MSG.TIP(getTime(nextTime))}`);
+						let nextTime = mod.settings.logTime + i.logDiff * 1000;
+						if (mod.settings.logTime == 0) {
+							MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
+						} else if (nextTime < Date.now() && nextTime + 30 * 60 * 1000 >= Date.now()) {
+							MSG.chat(` ${MSG.PIK(bossNames[i.logDiff] || name)} ${M("spawned at")} ${MSG.TIP(getTime(nextTime))}`);
+						} else {
+							let seen = "";
+							if (Date.now() >= nextTime) {
+								nextTime += 5 * 60 * 60 * 1000;
+								seen = `${M("was seen")}, `;
+							}
+							if (Date.now() < nextTime) {
+								MSG.chat(` ${MSG.BLU(name)} ${seen + M("next")} ${MSG.TIP(getTime(nextTime))}`);
 							} else {
-								let seen = "";
-								if (Date.now() >= nextTime) {
-									nextTime += 5 * 60 * 60 * 1000;
-									seen = `${M("was seen")}, `;
-								}
-								if (Date.now() < nextTime) {
-									MSG.chat(` ${MSG.BLU(name)} ${seen + M("next")} ${MSG.TIP(getTime(nextTime))}`);
-								} else {
-									MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(nextTime))}`);
-								}
+								MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(nextTime))}`);
 							}
 						}
 					}
