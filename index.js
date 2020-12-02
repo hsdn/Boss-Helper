@@ -85,7 +85,7 @@ module.exports = function BossHelper(mod) {
 						const name = getBossName(i);
 						const nextTime = i.logTime + 5 * 60 * 60 * 1000;
 						if (i.logTime == 0) {
-							MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL("no data")}`);
+							MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
 						} else if (Date.now() < nextTime) {
 							MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTime))}`);
 						} else {
@@ -98,7 +98,7 @@ module.exports = function BossHelper(mod) {
 						const name = getBossName(i);
 						const nextTime = i.logTime + 5 * 60 * 60 * 1000;
 						if (i.logTime == 0) {
-							MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL("no data")}`);
+							MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
 						} else if (Date.now() < nextTime) {
 							MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTime))}`);
 						} else {
@@ -114,7 +114,7 @@ module.exports = function BossHelper(mod) {
 						if ([63, 72, 84, 183].includes(i.huntingZoneId)) {
 							nextTime = mod.settings.logTime + i.logDiff * 1000 + 24 * 60 * 60 * 1000;
 							if (mod.settings.logTime == 0) {
-								MSG.chat(`${MSG.BLU(name)} ${MSG.YEL("no data")}`);
+								MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
 							} else if (Date.now() < nextTime) {
 								MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTime))}`);
 							} else {
@@ -125,7 +125,7 @@ module.exports = function BossHelper(mod) {
 						if (i.templateId == undefined && i.huntingZoneId == undefined) {
 							nextTime = mod.settings.logTime + i.logDiff * 1000;
 							if (mod.settings.logTime == 0) {
-								MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL("no data")}`);
+								MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
 							} else if (nextTime < Date.now() && nextTime + 30 * 60 * 1000 >= Date.now()) {
 								MSG.chat(` ${MSG.PIK(bossNames[i.logDiff] || name)} ${M("spawned at")} ${MSG.TIP(getTime(nextTime))}`);
 							} else {
@@ -301,7 +301,7 @@ module.exports = function BossHelper(mod) {
 	}
 
 	function M(string) {
-		return strings[string] || string;
+		return strings[language] && strings[language][string] ? strings[language][string] : string;
 	}
 
 	function whichBoss(h_ID, t_ID) {

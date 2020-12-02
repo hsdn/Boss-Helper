@@ -12,7 +12,7 @@ When an NPC spawnins in the visible range, it will be marked with a marker. Avai
 * The module has built-in functionality of https://github.com/Lambda11/bam-hp-bar
 * Displays the spawn times of world bosses and mystery merchants (the **boss ask** command):   
   ![](https://i.imgur.com/DgfxH5X.png)
-* Merchant NPC with marker (easily visible in the distance)   
+* Merchant NPC with marker (easily visible in the distance):   
   ![](https://i.imgur.com/tdIJKJv.png)
 
 ------
