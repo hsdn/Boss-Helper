@@ -1,29 +1,20 @@
 {
     "files": {
-        "README.md": "74c29161328f9211d6126867976909f9faaaa3f2a610c1aca1abc3c2c2f8c01d",
-        "index.js": "02dfee27a8e03e8e32814b0b2d7886951fa9845ff18a959201345ff07f60a144",
-        "module.json": "731c8440cba82cceaa782eeb38fd718467701a17aac45cbe969e925284d81bce",
-        "settings_migrator.js": "89e7bc0af968d785a6d434c38bd11584da38dc79189f66ae572c0523adfdc436"
+        "README.md": "e24b891b4bf2a36644cd7522ff6f27ef56c0e8a1ef7b113474e248b69fd00a73",
+        "index.js": "cd85e9a929b2aa68ef74068c278f7689b43acc229904afd5ca1f5cc0dc82c33d",
+        "module.json": "01867d8974ac9ccef7a20d15e8a88117b8f06abe9626b9a602a9f10a46bdef33",
+        "settings_migrator.js": "d3451da53079f77eac261ec540ccdaef24d7695aaadce0a5105f9db930ffff15"
     },
     "defs": {
-        "C_LOGIN_ARBITER": 2,
-        "S_ABNORMALITY_BEGIN": 4,
-        "S_ABNORMALITY_REFRESH": 2,
-        "S_ACTION_STAGE": 9,
+        "C_CHAT": 1,
         "S_BOSS_GAGE_INFO": 3,
-        "S_CHAT": 3,
-        "S_DESPAWN_BUILD_OBJECT": 2,
-        "S_DESPAWN_COLLECTION": 2,
+        "S_CURRENT_CHANNEL": 2,
         "S_DESPAWN_DROPITEM": 4,
         "S_DESPAWN_NPC": 3,
-        "S_DUNGEON_EVENT_MESSAGE": 2,
         "S_EACH_SKILL_RESULT": 14,
-        "S_LOAD_TOPO": 3,
+        "S_NOTIFY_GUILD_QUEST_URGENT": 1,
         "S_NPC_STATUS": 2,
-        "S_QUEST_BALLOON": 1,
-        "S_SPAWN_BUILD_OBJECT": 2,
-        "S_SPAWN_COLLECTION": 4,
-        "S_SPAWN_DROPITEM": [8,9],
+        "S_SPAWN_DROPITEM": 9,
         "S_SPAWN_NPC": 11,
         "S_SYSTEM_MESSAGE": 1
     }
