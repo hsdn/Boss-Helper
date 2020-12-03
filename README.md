@@ -7,7 +7,7 @@ When an NPC spawnins in the visible range, it will be marked with a marker. Avai
 При появлении NPC в видимом диапазоне, он будет отмечен маркером. Поддерживаются Русский и Английский языки (определяются автоматически).
 
 ## Commands / Команды
-/8 | Command Description | Описание команды
+Toolbox(/8) | Command Description | Описание команды
 --- | --- | ---
 **boss** | Enable/disable module (enabled by default). | Включить/выключить модуль (по умолчанию включен).
 **boss&nbsp;warn** | Enable/disable on-screen warning messages. | Включить/выключить сообщения предупреждения на экране.
