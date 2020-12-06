@@ -318,15 +318,15 @@ module.exports = function BossHelper(mod) {
 						MSG.chat(`${MSG.BLU(M("Spawned"))} ${MSG.PIK(getNpcName(npc))}`);
 					}
 					notificationafk(`${M("Spawned")} ${getNpcName(npc)}`);
-					if (npc.name != undefined) {
-						merchantNames[npc.name] = getNpcName(npc);
+					if (npc.regionName != undefined) {
+						merchantNames[npc.regionName] = getNpcName(npc);
 					}
 					saveTime();
 				}
 				break;
 			case "SMT_WORLDSPAWN_NOTIFY_DESPAWN":
-				if (npc && npc.name != undefined) {
-					delete merchantNames[npc.name];
+				if (npc && npc.regionName != undefined) {
+					delete merchantNames[npc.regionName];
 				}
 				break;
 			default:
@@ -362,7 +362,7 @@ module.exports = function BossHelper(mod) {
 					b.templateId == npc.templateId
 				) &&
 					mod.settings.merchants.regions[i].name != undefined) {
-					npc.name = mod.settings.merchants.regions[i].name;
+					npc.regionName = mod.settings.merchants.regions[i].name;
 				}
 			}
 		}
