@@ -352,7 +352,7 @@ module.exports = function BossHelper(mod) {
 		npc = null;
 
 		if (npcs.find(b => b.huntingZoneId == h_ID && b.templateId == t_ID)) {
-			npc = npcs.find(b => b.huntingZoneId == h_ID && b.templateId == t_ID);
+			npc = { ...npcs.find(b => b.huntingZoneId == h_ID && b.templateId == t_ID) };
 		}
 
 		if (npc) {
