@@ -5,7 +5,7 @@
         "guiName": "Boss-Helper",
         "settingsFile": "config.json",
         "settingsMigrator": "settings_migrator.js",
-        "settingsVersion": 15
+        "settingsVersion": 16
     },
     "author": "HSDN / ZC / mopihu / Owyn / Lambda11",
     "description": "Displays information and notifications about spawning of merchants, world bosses and event monsters.",

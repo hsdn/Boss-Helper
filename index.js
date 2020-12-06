@@ -1,7 +1,6 @@
 module.exports = function BossHelper(mod) {
 	// const notifier = mod.require ? mod.require.notifier : require("tera-notifier")(mod);
 	const MSG = new TeraMessage(mod);
-	const bossNames = {};
 
 	const strings = {
 		"ru": {
@@ -15,6 +14,7 @@ module.exports = function BossHelper(mod) {
 			"Position markers cleared": "Очищена отметка позиции",
 			"Unknown parameter": "Неверный параметр",
 			"Raid Boss": "Рейдовый босс",
+			"Guild Boss": "Гильдийный босс",
 			"World Boss": "Мировой босс",
 			"Merchant": "Торговец",
 			"Goblin": "Гоблин",
@@ -25,20 +25,33 @@ module.exports = function BossHelper(mod) {
 			"no data": "нет данных",
 			"spawned at": "появился в",
 			"next": "след. в",
-			"last": "послед. в",
-			"was seen": "уже был"
+			"last": "послед. в"
 		}
 	};
 
 	let mobid = [],
-		boss = null,
+		language = null,
+		npc = null,
 		sysMsg = null,
 		npcID = null,
-		language = null,
-		bossHunting = 0,
-		bossTemplate = 0,
+		npcHunting = 0,
+		npcTemplate = 0,
 		party = false,
 		currentChannel = 0;
+
+	const merchantNames = {};
+	const npcs = [...mod.settings.bosses];
+
+	for (let i = 0; i < mod.settings.merchants.regions.length; i++) {
+		for (let j = 0; j < mod.settings.merchants.regions[i].npcs.length; j++) {
+			npcs.push(mod.settings.merchants.regions[i].npcs[j]);
+		}
+	}
+	for (let i = 0; i < mod.settings.goblins.regions.length; i++) {
+		for (let j = 0; j < mod.settings.goblins.regions[i].npcs.length; j++) {
+			npcs.push(mod.settings.goblins.regions[i].npcs[j]);
+		}
+	}
 
 	mod.command.add(["boss", "monster"], (arg) => {
 		if (!arg) {
@@ -78,67 +91,94 @@ module.exports = function BossHelper(mod) {
 					}
 					break;
 				case "ask":
+					MSG.chat(`======== ${M("World Boss").toUpperCase()} ========`);
+					for (const i of mod.settings.bosses) {
+						if (i.logTime == undefined) continue;
+						if (![99, 5011, 35, 33, 7011, 9050].includes(i.templateId)) continue;
+						const name = getNpcName(i);
+						if (i.logTime == 0) {
+							MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
+						} else {
+							const nextTime = i.logTime + 5 * 60 * 60 * 1000;
+							if (Date.now() < nextTime) {
+								MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTime))}`);
+							} else {
+								MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(nextTime))}`);
+							}
+						}
+					}
 					MSG.chat(`======== ${M("Raid Boss").toUpperCase()} ========`);
 					for (const i of mod.settings.bosses) {
 						if (i.logTime == undefined) continue;
 						if (![5001, 501, 4001].includes(i.templateId)) continue;
-						const name = getBossName(i);
-						const nextTime = i.logTime + 5 * 60 * 60 * 1000;
+						const name = getNpcName(i);
 						if (i.logTime == 0) {
 							MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
-						} else if (Date.now() < nextTime) {
-							MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTime))}`);
 						} else {
-							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(nextTime))}`);
-						}
-					}
-					MSG.chat(`======== ${M("World Boss").toUpperCase()} ========`);
-					for (const i of mod.settings.bosses) {
-						if (i.logTime == undefined || ![99, 5011, 35, 33, 7011, 9050].includes(i.templateId)) continue;
-						const name = getBossName(i);
-						const nextTime = i.logTime + 5 * 60 * 60 * 1000;
-						if (i.logTime == 0) {
-							MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
-						} else if (Date.now() < nextTime) {
-							MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTime))}`);
-						} else {
-							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(nextTime))}`);
+							const nextTime = i.logTime + 5 * 60 * 60 * 1000;
+							if (Date.now() < nextTime) {
+								MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTime))}`);
+							} else {
+								MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(nextTime))}`);
+							}
 						}
 					}
 					MSG.chat(`======== ${M("Goblin").toUpperCase()} ========`);
-					for (const i of mod.settings.bosses) {
-						if (i.logTime == undefined) continue;
-						if (![63, 72, 84, 183].includes(i.huntingZoneId)) continue;
-						const name = getBossName(i);
-						const nextTime = i.logTime + 24 * 60 * 60 * 1000;
-						if (i.logTime == 0) {
+					for (const i of mod.settings.goblins.regions) {
+						if (i.logDiff == undefined) continue;
+						const name = getNpcName(i);
+						if (mod.settings.goblins.logTime == 0) {
 							MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
-						} else if (Date.now() < nextTime) {
-							MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTime))}`);
 						} else {
-							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(nextTime))}`);
+							let nextTime = mod.settings.goblins.logTime + i.logDiff * 1000;
+							while (Date.now() > nextTime) {
+								nextTime += 24 * 60 * 60 * 1000;
+							}
+							const lastTime = nextTime - 24 * 60 * 60 * 1000;
+							if (lastTime < Date.now() && lastTime + 3 * 60 * 1000 >= Date.now()) {
+								MSG.chat(` ${MSG.PIK(merchantNames[i.name] || name)} ${M("spawned at")} ${MSG.TIP(getTime(lastTime))}`);
+							} else {
+								MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTime))}`);
+							}
 						}
 					}
 					MSG.chat(`======== ${M("Merchant").toUpperCase()} ========`);
-					for (const i of mod.settings.bosses) {
-						if (i.logDiff == undefined) continue;
-						if (i.templateId != undefined || i.huntingZoneId != undefined) continue;
-						const name = getBossName(i);
-						let nextTime = mod.settings.logTime + i.logDiff * 1000;
-						if (mod.settings.logTime == 0) {
+					for (const i of mod.settings.merchants.regions) {
+						if (i.logTime == undefined) continue;
+						if (i.logIntervalMin == undefined) continue;
+						if (i.logIntervalMax == undefined) continue;
+						const name = getNpcName(i);
+						if (i.logTime == 0) {
 							MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
-						} else if (nextTime < Date.now() && nextTime + 30 * 60 * 1000 >= Date.now()) {
-							MSG.chat(` ${MSG.PIK(bossNames[i.logDiff] || name)} ${M("spawned at")} ${MSG.TIP(getTime(nextTime))}`);
 						} else {
-							let seen = "";
-							if (Date.now() >= nextTime) {
-								nextTime += 5 * 60 * 60 * 1000;
-								seen = `${M("was seen")}, `;
-							}
-							if (Date.now() < nextTime) {
-								MSG.chat(` ${MSG.BLU(name)} ${seen + M("next")} ${MSG.TIP(getTime(nextTime))}`);
+							const lastTimeMin = i.logTime + i.logIntervalMin * 1000;
+							const lastTimeMax = i.logTime + i.logIntervalMax * 1000;
+							if (i.logTime < Date.now() && i.logTime + 30 * 60 * 1000 >= Date.now()) {
+								MSG.chat(` ${MSG.PIK(name)} ${M("spawned at")} ${MSG.TIP(getTime(i.logTime))}`);
+							} else if (Date.now() < lastTimeMax) {
+								MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(lastTimeMin))} ~ ${MSG.TIP(getTime(lastTimeMax))}`);
 							} else {
-								MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(nextTime))}`);
+								MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(lastTimeMin))}`);
+							}
+						}
+					}
+					for (const i of mod.settings.merchants.regions) {
+						if (i.logDiff == undefined && i.logTime == undefined) continue;
+						if (i.logIntervalMin != undefined) continue;
+						if (i.logIntervalMax != undefined) continue;
+						const name = getNpcName(i);
+						if (mod.settings.merchants.logTime == 0) {
+							MSG.chat(` ${MSG.BLU(name)} ${MSG.YEL(M("no data"))}`);
+						} else {
+							let nextTime = i.logTime || mod.settings.merchants.logTime + i.logDiff * 1000;
+							while (Date.now() > nextTime) {
+								nextTime += 5 * 60 * 60 * 1000;
+							}
+							const lastTime = nextTime - 5 * 60 * 60 * 1000;
+							if (lastTime < Date.now() && lastTime + 30 * 60 * 1000 >= Date.now()) {
+								MSG.chat(` ${MSG.PIK(merchantNames[i.name] || name)} ${M("spawned at")} ${MSG.TIP(getTime(lastTime))}`);
+							} else {
+								MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTime))}`);
 							}
 						}
 					}
@@ -169,24 +209,24 @@ module.exports = function BossHelper(mod) {
 	mod.hook("S_SPAWN_NPC", 11, (event) => {
 		if (!mod.settings.enabled) return;
 
-		whichBoss(event.huntingZoneId, event.templateId);
-		if (boss) {
-			bossHunting = boss.huntingZoneId;
-			bossTemplate = boss.templateId;
+		whichNpc(event.huntingZoneId, event.templateId);
+		if (npc) {
+			npcHunting = npc.huntingZoneId;
+			npcTemplate = npc.templateId;
 			if (mod.settings.marker) {
 				spawnItem(event.gameId, event.loc);
 				mobid.push(event.gameId);
 			}
 			if (mod.settings.alerted) {
-				MSG.alert((`${M("Found")} ${getBossName(boss)}`), 44);
+				MSG.alert((`${M("Found")} ${getNpcName(npc)}`), 44);
 			}
 			if (party) {
 				mod.send("C_CHAT", 1, {
 					"channel": 21,
-					"message": (`${currentChannel} ${M("channel")} - ${M("Found")} ${getBossName(boss)}`)
+					"message": (`${currentChannel} ${M("channel")} - ${M("Found")} ${getNpcName(npc)}`)
 				});
 			} else if (mod.settings.notice) {
-				MSG.raids(`${M("Found")} ${getBossName(boss)}`);
+				MSG.raids(`${M("Found")} ${getNpcName(npc)}`);
 			}
 		}
 
@@ -224,24 +264,24 @@ module.exports = function BossHelper(mod) {
 	mod.hook("S_NOTIFY_GUILD_QUEST_URGENT", 1, (event) => {
 		switch (event.quest) {
 			case "@GuildQuest:10005001":
-				whichBoss(event.zoneId, 2001);
+				whichNpc(event.zoneId, 2001);
 				break;
 			case "@GuildQuest:10006001":
-				whichBoss(event.zoneId, 2002);
+				whichNpc(event.zoneId, 2002);
 				break;
 			case "@GuildQuest:10007001":
-				whichBoss(event.zoneId, 2003);
+				whichNpc(event.zoneId, 2003);
 				break;
 		}
 
-		if (boss && event.type == 0) {
-			MSG.chat(`${MSG.BLU(M("Guild Boss"))} ${MSG.RED(getBossName(boss))}`);
-			notificationafk(`${M("Guild Boss")} ${getBossName(boss)}`);
+		if (npc && event.type == 0) {
+			MSG.chat(`${MSG.BLU(M("Guild Boss"))} ${MSG.RED(getNpcName(npc))}`);
+			notificationafk(`${M("Guild Boss")} ${getNpcName(npc)}`);
 		}
 
-		if (boss && event.type == 1) {
-			MSG.chat(`${MSG.BLU(M("Refreshed"))} ${MSG.TIP(getBossName(boss))}`);
-			notificationafk(`${M("Refreshed")} ${getBossName(boss)}`);
+		if (npc && event.type == 1) {
+			MSG.chat(`${MSG.BLU(M("Refreshed"))} ${MSG.TIP(getNpcName(npc))}`);
+			notificationafk(`${M("Refreshed")} ${getNpcName(npc)}`);
 		}
 	});
 
@@ -251,42 +291,42 @@ module.exports = function BossHelper(mod) {
 		sysMsg = mod.parseSystemMessage(event.message);
 		switch (sysMsg.id) {
 			case "SMT_FIELDBOSS_APPEAR":
-				getBossMsg(sysMsg.tokens.npcName);
-				whichBoss(bossHunting, bossTemplate);
-				if (boss) {
-					MSG.chat(`${MSG.BLU(M("Spawned"))} ${MSG.RED(getBossName(boss))}`);
-					notificationafk(`${M("Spawned")} ${getBossName(boss)}`);
+				getNpcMsg(sysMsg.tokens.npcName);
+				whichNpc(npcHunting, npcTemplate);
+				if (npc) {
+					MSG.chat(`${MSG.BLU(M("Spawned"))} ${MSG.RED(getNpcName(npc))}`);
+					notificationafk(`${M("Spawned")} ${getNpcName(npc)}`);
 				}
 				break;
 			case "SMT_FIELDBOSS_DIE_GUILD":
 			case "SMT_FIELDBOSS_DIE_NOGUILD":
-				getBossMsg(sysMsg.tokens.npcname);
-				whichBoss(bossHunting, bossTemplate);
-				if (boss) {
+				getNpcMsg(sysMsg.tokens.npcname);
+				whichNpc(npcHunting, npcTemplate);
+				if (npc) {
 					const nextTime = Date.now() + 5 * 60 * 60 * 1000;
-					MSG.chat(`${MSG.RED(getBossName(boss))} ${M("next spawn")} ${MSG.TIP(getTime(nextTime))}`);
+					MSG.chat(`${MSG.RED(getNpcName(npc))} ${M("next spawn")} ${MSG.TIP(getTime(nextTime))}`);
 					saveTime();
 				}
 				break;
 			case "SMT_WORLDSPAWN_NOTIFY_SPAWN":
-				getBossMsg(sysMsg.tokens.npcName);
-				whichBoss(bossHunting, bossTemplate);
-				if (boss) {
-					if ([1276, 1284].includes(bossTemplate)) {
-						MSG.party(`${M("Spawned")} ${getBossName(boss)}`);
+				getNpcMsg(sysMsg.tokens.npcName);
+				whichNpc(npcHunting, npcTemplate);
+				if (npc) {
+					if ([1276, 1284].includes(npcTemplate)) {
+						MSG.party(`${M("Spawned")} ${getNpcName(npc)}`);
 					} else {
-						MSG.chat(`${MSG.BLU(M("Spawned"))} ${MSG.PIK(getBossName(boss))}`);
+						MSG.chat(`${MSG.BLU(M("Spawned"))} ${MSG.PIK(getNpcName(npc))}`);
 					}
-					notificationafk(`${M("Spawned")} ${getBossName(boss)}`);
-					if (boss.logDiff != undefined) {
-						bossNames[boss.logDiff] = getBossName(boss);
+					notificationafk(`${M("Spawned")} ${getNpcName(npc)}`);
+					if (npc.name != undefined) {
+						merchantNames[npc.name] = getNpcName(npc);
 					}
 					saveTime();
 				}
 				break;
 			case "SMT_WORLDSPAWN_NOTIFY_DESPAWN":
-				if (boss && boss.logDiff != undefined) {
-					delete bossNames[boss.logDiff];
+				if (npc && npc.name != undefined) {
+					delete merchantNames[npc.name];
 				}
 				break;
 			default:
@@ -294,13 +334,13 @@ module.exports = function BossHelper(mod) {
 		}
 	});
 
-	function getBossMsg(id) {
+	function getNpcMsg(id) {
 		npcID = id.match(/\d+/ig);
-		bossHunting = parseInt(npcID[0]);
-		bossTemplate = parseInt(npcID[1]);
+		npcHunting = parseInt(npcID[0]);
+		npcTemplate = parseInt(npcID[1]);
 	}
 
-	function getBossName(entry) {
+	function getNpcName(entry) {
 		return entry[`name_${language.toUpperCase()}`] || entry[`name_${language}`] || entry.name;
 	}
 
@@ -308,23 +348,58 @@ module.exports = function BossHelper(mod) {
 		return strings[language] && strings[language][string] ? strings[language][string] : string;
 	}
 
-	function whichBoss(h_ID, t_ID) {
-		boss = null;
-		if (mod.settings.bosses.find(b => b.huntingZoneId == h_ID && b.templateId == t_ID)) {
-			boss = mod.settings.bosses.find(b => b.huntingZoneId == h_ID && b.templateId == t_ID);
+	function whichNpc(h_ID, t_ID) {
+		npc = null;
+
+		if (npcs.find(b => b.huntingZoneId == h_ID && b.templateId == t_ID)) {
+			npc = npcs.find(b => b.huntingZoneId == h_ID && b.templateId == t_ID);
+		}
+
+		if (npc) {
+			for (let i = 0; i < mod.settings.merchants.regions.length; i++) {
+				if (mod.settings.merchants.regions[i].npcs.find(b =>
+					b.huntingZoneId == npc.huntingZoneId &&
+					b.templateId == npc.templateId
+				) &&
+					mod.settings.merchants.regions[i].name != undefined) {
+					npc.name = mod.settings.merchants.regions[i].name;
+				}
+			}
 		}
 	}
 
 	function saveTime() {
+		if (npc) {
+			for (let i = 0; i < mod.settings.merchants.regions.length; i++) {
+				if (mod.settings.merchants.regions[i].npcs.find(b =>
+					b.huntingZoneId == npc.huntingZoneId &&
+					b.templateId == npc.templateId
+				)) {
+					if (mod.settings.merchants.regions[i].logDiff != undefined) {
+						mod.settings.merchants.logTime = Date.now() - (mod.settings.merchants.regions[i].logDiff * 1000);
+					}
+					if (mod.settings.merchants.regions[i].logTime != undefined) {
+						mod.settings.merchants.regions[i].logTime = Date.now();
+					}
+				}
+			}
+			for (let i = 0; i < mod.settings.goblins.regions.length; i++) {
+				if (mod.settings.goblins.regions[i].npcs.find(b =>
+					b.huntingZoneId == npc.huntingZoneId &&
+					b.templateId == npc.templateId
+				) &&
+					mod.settings.goblins.regions[i].logDiff != undefined) {
+					mod.settings.goblins.logTime = Date.now() - (mod.settings.goblins.regions[i].logDiff * 1000);
+				}
+			}
+		}
+
 		for (let i = 0; i < mod.settings.bosses.length; i++) {
 			if (mod.settings.bosses[i].logTime == undefined) continue;
-			if (mod.settings.bosses[i].huntingZoneId != bossHunting) continue;
-			if (mod.settings.bosses[i].templateId != bossTemplate) continue;
+			if (mod.settings.bosses[i].huntingZoneId != npcHunting) continue;
+			if (mod.settings.bosses[i].templateId != npcTemplate) continue;
 
 			mod.settings.bosses[i].logTime = Date.now();
-		}
-		if (boss && boss.logDiff) {
-			mod.settings.logTime = Date.now() - (boss.logDiff * 1000);
 		}
 	}
 
