@@ -1,462 +1,481 @@
 /* eslint-disable no-param-reassign */
 const DefaultSettings = {
 	"enabled": true,
-	"alerted": true,
+	"alert": true,
 	"notice": true,
-	"messager": true,
+	"message": true,
 	"marker": true,
+	"teleport": true,
+	"hpbar": true,
 	"itemId": 88704,
 	"language": "auto",
-	"merchants": {
-		"logTime": 0,
+
+	/* =============================== WORLD BOSSES =============================== */
+	"world_bosses": {
 		"regions": [
-			// Arcadia / Val Aureum (0:50)
 			{
-				"logDiff": 3000,
-				"name": "Arcadia / Val Aureum",
-				"name_RU": "Аркадия / Вал-Аурэум",
+				"name": "Ostgarath",
+				"name_RU": "Остгарат",
+				"zoneId": 7004,
 				"npcs": [
 					{
-						"huntingZoneId": 2,
-						"templateId": 1271,
-						"name": "[Arcadia] Arcun (Fey Forest, Lumbertown)",
-						"name_RU": "[Аркадия] Аркун (Дивный лес, Деревня лесорубов)"
-					},
-					{
-						"huntingZoneId": 3,
-						"templateId": 1271,
-						"name": "[Arcadia] Arcun (Oblivion Woods, Crescentia)",
-						"name_RU": "[Аркадия] Аркун (Леса Забвения, Кресцентия)"
-					},
-					{
-						"huntingZoneId": 5,
-						"templateId": 1271,
-						"name": "[Arcadia] Arcun (Tuwangi Mire)",
-						"name_RU": "[Аркадия] Аркун (Трясина Туванги)"
-					},
-					{
-						"huntingZoneId": 6,
-						"templateId": 1271,
-						"name": "[Arcadia] Arcun (Valley of Titans)",
-						"name_RU": "[Аркадия] Аркун (Долина титанов)"
-					},
-					{
-						"huntingZoneId": 7,
-						"templateId": 1271,
-						"name": "[Arcadia] Arcun (Celestial Hills)",
-						"name_RU": "[Аркадия] Аркун (Небесные холмы)"
-					},
-					{
-						"huntingZoneId": 18,
-						"templateId": 1271,
-						"name": "[Val Aureum] Viadu (Colossal Ruins)",
-						"name_RU": "[Вал-Аурэум] Виадун (Исполинские развалины)"
-					},
-					{
-						"huntingZoneId": 19,
-						"templateId": 1271,
-						"name": "[Val Aureum] Viadu (Freeholds)",
-						"name_RU": "[Вал-Аурэум] Виадун (Вольноземье)"
-					},
-					{
-						"huntingZoneId": 21,
-						"templateId": 1271,
-						"name": "[Val Aureum] Viadu (Basilisk Crag, Chebika)",
-						"name_RU": "[Вал-Аурэум] Виадун (Утес Василисков, Чебика)"
-					},
-					{
-						"huntingZoneId": 24,
-						"templateId": 1271,
-						"name": "[Val Aureum] Viadu (Aurum Road, Tulufan)",
-						"name_RU": "[Вал-Аурэум] Виадун (Аурумская дорога, Тулуфан)"
-					}
-				]
-			},
-			// Ostgarath / Poporia (1:40)
-			{
-				"logDiff": 6000,
-				"name": "Ostgarath / Poporia",
-				"name_RU": "Остгарат / Попория",
-				"npcs": [
-					{
-						"huntingZoneId": 4,
-						"templateId": 1271,
-						"name": "[Ostgarath] Eteral (Fyrmount)",
-						"name_RU": "[Остгарат] Иторо (Фирмаунт)"
-					},
-					{
-						"huntingZoneId": 9,
-						"templateId": 1271,
-						"name": "[Ostgarath] Eteral (Ascension Valley, Castanica)",
-						"name_RU": "[Остгарат] Иторо (Долина Вознесения, Кастаника)"
-					},
-					{
+						"logTime": 0,
 						"huntingZoneId": 10,
-						"templateId": 1271,
-						"name": "[Ostgarath] Eteral (Serpentis Isle)",
-						"name_RU": "[Остгарат] Иторо (Остров Серпентис)"
+						"templateId": 99,
+						"name": "Divine Reaver (Serpentis Isle)",
+						"name_RU": "Божественный грабитель (Остров Серпентис)",
+						"locations": [
+							{
+								"map": "1_6_58",
+								"x": 77865.546875,
+								"y": 90398.1796875,
+								"z": 1485.700439453125
+							},
+							{
+								"map": "1_6_58",
+								"x": 74800.8203125,
+								"y": 95632.515625,
+								"z": 1409.962158203125
+							}
+						]
 					},
 					{
-						"huntingZoneId": 11,
-						"templateId": 1271,
-						"name": "[Ostgarath] Eteral (Jagged Coast, Cutthroat Harbor)",
-						"name_RU": "[Остгарат] Иторо (Изрезанный берег, Гавань Головорезов)"
-					},
-					{
-						"huntingZoneId": 12,
-						"templateId": 1271,
-						"name": "[Ostgarath] Eteral (Mistmoor Island)",
-						"name_RU": "[Остгарат] Иторо (Остров Мистмур)"
-					},
-					{
-						"huntingZoneId": 15,
-						"templateId": 1271,
-						"name": "[Poporia] Foretta (Cliffs of Insanity)",
-						"name_RU": "[Попория] Форета (Утесы Безумия)"
-					},
-					{
-						"huntingZoneId": 16,
-						"templateId": 1271,
-						"name": "[Poporia] Foretta (Vale of the Fang)",
-						"name_RU": "[Попория] Форета (Долина Клыка)"
-					},
-					{
-						"huntingZoneId": 17,
-						"templateId": 1271,
-						"name": "[Poporia] Foretta (Paraanon Ravine, Popolion)",
-						"name_RU": "[Попория] Форета (Ущелье Параанон, Пополион)"
-					},
-					{
-						"huntingZoneId": 23,
-						"templateId": 1271,
-						"name": "[Poporia] Foretta (Lake of Tears, Pora Elinu)",
-						"name_RU": "[Попория] Форета (Озеро слез, Пора-Элину)"
+						"logTime": 0,
+						"huntingZoneId": 4,
+						"templateId": 5011,
+						"name": "Tempest Kanash (Fyrmount)",
+						"name_RU": "Бурный канаш (Фирмаунт)",
+						"locations": [
+							{
+								"map": "1_6_56",
+								"x": 105778.8359375,
+								"y": 68078.3359375,
+								"z": 3210.118408203125
+							},
+							{
+								"map": "1_6_56",
+								"x": 113024.9453125,
+								"y": 68483.8671875,
+								"z": 4283.421875
+							},
+							{
+								"map": "1_6_56",
+								"x": 111394.5234375,
+								"y": 81552.5078125,
+								"z": 6620.1884765625
+							},
+							{
+								"map": "1_6_56",
+								"x": 111367.078125,
+								"y": 89668.9296875,
+								"z": 7605.767578125
+							},
+							{
+								"map": "1_6_56",
+								"x": 119100.828125,
+								"y": 88552.7109375,
+								"z": 6412.33349609375
+							}
+						]
 					}
 				]
 			},
-			// Essenia / Westonia (2:30)
 			{
-				"logDiff": 9000,
-				"name": "Essenia / Westonia",
-				"name_RU": "Эссения / Вестония",
+				"name": "Val Elenium",
+				"name_RU": "Вал-Элениум",
+				"zoneId": 7014,
 				"npcs": [
 					{
-						"huntingZoneId": 26,
-						"templateId": 1271,
-						"name": "[Essenia] Ezart (Blessing Basin, Tralion)",
-						"name_RU": "[Эссения] Эсат (Блаженное озеро, Тралион)"
-					},
-					{
-						"huntingZoneId": 27,
-						"templateId": 1271,
-						"name": "[Essenia] Ezart (Essenian Crest)",
-						"name_RU": "[Эссения] Эсат (Эссенийский хребет)"
-					},
-					{
-						"huntingZoneId": 28,
-						"templateId": 1271,
-						"name": "[Essenia] Ezart (Blightwood)",
-						"name_RU": "[Эссения] Эсат (Гибельный лес)"
-					},
-					{
-						"huntingZoneId": 29,
-						"templateId": 1271,
-						"name": "[Essenia] Ezart (Timeless Woods 1)",
-						"name_RU": "[Эссения] Эсат (Извечный лес 1)"
-					},
-					{
-						"huntingZoneId": 29,
-						"templateId": 1272,
-						"name": "[Essenia] Ezart (Timeless Woods 2)",
-						"name_RU": "[Эссения] Эсат (Извечный лес 2)"
-					},
-					{
-						"huntingZoneId": 31,
-						"templateId": 1271,
-						"name": "[Westonia] Storan (Tempest Reach)",
-						"name_RU": "[Вестония] Сторан (Предел Бурь)"
-					},
-					{
-						"huntingZoneId": 32,
-						"templateId": 1271,
-						"name": "[Westonia] Storan (Mount Tyrannas, Acarum)",
-						"name_RU": "[Вестония] Сторан (Гора Тираннас, Акарум)"
-					},
-					{
-						"huntingZoneId": 34,
-						"templateId": 1271,
-						"name": "[Westonia] Storan (Frost Reach, Bleakrock)",
-						"name_RU": "[Вестония] Сторан (Морозный предел, Блеклый камень)"
-					}
-				]
-			},
-			// Veritas District / Val Elenium / Val Palrada (3:20)
-			{
-				"logDiff": 12000,
-				"name": "Veritas District / Val Elenium / Val Palrada",
-				"name_RU": "Район Веритас / Вал-Элениум / Вал-Палрада",
-				"npcs": [
-					{
-						"huntingZoneId": 30,
-						"templateId": 1271,
-						"name": "[Veritas District] Versa (Balder's Refuge, Bastion)",
-						"name_RU": "[Район Веритас] Вэлса (Убежище Балдера, Бастион)"
-					},
-					{
-						"huntingZoneId": 35,
-						"templateId": 1271,
-						"name": "[Val Elenium] Viace (Wyrmgorge, Elenea)",
-						"name_RU": "[Вал-Элениум] Виас (Вирмовое ущелье, Эления)"
-					},
-					{
-						"huntingZoneId": 36,
-						"templateId": 1271,
-						"logDiff": 12000,
-						"name": "[Val Elenium] Viace (Tor Exsul)",
-						"name_RU": "[Вал-Элениум] Виас (Тор-Эксул)"
-					},
-					{
+						"logTime": 0,
 						"huntingZoneId": 38,
-						"templateId": 1271,
-						"name": "[Val Elenium] Viace (Sienna Canyon)",
-						"name_RU": "[Вал-Элениум] Виас (Каньон Сиенна)"
-					},
-					{
-						"huntingZoneId": 40,
-						"templateId": 1271,
-						"name": "[Val Palrada] Vaneva (Quarantine Zone, Frontera)",
-						"name_RU": "[Вал-Палрада] Ваннева (Зона карантина, Фронтера)"
-					},
-					{
-						"huntingZoneId": 41,
-						"templateId": 1271,
-						"name": "[Val Palrada] Vaneva (Feral Valley)",
-						"name_RU": "[Вал-Палрада] Ваннева (Свирепая долина)"
+						"templateId": 35,
+						"name": "Nyxarras (Sienna Canyon)",
+						"name_RU": "Никсаррас (Каньон Сиенна)",
+						"locations": [
+							{
+								"map": "1_11_113",
+								"x": -89890,
+								"y": -14445.447265625,
+								"z": 2001.6065673828125
+							},
+							{
+								"map": "1_11_113",
+								"x": -93309.3203125,
+								"y": -8923.47265625,
+								"z": 1535.0086669921875
+							},
+							{
+								"map": "1_11_113",
+								"x": -83349.4296875,
+								"y": 506.79229736328125,
+								"z": 1282.063232421875
+							}
+						]
 					}
 				]
 			},
-			// Sylvanoth / Lorcada (4:10)
 			{
-				"logDiff": 15000,
-				"name": "Sylvanoth / Lorcada",
-				"name_RU": "Силванот / Лоркада",
+				"name": "Sylvanoth",
+				"name_RU": "Силванот",
+				"zoneId": 7021,
 				"npcs": [
 					{
-						"huntingZoneId": 51,
-						"templateId": 1271,
-						"name": "[Lorcada] Loahcun (Vale of Spires)",
-						"name_RU": "[Лоркада] Лоакун (Долина пиков)"
-					},
-					{
-						"huntingZoneId": 52,
-						"templateId": 1271,
-						"name": "[Lorcada] Locarnum (Plain of the Damned, Habere)",
-						"name_RU": "[Лоркада] Лоакун (Долина Проклятых, Хабере)"
-					},
-					{
-						"huntingZoneId": 54,
-						"templateId": 1271,
-						"name": "[Sylvanoth] Silvette (Seeliewood, Scythera Fae)",
-						"name_RU": "[Силванот] Силвета (Силивуд, Скитера-Фэй)"
-					},
-					{
-						"huntingZoneId": 55,
-						"templateId": 1271,
-						"name": "[Sylvanoth] Silvette (Darkquaver Woods, Dragonfall)",
-						"name_RU": "[Силванот] Силвета (Дрожащий лес, Дрэгонфолл)"
-					},
-					{
-						"huntingZoneId": 56,
-						"templateId": 1271,
-						"name": "[Sylvanoth] Silvette (Susurrus Woods)",
-						"name_RU": "[Силванот] Силвета (Шепчущие леса)"
-					},
-					{
+						"logTime": 0,
 						"huntingZoneId": 57,
-						"templateId": 1271,
-						"name": "[Sylvanoth] Silvette (Amena Quatla)",
-						"name_RU": "[Силванот] Силвета (Амена-Кватла)"
+						"templateId": 33,
+						"name": "Betsael (Amena Quatla)",
+						"name_RU": "Бетсаэль (Амена-Кватла)",
+						"locations": [
+							{
+								"map": "1_20_226",
+								"x": -54613.984375,
+								"y": 41646.12109375,
+								"z": 2783.886962890625
+							},
+							{
+								"map": "1_20_226",
+								"x": -50985.4375,
+								"y": 49416.66015625,
+								"z": 4229.94775390625
+							},
+							{
+								"map": "1_20_226",
+								"x": -59299.30859375,
+								"y": 53569.3046875,
+								"z": 4173.20263671875
+							},
+							{
+								"map": "1_20_226",
+								"x": -68672.4453125,
+								"y": 48410.7890625,
+								"z": 4418.21826171875
+							},
+							{
+								"map": "1_20_226",
+								"x": -71237.3359375,
+								"y": 56477.3359375,
+								"z": 4288.76171875
+							}
+						]
 					}
 				]
 			},
-			// Helkan District / Val Tirkai / Val Kaeli (5:00)
 			{
-				"logDiff": 18000,
-				"name": "Helkan District / Val Tirkai / Val Kaeli",
-				"name_RU": "Район Хелкан / Вал-Тиркай / Вал-Кэли",
+				"name": "Lorcada",
+				"name_RU": "Лоркада",
+				"zoneId": 7022,
 				"npcs": [
 					{
-						"huntingZoneId": 45,
-						"templateId": 1271,
-						"name": "[Val Tirkai] Lotica (Thrallhold, Pathfinder Post)",
-						"name_RU": "[Вал-Тиркай] Лотика (Питомник аргонов, Аванпост следопытов)"
+						"logTime": 0,
+						"huntingZoneId": 51,
+						"templateId": 7011,
+						"name": "Linyphi (Vale of Spires)",
+						"name_RU": "Линифи (Долина пиков)",
+						"locations": [
+							{
+								"map": "1_19_207",
+								"x": 6778.56884765625,
+								"y": 48135.4375,
+								"z": 7111.451171875
+							},
+							{
+								"map": "1_19_207",
+								"x": 2881.635986328125,
+								"y": 52862.07421875,
+								"z": 6607.40576171875
+							},
+							{
+								"map": "1_19_207",
+								"x": 10062.0693359375,
+								"y": 53097.66015625,
+								"z": 7785.58837890625
+							},
+							{
+								"map": "1_19_207",
+								"x": 9971.68359375,
+								"y": 61297.21484375,
+								"z": 7764.48486328125
+							}
+						]
 					},
 					{
-						"huntingZoneId": 47,
-						"templateId": 1271,
-						"name": "[Val Tirkai] Lotica (Tirkai Forest)",
-						"name_RU": "[Вал-Тиркай] Лотика (Лес Тиркай)"
-					},
-					{
-						"huntingZoneId": 48,
-						"templateId": 1271,
-						"name": "[Helkan District] Hecurn (Khanovar Front, Zulfikar Fortress)",
-						"name_RU": "[Район Хелкан] Хелкун (Хановарские предместья, Зульфикарская крепость)"
-					},
-					{
-						"huntingZoneId": 49,
-						"templateId": 1271,
-						"name": "[Val Kaeli] Locarnum (Argonea, Kanstria)",
-						"name_RU": "[Вал-Кэли] Тезлуар (Аргония, Канстрия)"
-					},
-					{
-						"huntingZoneId": 50,
-						"templateId": 1271,
-						"name": "[Val Kaeli] Locarnum (Granarkus)",
-						"name_RU": "[Вал-Кэли] Тезлуар (Гранаркус)"
-					}
-				]
-			},
-			// Val Oriyn (2:30 ~ 4:30)
-			{
-				"logTime": 0,
-				"name": "Val Oriyn",
-				"name_RU": "Вал-Орин",
-				"npcs": [
-					{
-						"huntingZoneId": 172,
-						"templateId": 1271,
-						"name": "[Val Oriyn] Varrek (Savage Reach)",
-						"name_RU": "[Вал-Орин] Варэку (Дикарский Предел)"
-					},
-					{
-						"huntingZoneId": 181,
-						"templateId": 1271,
-						"name": "[Val Oriyn] Varrek (Ex Prima)",
-						"name_RU": "[Вал-Орин] Варэку (Экс-Прима)"
-					},
-					{
-						"huntingZoneId": 182,
-						"templateId": 1271,
-						"name": "[Val Oriyn] Varrek (Spring Valley)",
-						"name_RU": "[Вал-Орин] Варэку (Долина Источников)"
-					},
-					{
-						"huntingZoneId": 183,
-						"templateId": 1278,
-						"name": "[Val Oriyn] Varrek (Highwatch)",
-						"name_RU": "[Вал-Орин] Варэку (Верхний Дозор)"
-					},
-					{
-						"huntingZoneId": 191,
-						"templateId": 1271,
-						"name": "[Val Oriyn] Varrek (Arx Umbra)",
-						"name_RU": "[Вал-Орин] Варэку (Аркс-умбра)"
-					}
-				]
-			},
-			// Velika
-			{
-				"logTime": 0,
-				"logIntervalMin": 16200,
-				"logIntervalMax": 18000,
-				"name": "Around the Velika",
-				"name_RU": "Окрестности Велики",
-				"npcs": [
-					{
-						"huntingZoneId": 63,
-						"templateId": 1278,
-						"name": "Petam (around the Velika)",
-						"name_RU": "Веракун (окрестности Велики)"
-					}
-				]
-			},
-			// Allemantheia
-			{
-				"logTime": 0,
-				"logIntervalMin": 16200,
-				"logIntervalMax": 18000,
-				"name": "Around the Allemantheia",
-				"name_RU": "Окрестности Аллемантеи",
-				"npcs": [
-					{
-						"huntingZoneId": 72,
-						"templateId": 1278,
-						"name": "Hemusk (around the Allemantheia)",
-						"name_RU": "Аллума (окрестности Аллемантеи)"
-					}
-				]
-			},
-			// Kaiator
-			{
-				"logTime": 0,
-				"logIntervalMin": 16200,
-				"logIntervalMax": 18000,
-				"name": "Around the Kaiator",
-				"name_RU": "Окрестности Кайатора",
-				"npcs": [
-					{
-						"huntingZoneId": 84,
-						"templateId": 1278,
-						"name": "Kaylight (around the Kaiator)",
-						"name_RU": "Кай Тера (окрестности Кайатора)"
-					}
-				]
-			},
-			// Island of Dawn
-			{
-				"logTime": 0,
-				"logIntervalMin": 10800,
-				"logIntervalMax": 14400,
-				"name": "Island of Dawn",
-				"name_RU": "Остров Зари",
-				"npcs": [
-					{
-						"huntingZoneId": 13,
-						"templateId": 1271,
-						"name": "Vardung (Island of Dawn)",
-						"name_RU": "Бардун (Остров Зари)"
-					}
-				]
-			},
-			// Other
-			{
-				"npcs": [
-					// Secret store
-					{
-						"huntingZoneId": 63,
-						"templateId": 1271,
-						"name": "Mystery Merchant (Velika 1)",
-						"name_RU": "Тайный Магазин (Велика 1)"
-					},
-					{
-						"huntingZoneId": 63,
-						"templateId": 1279,
-						"name": "Mystery Merchant (Velika 2)",
-						"name_RU": "Тайный Магазин (Велика 2)"
-					},
-					{
-						"huntingZoneId": 72,
-						"templateId": 1271,
-						"name": "Mystery Merchant (Allemantheia)",
-						"name_RU": "Тайный Магазин (Аллемантея)"
-					},
-					{
-						"huntingZoneId": 84,
-						"templateId": 1271,
-						"name": "Mystery Merchant (Kaiator)",
-						"name_RU": "Тайный Магазин (Кайатор)"
-					},
-					{
-						"huntingZoneId": 183,
-						"templateId": 1271,
-						"name": "Mystery Merchant (Highwatch)",
-						"name_RU": "Тайный Магазин (Верхний Дозор)"
+						"logTime": 0,
+						"huntingZoneId": 52,
+						"templateId": 9050,
+						"name": "Yunaras Snaggletooth (Plain of the Damned)",
+						"name_RU": "Юнарас (Долина Проклятых)",
+						"locations": [
+							{
+								"map": "1_19_208",
+								"x": -3337.882080078125,
+								"y": 33507.6328125,
+								"z": 5413.1103515625
+							},
+							{
+								"map": "1_19_208",
+								"x": -3870.1279296875,
+								"y": 50643.453125,
+								"z": 6306.4638671875
+							},
+							{
+								"map": "1_19_208",
+								"x": 2417.086669921875,
+								"y": 60137.69140625,
+								"z": 6119.5859375
+							},
+							{
+								"map": "1_19_208",
+								"x": 1419.126953125,
+								"y": 69333.484375,
+								"z": 7087.1298828125
+							}
+						]
 					}
 				]
 			}
 		]
 	},
+
+	/* =============================== RAID BOSSES =============================== */
+	"raid_bosses": {
+		"regions": [
+			{
+				"name": "Essenia",
+				"name_RU": "Эссения",
+				"zoneId": 7011,
+				"npcs": [
+					{
+						"huntingZoneId": 26,
+						"templateId": 5001,
+						"logTime": 0,
+						"name": "Ortan (Blessing Basin)",
+						"name_RU": "Ортан (Блаженное озеро)"
+					}
+				]
+			},
+			{
+				"name": "Val Palrada",
+				"name_RU": "Вал-Палрада",
+				"zoneId": 7013,
+				"npcs": [
+					{
+						"huntingZoneId": 39,
+						"templateId": 501,
+						"logTime": 0,
+						"name": "Hazard (Quarantine Zone)",
+						"name_RU": "Хазар (Зона карантина)"
+					}
+				]
+			},
+			{
+				"name": "Lorcada",
+				"name_RU": "Лоркада",
+				"zoneId": 7022,
+				"npcs": [
+					{
+						"huntingZoneId": 51,
+						"templateId": 4001,
+						"logTime": 0,
+						"name": "Cerrus",
+						"name_RU": "Кэлос"
+					}
+				]
+			}
+		]
+	},
+
+	/* =============================== OTHER BOSSES & NPCS =============================== */
+	"others": {
+		"regions": [
+			{
+				"npcs": [
+					// Guild boss
+					{
+						"huntingZoneId": 29,
+						"templateId": 2001,
+						"name": "Anansha (Timeless Woods)",
+						"name_RU": "Ананша (Извечный лес)"
+					},
+					{
+						"huntingZoneId": 34,
+						"templateId": 2002,
+						"name": "Frygaras (Frost Reach)",
+						"name_RU": "Фрайгарас (Морозный предел)"
+					},
+					{
+						"huntingZoneId": 34,
+						"templateId": 2003,
+						"name": "Sabranak (Frost Reach)",
+						"name_RU": "Сабранак (Морозный предел)"
+					},
+					{
+						"huntingZoneId": 152,
+						"templateId": 2001,
+						"name": "Anansha (Велика: Эпоха смуты)",
+						"name_RU": "Ананша (Велика: Эпоха смуты)"
+					},
+					{
+						"huntingZoneId": 152,
+						"templateId": 2002,
+						"name": "Frygaras (Велика: Эпоха смуты)",
+						"name_RU": "Фрайгарас (Велика: Эпоха смуты)"
+					},
+					{
+						"huntingZoneId": 152,
+						"templateId": 2003,
+						"name": "Sabranak (Велика: Эпоха смуты)",
+						"name_RU": "Сабранак (Велика: Эпоха смуты)"
+					},
+					{
+						"huntingZoneId": 152,
+						"templateId": 7001,
+						"name": "Anansha (Велика: Эпоха смуты)",
+						"name_RU": "Ананша (Велика: Эпоха смуты)"
+					},
+					{
+						"huntingZoneId": 152,
+						"templateId": 7002,
+						"name": "Frygaras (Велика: Эпоха смуты)",
+						"name_RU": "Фрайгарас (Велика: Эпоха смуты)"
+					},
+					{
+						"huntingZoneId": 152,
+						"templateId": 7003,
+						"name": "Sabranak (Велика: Эпоха смуты)",
+						"name_RU": "Сабранак (Велика: Эпоха смуты)"
+					},
+
+					// Exodor elite mobs
+					{
+						"huntingZoneId": 2020,
+						"templateId": 1100,
+						"name": "[Exodor] Supreme Draakon Pursuer",
+						"name_RU": "[Эксодор] Элитный высший дракон-преследователь"
+					},
+					{
+						"huntingZoneId": 2020,
+						"templateId": 1101,
+						"name": "[Exodor] Draakon Guard-Captain",
+						"name_RU": "[Эксодор] Элитный высший дракон-советник"
+					},
+					{
+						"huntingZoneId": 2020,
+						"templateId": 1102,
+						"name": "[Exodor] Supreme Draakon Dominator",
+						"name_RU": "[Эксодор] Элитный высший дракон-покоритель"
+					},
+					{
+						"huntingZoneId": 2020,
+						"templateId": 1200,
+						"name": "[Exodor] Elite Naga Priest",
+						"name_RU": "[Эксодор] Элитный наг-жрец"
+					},
+					{
+						"huntingZoneId": 2020,
+						"templateId": 1201,
+						"name": "[Exodor] Elite Naga Knight",
+						"name_RU": "[Эксодор] Элитный наг-рыцарь"
+					},
+					{
+						"huntingZoneId": 2020,
+						"templateId": 1202,
+						"name": "[Exodor] Elite Naga Executioner",
+						"name_RU": "[Эксодор] Элитный наг-пристав"
+					},
+					{
+						"huntingZoneId": 2020,
+						"templateId": 1300,
+						"name": "[Exodor] Manuk",
+						"name_RU": "[Эксодор] Манук"
+					},
+					{
+						"huntingZoneId": 2020,
+						"templateId": 1400,
+						"name": "[Exodor] Axcellob",
+						"name_RU": "[Эксодор] Аксилоп"
+					},
+					{
+						"huntingZoneId": 2020,
+						"templateId": 1500,
+						"name": "[Exodor] Zemces",
+						"name_RU": "[Эксодор] Джемезис"
+					},
+					{
+						"huntingZoneId": 2020,
+						"templateId": 1600,
+						"name": "[Exodor] Взбешенный красный лишайник",
+						"name_RU": "[Эксодор] Взбешенный красный лишайник"
+					},
+					{
+						"huntingZoneId": 2020,
+						"templateId": 1601,
+						"name": "[Exodor] Thorny Eyestalker",
+						"name_RU": "[Эксодор] Циклоп"
+					},
+					{
+						"huntingZoneId": 2020,
+						"templateId": 1700,
+						"name": "[Exodor] Vekes",
+						"name_RU": "[Эксодор] Бэкис"
+					},
+
+					// Caiman
+					{
+						"huntingZoneId": 26,
+						"templateId": 6001,
+						"name": "Caiman Wanderer",
+						"name_RU": "Кайман-бродяга"
+					},
+					{
+						"huntingZoneId": 27,
+						"templateId": 6001,
+						"name": "Caiman Wanderer",
+						"name_RU": "Кайман-бродяга"
+					},
+					{
+						"huntingZoneId": 29,
+						"templateId": 6002,
+						"name": "Caiman Wanderer",
+						"name_RU": "Кайман-бродяга"
+					},
+					{
+						"huntingZoneId": 30,
+						"templateId": 6001,
+						"name": "Caiman Wanderer",
+						"name_RU": "Кайман-бродяга"
+					},
+					{
+						"huntingZoneId": 38,
+						"templateId": 6001,
+						"name": "Caiman Wanderer",
+						"name_RU": "Кайман-бродяга"
+					},
+					{
+						"huntingZoneId": 181,
+						"templateId": 6001,
+						"name": "Caiman Wanderer",
+						"name_RU": "Кайман-бродяга"
+					},
+
+					// Event
+					{
+						"huntingZoneId": 1023,
+						"templateId": 200002,
+						"name": "(Event) Grumpy Santa",
+						"name_RU": "(Ивент) Санта-король"
+					},
+					{
+						"huntingZoneId": 1023,
+						"templateId": 200003,
+						"name": "(Event) Tiny Santa",
+						"name_RU": "(Ивент) Крошечный Санта"
+					}
+				]
+			}
+		]
+	},
+
+	/* =============================== MERCHANT GOBLINS =============================== */
 	"goblins": {
 		"logTime": 0,
 		"regions": [
@@ -524,264 +543,1777 @@ const DefaultSettings = {
 			}
 		]
 	},
-	"bosses": [
-		// Event
-		{
-			"huntingZoneId": 26,
-			"templateId": 6001,
-			"name": "(Event) Caiman Wanderer",
-			"name_RU": "(Ивент) Кайман-бродяга"
-		},
-		{
-			"huntingZoneId": 27,
-			"templateId": 6001,
-			"name": "(Event) Caiman Wanderer",
-			"name_RU": "(Ивент) Кайман-бродяга"
-		},
-		{
-			"huntingZoneId": 29,
-			"templateId": 6002,
-			"name": "(Event) Caiman Wanderer",
-			"name_RU": "(Ивент) Кайман-бродяга"
-		},
-		{
-			"huntingZoneId": 30,
-			"templateId": 6001,
-			"name": "(Event) Caiman Wanderer",
-			"name_RU": "(Ивент) Кайман-бродяга"
-		},
-		{
-			"huntingZoneId": 38,
-			"templateId": 6001,
-			"name": "(Event) Caiman Wanderer",
-			"name_RU": "(Ивент) Кайман-бродяга"
-		},
-		{
-			"huntingZoneId": 181,
-			"templateId": 6001,
-			"name": "(Event) Caiman Wanderer",
-			"name_RU": "(Ивент) Кайман-бродяга"
-		},
 
-		// Raid BOSS
-		{
-			"huntingZoneId": 26,
-			"templateId": 5001,
-			"logTime": 0,
-			"name": "[Essenia] Ortan (Blessing Basin)",
-			"name_RU": "[Эссения] Ортан (Блаженное озеро)"
-		},
-		{
-			"huntingZoneId": 39,
-			"templateId": 501,
-			"logTime": 0,
-			"name": "[Val Palrada] Hazard (Quarantine Zone)",
-			"name_RU": "[Вал-Палрада] Хазар (Зона карантина)"
-		},
-		{
-			"huntingZoneId": 51,
-			"templateId": 4001,
-			"logTime": 0,
-			"name": "[Lorcada] Cerrus",
-			"name_RU": "[Лоркада] Кэлос"
-		},
-		// World BOSS
-		{
-			"huntingZoneId": 10,
-			"templateId": 99,
-			"logTime": 0,
-			"name": "[Serpentis Isle] Divine Reaver",
-			"name_RU": "[Остров Серпентис] Божественный грабитель"
-		},
-		{
-			"huntingZoneId": 4,
-			"templateId": 5011,
-			"logTime": 0,
-			"name": "[Fyrmount] Tempest Kanash",
-			"name_RU": "[Фирмаунт] Бурный канаш"
-		},
-		{
-			"huntingZoneId": 38,
-			"templateId": 35,
-			"logTime": 0,
-			"name": "[Sienna Canyon] Nyxarras",
-			"name_RU": "[Каньон Сиенна] Никсаррас"
-		},
-		{
-			"huntingZoneId": 57,
-			"templateId": 33,
-			"logTime": 0,
-			"name": "[Amena Quatla] Betsael",
-			"name_RU": "[Амена-Кватла] Бетсаэль"
-		},
-		{
-			"huntingZoneId": 51,
-			"templateId": 7011,
-			"logTime": 0,
-			"name": "[Vale of Spires] Linyphi",
-			"name_RU": "[Долина пиков] Линифи"
-		},
-		{
-			"huntingZoneId": 52,
-			"templateId": 9050,
-			"logTime": 0,
-			"name": "[Plain of the Damned] Yunaras Snaggletooth",
-			"name_RU": "[Долина Проклятых] Юнарас"
-		},
-		// Guild BOSS
-		{
-			"huntingZoneId": 29,
-			"templateId": 2001,
-			"name": "Anansha (Timeless Woods)",
-			"name_RU": "Ананша (Извечный лес)"
-		},
-		{
-			"huntingZoneId": 34,
-			"templateId": 2002,
-			"name": "Frygaras (Frost Reach)",
-			"name_RU": "Фрайгарас (Морозный предел)"
-		},
-		{
-			"huntingZoneId": 34,
-			"templateId": 2003,
-			"name": "Sabranak (Frost Reach)",
-			"name_RU": "Сабранак (Морозный предел)"
-		},
-		{
-			"huntingZoneId": 152,
-			"templateId": 2001,
-			"name": "Anansha (Велика: Эпоха смуты)",
-			"name_RU": "Ананша (Велика: Эпоха смуты)"
-		},
-		{
-			"huntingZoneId": 152,
-			"templateId": 2002,
-			"name": "Frygaras (Велика: Эпоха смуты)",
-			"name_RU": "Фрайгарас (Велика: Эпоха смуты)"
-		},
-		{
-			"huntingZoneId": 152,
-			"templateId": 2003,
-			"name": "Sabranak (Велика: Эпоха смуты)",
-			"name_RU": "Сабранак (Велика: Эпоха смуты)"
-		},
-		{
-			"huntingZoneId": 152,
-			"templateId": 7001,
-			"name": "Anansha (Велика: Эпоха смуты)",
-			"name_RU": "Ананша (Велика: Эпоха смуты)"
-		},
-		{
-			"huntingZoneId": 152,
-			"templateId": 7002,
-			"name": "Frygaras (Велика: Эпоха смуты)",
-			"name_RU": "Фрайгарас (Велика: Эпоха смуты)"
-		},
-		{
-			"huntingZoneId": 152,
-			"templateId": 7003,
-			"name": "Sabranak (Велика: Эпоха смуты)",
-			"name_RU": "Сабранак (Велика: Эпоха смуты)"
-		},
-		// Exodor elite mobs
-		{
-			"huntingZoneId": 2020,
-			"templateId": 1100,
-			"name": "[Exodor] Supreme Draakon Pursuer",
-			"name_RU": "[Эксодор] Элитный высший дракон-преследователь"
-		},
-		{
-			"huntingZoneId": 2020,
-			"templateId": 1101,
-			"name": "[Exodor] Draakon Guard-Captain",
-			"name_RU": "[Эксодор] Элитный высший дракон-советник"
-		},
-		{
-			"huntingZoneId": 2020,
-			"templateId": 1102,
-			"name": "[Exodor] Supreme Draakon Dominator",
-			"name_RU": "[Эксодор] Элитный высший дракон-покоритель"
-		},
-		{
-			"huntingZoneId": 2020,
-			"templateId": 1200,
-			"name": "[Exodor] Elite Naga Priest",
-			"name_RU": "[Эксодор] Элитный наг-жрец"
-		},
-		{
-			"huntingZoneId": 2020,
-			"templateId": 1201,
-			"name": "[Exodor] Elite Naga Knight",
-			"name_RU": "[Эксодор] Элитный наг-рыцарь"
-		},
-		{
-			"huntingZoneId": 2020,
-			"templateId": 1202,
-			"name": "[Exodor] Elite Naga Executioner",
-			"name_RU": "[Эксодор] Элитный наг-пристав"
-		},
-		{
-			"huntingZoneId": 2020,
-			"templateId": 1300,
-			"name": "[Exodor] Manuk",
-			"name_RU": "[Эксодор] Манук"
-		},
-		{
-			"huntingZoneId": 2020,
-			"templateId": 1400,
-			"name": "[Exodor] Axcellob",
-			"name_RU": "[Эксодор] Аксилоп"
-		},
-		{
-			"huntingZoneId": 2020,
-			"templateId": 1500,
-			"name": "[Exodor] Zemces",
-			"name_RU": "[Эксодор] Джемезис"
-		},
-		{
-			"huntingZoneId": 2020,
-			"templateId": 1600,
-			"name": "[Exodor] Взбешенный красный лишайник",
-			"name_RU": "[Эксодор] Взбешенный красный лишайник"
-		},
-		{
-			"huntingZoneId": 2020,
-			"templateId": 1601,
-			"name": "[Exodor] Thorny Eyestalker",
-			"name_RU": "[Эксодор] Циклоп"
-		},
-		{
-			"huntingZoneId": 2020,
-			"templateId": 1700,
-			"name": "[Exodor] Vekes",
-			"name_RU": "[Эксодор] Бэкис"
-		}
-	]
+	/* =============================== MERCHANTS =============================== */
+	"merchants": {
+		"logTime": 0,
+		"regions": [
+			// Velika
+			{
+				"logTime": 0,
+				"logIntervalMin": 16200,
+				"logIntervalMax": 18000,
+				"name": "Around the Velika",
+				"name_RU": "Окрестности Велики",
+				"zoneId": 7005,
+				"npcs": [
+					{
+						"huntingZoneId": 63,
+						"templateId": 1278,
+						"name": "Petam",
+						"name_RU": "Веракун",
+						"locations": [
+							{ // I
+								"map": "1_1_2",
+								"x": -8196.37890625,
+								"y": -3969.462646484375,
+								"z": 576.148193359375
+							},
+							{ // II
+								"map": "1_1_2",
+								"x": -11027.6904296875,
+								"y": -6868.259765625,
+								"z": 507.8714599609375
+							},
+							{ // III
+								"map": "1_1_2",
+								"x": 12666.140625,
+								"y": 7537.5966796875,
+								"z": 973.897216796875
+							},
+							{ // IV
+								"map": "1_1_2",
+								"x": 5113.50732421875,
+								"y": -10953.166015625,
+								"z": 447.5827941894531
+							},
+							{ // V
+								"map": "1_1_2",
+								"x": 12789.47265625,
+								"y": -6044.18603515625,
+								"z": 465.1011047363281
+							},
+							{ // VI
+								"map": "1_1_2",
+								"x": 18762.041015625,
+								"y": 1844.900146484375,
+								"z": 2073.96142578125
+							},
+							{ // VII
+								"map": "1_1_2",
+								"x": 18514.875,
+								"y": 6306.50927734375,
+								"z": 2074.3603515625
+							},
+							{ // VIII
+								"map": "1_1_2",
+								"x": 22064.4765625,
+								"y": 13501.96875,
+								"z": 619.4597778320312
+							},
+							{ // IX
+								"map": "1_1_2",
+								"x": -4914.10693359375,
+								"y": -18774.08984375,
+								"z": -268.321044921875
+							},
+							{ // X
+								"map": "1_1_2",
+								"x": 11998.9326171875,
+								"y": 18841.560546875,
+								"z": 961.3118896484375
+							}
+						]
+					}
+				]
+			},
+			// Allemantheia
+			{
+				"logTime": 0,
+				"logIntervalMin": 16200,
+				"logIntervalMax": 18000,
+				"name": "Around the Allemantheia",
+				"name_RU": "Окрестности Аллемантеи",
+				"zoneId": 2,
+				"npcs": [
+					{
+						"huntingZoneId": 72,
+						"templateId": 1278,
+						"name": "Hemusk",
+						"name_RU": "Аллума",
+						"locations": [
+							{ // I
+								"map": "1_10_102",
+								"x": -20180.287109375,
+								"y": 17139.005859375,
+								"z": 2417.02734375
+							},
+							{ // II
+								"map": "1_10_102",
+								"x": -5922.76513671875,
+								"y": 24888.5859375,
+								"z": 4589.75927734375
+							},
+							{ // III
+								"map": "1_10_102",
+								"x": 3014.513671875,
+								"y": 21300.3359375,
+								"z": 5453.880859375
+							},
+							{ // IV
+								"map": "1_10_102",
+								"x": 9504.1015625,
+								"y": 10871.46875,
+								"z": 5015.65673828125
+							},
+							{ // V
+								"map": "1_10_102",
+								"x": 10178.01953125,
+								"y": -14576.3486328125,
+								"z": 6138.36279296875
+							},
+							{ // VI
+								"map": "1_10_103",
+								"x": 3148.271728515625,
+								"y": -29629.748046875,
+								"z": 1488.6566162109375
+							},
+							{ // VII
+								"map": "1_10_103",
+								"x": -3562.05224609375,
+								"y": -37224.5078125,
+								"z": 710.3406372070312
+							},
+							{ // VIII
+								"map": "1_10_103",
+								"x": -14008.767578125,
+								"y": -23920.705078125,
+								"z": -524.1255493164062
+							}
+						]
+					}
+				]
+			},
+			// Kaiator
+			{
+				"logTime": 0,
+				"logIntervalMin": 16200,
+				"logIntervalMax": 18000,
+				"name": "Around the Kaiator",
+				"name_RU": "Окрестности Кайатора",
+				"zoneId": 3,
+				"npcs": [
+					{
+						"huntingZoneId": 84,
+						"templateId": 1278,
+						"name": "Kaylight",
+						"name_RU": "Кай Тера",
+						"locations": [
+							{ // I
+								"map": "1_18_202",
+								"x": -3189.919921875,
+								"y": -10930.4052734375,
+								"z": 3134.489501953125
+							},
+							{ // II
+								"map": "1_18_202",
+								"x": -23993.099609375,
+								"y": -4188.8486328125,
+								"z": 3942.721435546875
+							},
+							{ // III
+								"map": "1_18_202",
+								"x": -15876.1689453125,
+								"y": -5627.4453125,
+								"z": 4589.9462890625
+							},
+							{ // IV
+								"map": "1_18_202",
+								"x": -17723.96875,
+								"y": 12506.95703125,
+								"z": 4960.28857421875
+							},
+							{ // V
+								"map": "1_18_202",
+								"x": 1081.03515625,
+								"y": 6957.7490234375,
+								"z": 4168.42529296875
+							},
+							{ // VI
+								"map": "1_18_202",
+								"x": 6303.4697265625,
+								"y": 9831.658203125,
+								"z": 5025.73291015625
+							},
+							{ // VII
+								"map": "1_18_202",
+								"x": 7308.0908203125,
+								"y": 20434.470703125,
+								"z": 5853.220703125
+							},
+							{ // VIII
+								"map": "1_18_202",
+								"x": 11659.8466796875,
+								"y": 23423.890625,
+								"z": 5539.515625
+							}
+						]
+					}
+				]
+			},
+			// Island of Dawn
+			{
+				"logTime": 0,
+				"logIntervalMin": 10800,
+				"logIntervalMax": 14400,
+				"name": "Island of Dawn",
+				"name_RU": "Остров Зари",
+				"zoneId": 13,
+				"npcs": [
+					{
+						"huntingZoneId": 13,
+						"templateId": 1271,
+						"name": "Vardung",
+						"name_RU": "Бардун",
+						"locations": [
+							{ // Город
+								"map": "1_2_8",
+								"x": 92205.84375,
+								"y": -88367.578125,
+								"z": -4571.03564453125
+							},
+							{ // Верх
+								"map": "1_2_7",
+								"x": 81205.796875,
+								"y": -80864.703125,
+								"z": -4410.46240234375
+							},
+							{ // Лево
+								"map": "1_2_7",
+								"x": 64286.90625,
+								"y": -84473.1640625,
+								"z": -3793.819091796875
+							},
+							{ // Архив (скрытая)
+								"map": "1_2_7",
+								"x": 70335.46875,
+								"y": -77825.5625,
+								"z": -2312.162841796875
+							},
+							{ // Пик (скрытая)
+								"map": "1_2_7",
+								"x": 73421.296875,
+								"y": -73028.4609375,
+								"z": -1225.211669921875
+							},
+							{ // Гидраты (скрытая)
+								"map": "1_2_7",
+								"x": 64155.69921875,
+								"y": -64051.18359375,
+								"z": -4148.3046875
+							},
+							{ // Низ
+								"map": "1_2_7",
+								"x": 52726.37890625,
+								"y": -69800.0859375,
+								"z": -5661.28271484375
+							},
+							{ // Наги (скрытая)
+								"map": "1_2_7",
+								"x": 58768.55078125,
+								"y": -75743.46875,
+								"z": -5727.46240234375
+							},
+							{ // Святилище (скрытая)
+								"map": "1_2_7",
+								"x": 55455.19140625,
+								"y": -82052.3125,
+								"z": -4196.96240234375
+							},
+							{ // Камень (скрытая)
+								"map": "1_2_7",
+								"x": 56862.08203125,
+								"y": -86059.0546875,
+								"z": -3718.2373046875
+							}
+						]
+					}
+				]
+			},
+			// Val Oriyn
+			{
+				"logTime": 0,
+				"logIntervalMin": 18000,
+				"logIntervalMax": 18000,
+				"name": "Val Oriyn",
+				"name_RU": "Вал-Орин",
+				"zoneId": 7031,
+				"npcs": [
+					{
+						"huntingZoneId": 172,
+						"templateId": 1271,
+						"name": "Varrek (Savage Reach)",
+						"name_RU": "Варэку (Дикарский Предел)",
+						"locations": [
+							{ // Низ
+								"map": "1_24_172001",
+								"x": -10132.833984375,
+								"y": -18499.970703125,
+								"z": -652.809814453125
+							},
+							{ // Скрытая
+								"map": "1_24_172001",
+								"x": -9207.423828125,
+								"y": -35376.453125,
+								"z": 194.09144592285156
+							},
+							{ // Сайрекс
+								"map": "1_24_172001",
+								"x": -3314.078369140625,
+								"y": -12210.3681640625,
+								"z": 1206.2315673828125
+							}
+						]
+					},
+					{
+						"huntingZoneId": 181,
+						"templateId": 1271,
+						"name": "Varrek (Ex Prima)",
+						"name_RU": "Варэку (Экс-Прима)",
+						"locations": [
+							{ // Лево
+								"map": "1_24_181001",
+								"x": 27799.720703125,
+								"y": -10077.744140625,
+								"z": 3633.656982421875
+							},
+							{ // ГХ (скрытая)
+								"map": "1_24_181001",
+								"x": 30548.70703125,
+								"y": -27101.828125,
+								"z": 1896.890625
+							}
+						]
+					},
+					{
+						"huntingZoneId": 182,
+						"templateId": 1271,
+						"name": "Varrek (Spring Valley)",
+						"name_RU": "Варэку (Долина Источников)",
+						"locations": [
+							{ // Город
+								"map": "1_24_182003",
+								"x": 6463.14306640625,
+								"y": -15095.6123046875,
+								"z": 1433.274658203125
+							},
+							{ // Право (скрытая)
+								"map": "1_24_182001",
+								"x": 12190.7568359375,
+								"y": -5131.7783203125,
+								"z": 2547.6083984375
+							}
+						]
+					},
+					{
+						"huntingZoneId": 183,
+						"templateId": 1278,
+						"name": "Varrek (Highwatch)",
+						"name_RU": "Варэку (Верхний Дозор)",
+						"locations": [
+							{
+								"map": "1_24_183002",
+								"x": 30793.97265625,
+								"y": 1986.8927001953125,
+								"z": 5203.45068359375
+							}
+						]
+					},
+					{
+						"huntingZoneId": 191,
+						"templateId": 1271,
+						"name": "Varrek (Arx Umbra)",
+						"name_RU": "Варэку (Аркс-умбра)",
+						"locations": [
+							{ // Лево
+								"map": "1_24_191001",
+								"x": 32139.62890625,
+								"y": 17056.46484375,
+								"z": 8330.5302734375
+							},
+							{ // Мясо (скрытая)
+								"map": "1_24_191002",
+								"x": 40485.33984375,
+								"y": 36437.5078125,
+								"z": 9349.9697265625
+							}
+						]
+					}
+				]
+			},
+			// Arcadia (0:50)
+			{
+				"logDiff": 3000,
+				"name": "Arcadia",
+				"name_RU": "Аркадия",
+				"zoneId": 7001,
+				"npcs": [
+					{
+						"huntingZoneId": 2,
+						"templateId": 1271,
+						"name": "Arcun (Fey Forest / Lumbertown)",
+						"name_RU": "Аркун (Дивный лес / Деревня лесорубов)",
+						"locations": [
+							{ // Город
+								"map": "1_3_13",
+								"x": 93044.4140625,
+								"y": -5436.291015625,
+								"z": 396.69873046875
+							},
+							{ // Низ
+								"map": "1_3_13",
+								"x": 100194.3046875,
+								"y": -22028.08984375,
+								"z": 2315.01953125
+							},
+							{ // Верх
+								"map": "1_3_13",
+								"x": 109847.015625,
+								"y": -10226.634765625,
+								"z": 2881.866455078125
+							}
+						]
+					},
+					{
+						"huntingZoneId": 3,
+						"templateId": 1271,
+						"name": "Arcun (Oblivion Woods / Crescentia)",
+						"name_RU": "Аркун (Леса Забвения / Кресцентия)",
+						"locations": [
+							{ // Город
+								"map": "1_3_11",
+								"x": 96464.84375,
+								"y": 17514.734375,
+								"z": 2927.4052734375
+							},
+							{ // Застава
+								"map": "1_3_14",
+								"x": 107575.5546875,
+								"y": 16301.0498046875,
+								"z": 2716.98828125
+							}
+						]
+					},
+					{
+						"huntingZoneId": 5,
+						"templateId": 1271,
+						"name": "Arcun (Tuwangi Mire)",
+						"name_RU": "Аркун (Трясина Туванги)",
+						"locations": [
+							{ // Верх
+								"map": "1_3_15",
+								"x": 70988.234375,
+								"y": -9251.5810546875,
+								"z": 60.94783401489258
+							},
+							{ // Низ
+								"map": "1_3_15",
+								"x": 51398.296875,
+								"y": -3308.03759765625,
+								"z": 75.64033508300781
+							}
+						]
+					},
+					{
+						"huntingZoneId": 6,
+						"templateId": 1271,
+						"name": "Arcun (Valley of Titans)",
+						"name_RU": "Аркун (Долина титанов)",
+						"locations": [
+							{ // Верх
+								"map": "1_3_16",
+								"x": 83740.84375,
+								"y": 7556.40283203125,
+								"z": 1294.02099609375
+							},
+							{ // Центр
+								"map": "1_3_16",
+								"x": 72945.7265625,
+								"y": 16278.111328125,
+								"z": 2020.2679443359375
+							},
+							{ // Низ
+								"map": "1_3_16",
+								"x": 62181.96875,
+								"y": 16616.408203125,
+								"z": 1879.3477783203125
+							}
+						]
+					},
+					{
+						"huntingZoneId": 7,
+						"templateId": 1271,
+						"name": "Arcun (Celestial Hills)",
+						"name_RU": "Аркун (Небесные холмы)",
+						"locations": [
+							{ // Центр
+								"map": "1_3_17",
+								"x": 61041.21875,
+								"y": 3119.500244140625,
+								"z": 1414.24755859375
+							},
+							{ // Низ
+								"map": "1_3_17",
+								"x": 38529.76953125,
+								"y": -327.1700744628906,
+								"z": 510.364013671875
+							}
+						]
+					}
+				]
+			},
+			// Val Aureum (0:50)
+			{
+				"logDiff": 3000,
+				"name": "Val Aureum",
+				"name_RU": "Вал-Аурэум",
+				"zoneId": 7003,
+				"npcs": [
+					{
+						"huntingZoneId": 18,
+						"templateId": 1271,
+						"name": "Viadu (Colossal Ruins)",
+						"name_RU": "Виадун (Исполинские развалины)",
+						"locations": [
+							{ // Право
+								"map": "1_5_41",
+								"x": -43639.37109375,
+								"y": -48491.7578125,
+								"z": 1466.1429443359375
+							},
+							{ // Лево
+								"map": "1_5_41",
+								"x": -39723.99609375,
+								"y": -61915.80078125,
+								"z": 2258.112548828125
+							}
+						]
+					},
+					{
+						"huntingZoneId": 19,
+						"templateId": 1271,
+						"name": "Viadu (Freeholds)",
+						"name_RU": "Виадун (Вольноземье)",
+						"locations": [
+							{ // Бамарама
+								"map": "1_5_43",
+								"x": -25299.423828125,
+								"y": -25092.638671875,
+								"z": 179.30308532714844
+							},
+							{ // Право
+								"map": "1_5_43",
+								"x": -26470.27734375,
+								"y": -1462.779052734375,
+								"z": 1887.4139404296875
+							}
+						]
+					},
+					{
+						"huntingZoneId": 21,
+						"templateId": 1271,
+						"name": "Viadu (Basilisk Crag / Chebika)",
+						"name_RU": "Виадун (Утес Василисков / Чебика)",
+						"locations": [
+							{ // Город
+								"map": "1_5_42",
+								"x": -32931.6328125,
+								"y": -21048.478515625,
+								"z": 595.482666015625
+							},
+							{ // Центр
+								"map": "1_5_44",
+								"x": -49011.0703125,
+								"y": -10259.0283203125,
+								"z": 667.399169921875
+							}
+						]
+					},
+					{
+						"huntingZoneId": 24,
+						"templateId": 1271,
+						"name": "Viadu (Aurum Road / Tulufan)",
+						"name_RU": "Виадун (Аурумская дорога / Тулуфан)",
+						"locations": [
+							{ // Город
+								"map": "1_5_48",
+								"x": -55456.73828125,
+								"y": -38819.69140625,
+								"z": 2494.914306640625
+							},
+							{ // Собор
+								"map": "1_5_49",
+								"x": -85476.3828125,
+								"y": -38920.67578125,
+								"z": 3447.2333984375
+							},
+							{ // Центр
+								"map": "1_5_49",
+								"x": -65573.421875,
+								"y": -60034.58203125,
+								"z": 238.13490295410156
+							},
+							{ // Лево
+								"map": "1_5_49",
+								"x": -64087.5703125,
+								"y": -75826.6875,
+								"z": 105.74998474121094
+							}
+						]
+					}
+				]
+			},
+			// Ostgarath (1:40)
+			{
+				"logDiff": 6000,
+				"name": "Ostgarath",
+				"name_RU": "Остгарат",
+				"zoneId": 7004,
+				"npcs": [
+					{
+						"huntingZoneId": 4,
+						"templateId": 1271,
+						"name": "Eteral (Fyrmount)",
+						"name_RU": "Иторо (Фирмаунт)",
+						"locations": [
+							{ // Центр
+								"map": "1_6_56",
+								"x": 103183.8125,
+								"y": 66322.71875,
+								"z": 2727.681640625
+							},
+							{ // Верх
+								"map": "1_6_56",
+								"x": 116370.984375,
+								"y": 74023.5078125,
+								"z": 4778.73046875
+							},
+							{ // СБ
+								"map": "1_6_56",
+								"x": 115522.6796875,
+								"y": 96796.1015625,
+								"z": 7201.72216796875
+							}
+						]
+					},
+					{
+						"huntingZoneId": 9,
+						"templateId": 1271,
+						"name": "Eteral (Ascension Valley / Castanica)",
+						"name_RU": "Иторо (Долина Вознесения / Кастаника)",
+						"locations": [
+							{ // Город
+								"map": "1_6_57",
+								"x": 86356.96875,
+								"y": 73884.1875,
+								"z": 1973.4552001953125
+							},
+							{ // Долина
+								"map": "1_6_64",
+								"x": 71918.71875,
+								"y": 67340.5234375,
+								"z": 321.7499694824219
+							}
+						]
+					},
+					{
+						"huntingZoneId": 10,
+						"templateId": 1271,
+						"name": "Eteral (Serpentis Isle)",
+						"name_RU": "Иторо (Остров Серпентис)",
+						"locations": [
+							{ // Пляж
+								"map": "1_6_58",
+								"x": 100213.46875,
+								"y": 92361.1953125,
+								"z": 129.3750457763672
+							},
+							{ // Причал
+								"map": "1_6_58",
+								"x": 75068.609375,
+								"y": 106985.46875,
+								"z": 74.06303405761719
+							}
+						]
+					},
+					{
+						"huntingZoneId": 11,
+						"templateId": 1271,
+						"name": "Eteral (Jagged Coast / Cutthroat Harbor)",
+						"name_RU": "Иторо (Изрезанный берег / Гавань Головорезов)",
+						"locations": [
+							{ // Город
+								"map": "1_6_68",
+								"x": 51911.2421875,
+								"y": 69361.1484375,
+								"z": 500.06610107421875
+							},
+							{ // Скрытая
+								"map": "1_6_70",
+								"x": 60873.55859375,
+								"y": 51690.76953125,
+								"z": 2983.725830078125
+							}
+						]
+					},
+					{
+						"huntingZoneId": 12,
+						"templateId": 1271,
+						"name": "Eteral (Mistmoor Island)",
+						"name_RU": "Иторо (Остров Мистмур)",
+						"locations": [
+							{ // Верх
+								"map": "1_6_69",
+								"x": 40286.28515625,
+								"y": 90096.5390625,
+								"z": 399.1529541015625
+							},
+							{ // Низ
+								"map": "1_6_69",
+								"x": 26230.146484375,
+								"y": 99483.125,
+								"z": 419.85015869140625
+							}
+						]
+					}
+				]
+			},
+			// Poporia (1:40)
+			{
+				"logDiff": 6000,
+				"name": "Poporia",
+				"name_RU": "Попория",
+				"zoneId": 7002,
+				"npcs": [
+					{
+						"huntingZoneId": 15,
+						"templateId": 1271,
+						"name": "Foretta (Cliffs of Insanity)",
+						"name_RU": "Форета (Утесы Безумия)",
+						"locations": [
+							{ // Верх
+								"map": "1_4_22",
+								"x": -7437.9111328125,
+								"y": 48186.27734375,
+								"z": 3255.10888671875
+							},
+							{ // Лево
+								"map": "1_4_22",
+								"x": -19527.8359375,
+								"y": 37132.4296875,
+								"z": 3047.96044921875
+							},
+							{ // Низ
+								"map": "1_4_22",
+								"x": -24456.248046875,
+								"y": 44578.4921875,
+								"z": 2444.213623046875
+							}
+						]
+					},
+					{
+						"huntingZoneId": 16,
+						"templateId": 1271,
+						"name": "Foretta (Vale of the Fang)",
+						"name_RU": "Форета (Долина Клыка)",
+						"locations": [
+							{
+								"map": "1_4_25",
+								"x": -9749.55859375,
+								"y": 71364.484375,
+								"z": 3157.77197265625
+							}
+						]
+					},
+					{
+						"huntingZoneId": 17,
+						"templateId": 1271,
+						"name": "Foretta (Paraanon Ravine / Popolion)",
+						"name_RU": "Форета (Ущелье Параанон / Пополион)",
+						"locations": [
+							{ // Город
+								"map": "1_4_23",
+								"x": -16543.533203125,
+								"y": 49571.921875,
+								"z": 3002.508056640625
+							},
+							{ // Лево
+								"map": "1_4_21",
+								"x": -20661.447265625,
+								"y": 55508.52734375,
+								"z": 2464.549072265625
+							},
+							{ // Право
+								"map": "1_4_21",
+								"x": -27623.068359375,
+								"y": 67319.34375,
+								"z": 2240.25439453125
+							}
+						]
+					},
+					{
+						"huntingZoneId": 23,
+						"templateId": 1271,
+						"name": "Foretta (Lake of Tears / Pora Elinu)",
+						"name_RU": "Форета (Озеро слез / Пора-Элину)",
+						"locations": [
+							{ // Город
+								"map": "1_4_24",
+								"x": -34980.07421875,
+								"y": 34122.32421875,
+								"z": 2078.931396484375
+							},
+							{ // Академия (скрытая)
+								"map": "1_4_26",
+								"x": -26794.345703125,
+								"y": 20765.435546875,
+								"z": 2568.2802734375
+							},
+							{ // Рида (скрытая)
+								"map": "1_4_26",
+								"x": -33893.56640625,
+								"y": 57480.47265625,
+								"z": 871.17578125
+							},
+							{ // Низ
+								"map": "1_4_26",
+								"x": -44089.828125,
+								"y": 42648.8359375,
+								"z": 1418.7498779296875
+							}
+						]
+					}
+				]
+			},
+			// Essenia (2:30)
+			{
+				"logDiff": 9000,
+				"name": "Essenia",
+				"name_RU": "Эссения",
+				"zoneId": 7011,
+				"npcs": [
+					{
+						"huntingZoneId": 26,
+						"templateId": 1271,
+						"name": "Ezart (Blessing Basin / Tralion)",
+						"name_RU": "Эсат (Блаженное озеро / Тралион)",
+						"locations": [
+							{ // Город
+								"map": "1_13_141",
+								"x": 55758.81640625,
+								"y": -38961.2265625,
+								"z": 3035
+							},
+							{ // Верх
+								"map": "1_13_142",
+								"x": 48969.76953125,
+								"y": -63509.4296875,
+								"z": 4835
+							},
+							{ // Низ
+								"map": "1_13_142",
+								"x": 40484.62890625,
+								"y": -53543.68359375,
+								"z": 1843
+							},
+							{ // Фонтан (скрытая)
+								"map": "1_13_142",
+								"x": 57959.8828125,
+								"y": -70377.2265625,
+								"z": 5237
+							}
+						]
+					},
+					{
+						"huntingZoneId": 27,
+						"templateId": 1271,
+						"name": "Ezart (Essenian Crest)",
+						"name_RU": "Эсат (Эссенийский хребет)",
+						"locations": [
+							{ // Лево
+								"map": "1_13_146",
+								"x": 63834.4375,
+								"y": -9977.0654296875,
+								"z": 639.3399658203125
+							},
+							{ // ГПХ
+								"map": "1_13_146",
+								"x": 70642.171875,
+								"y": 21521.02734375,
+								"z": 1321.0185546875
+							}
+						]
+					},
+					{
+						"huntingZoneId": 28,
+						"templateId": 1271,
+						"name": "Ezart (Blightwood)",
+						"name_RU": "Эсат (Гибельный лес)",
+						"locations": [
+							{ // Низ
+								"map": "1_13_145",
+								"x": 39226.75390625,
+								"y": -11628.1513671875,
+								"z": 4644.06884765625
+							}
+						]
+					},
+					{
+						"huntingZoneId": 29,
+						"templateId": 1271,
+						"name": "Ezart (Timeless Woods 1)",
+						"name_RU": "Эсат (Извечный лес 1)",
+						"locations": [
+							{ // Верх (скрытая)
+								"map": "1_13_144",
+								"x": 56780.75,
+								"y": 5600.54296875,
+								"z": 4513
+							},
+							{ // Низ (скрытая)
+								"map": "1_13_144",
+								"x": 30985.80078125,
+								"y": 12471.6611328125,
+								"z": 5449
+							},
+							{ // Право
+								"map": "1_13_144",
+								"x": 54932.10546875,
+								"y": 23602.6328125,
+								"z": 3115
+							}
+						]
+					},
+					{
+						"huntingZoneId": 29,
+						"templateId": 1272,
+						"name": "Ezart (Timeless Woods 2)",
+						"name_RU": "Эсат (Извечный лес 2)"
+					}
+				]
+			},
+			// Westonia (2:30)
+			{
+				"logDiff": 9000,
+				"name": "Westonia",
+				"name_RU": "Вестония",
+				"zoneId": 7012,
+				"npcs": [
+					{
+						"huntingZoneId": 31,
+						"templateId": 1271,
+						"name": "Storan (Tempest Reach)",
+						"name_RU": "Сторан (Предел Бурь)",
+						"locations": [
+							{ // Право
+								"map": "1_12_121",
+								"x": 1778.47021484375,
+								"y": -73254.015625,
+								"z": 1973.3394775390625
+							},
+							{ // Корабль (скрытая)
+								"map": "1_12_121",
+								"x": 20548.578125,
+								"y": -83943.84375,
+								"z": -234.6809844970703
+							},
+							{ // Лево
+								"map": "1_12_121",
+								"x": 17504.060546875,
+								"y": -102604.921875,
+								"z": 138.74998474121094
+							},
+							{ // Шпиль (скрытая)
+								"map": "1_12_121",
+								"x": 13059.08984375,
+								"y": -119481.578125,
+								"z": 2468.78857421875
+							}
+						]
+					},
+					{
+						"huntingZoneId": 32,
+						"templateId": 1271,
+						"name": "Storan (Mount Tyrannas / Acarum)",
+						"name_RU": "Сторан (Гора Тираннас / Акарум)",
+						"locations": [
+							{ // Город
+								"map": "1_12_122",
+								"x": -8447.71484375,
+								"y": -71035.1015625,
+								"z": 2651.450439453125
+							},
+							{ // Цитадель
+								"map": "1_12_124",
+								"x": -17741.205078125,
+								"y": -69973.7734375,
+								"z": 4895.931640625
+							},
+							{ // Низ
+								"map": "1_12_124",
+								"x": -28223.212890625,
+								"y": -87539.3984375,
+								"z": 5895.60986328125
+							}
+						]
+					},
+					{
+						"huntingZoneId": 34,
+						"templateId": 1271,
+						"name": "Storan (Frost Reach / Bleakrock)",
+						"name_RU": "Сторан (Морозный предел / Блеклый камень)",
+						"locations": [
+							{ // Город
+								"map": "1_12_123",
+								"x": -41704.4375,
+								"y": -75046.171875,
+								"z": 1221.9237060546875
+							},
+							{ // Лево
+								"map": "1_12_125",
+								"x": -62952.67578125,
+								"y": -85857.5625,
+								"z": 364.09033203125
+							},
+							{ // Право
+								"map": "1_12_125",
+								"x": -61355.01953125,
+								"y": -68138.9140625,
+								"z": 431.9928283691406
+							},
+							{ // Скрытая
+								"map": "1_12_125",
+								"x": -70943.953125,
+								"y": -49216.4453125,
+								"z": 3224.0458984375
+							}
+						]
+					}
+				]
+			},
+			// Veritas District (3:20)
+			{
+				"logDiff": 12000,
+				"name": "Veritas District",
+				"name_RU": "Район Веритас",
+				"zoneId": 7015,
+				"npcs": [
+					{
+						"huntingZoneId": 30,
+						"templateId": 1271,
+						"name": "Versa (Balder's Refuge / Bastion)",
+						"name_RU": "Вэлса (Убежище Балдера / Бастион)",
+						"locations": [
+							{ // Город
+								"map": "1_15_176",
+								"x": -13603.8447265625,
+								"y": 54415.6484375,
+								"z": 627
+							},
+							{ // Лево-верх
+								"map": "1_15_177",
+								"x": 11239.0009765625,
+								"y": 58747.88671875,
+								"z": 2287
+							},
+							{ // Лево-низ
+								"map": "1_15_177",
+								"x": -2733.03759765625,
+								"y": 57698.8828125,
+								"z": 1122
+							},
+							{ // Лестница (скрытая)
+								"map": "1_15_177",
+								"x": -10603.32421875,
+								"y": 70493.8359375,
+								"z": 491
+							},
+							{ // Озеро (скрытая)
+								"map": "1_15_177",
+								"x": 151.13494873046875,
+								"y": 51830.8125,
+								"z": 1435
+							},
+							{ // Право-верх
+								"map": "1_15_177",
+								"x": 5058.39599609375,
+								"y": 83043.03125,
+								"z": -777
+							},
+							{ // Право-низ (каналы)
+								"map": "1_15_177",
+								"x": -13637.3466796875,
+								"y": 80936.3125,
+								"z": -1107
+							},
+							{ // Рыбалка
+								"map": "1_15_177",
+								"x": -2754.078369140625,
+								"y": 88493.9921875,
+								"z": -1340
+							},
+							{ // Хран. (скрытая)
+								"map": "1_15_177",
+								"x": 11072.7470703125,
+								"y": 69147.2734375,
+								"z": 2641
+							}
+						]
+					}
+				]
+			},
+			// Val Elenium (3:20)
+			{
+				"logDiff": 12000,
+				"name": "Val Elenium",
+				"name_RU": "Вал-Элениум",
+				"zoneId": 7014,
+				"npcs": [
+					{
+						"huntingZoneId": 35,
+						"templateId": 1271,
+						"name": "Viace (Wyrmgorge / Elenea)",
+						"name_RU": "Виас (Вирмовое ущелье / Эления)",
+						"locations": [
+							{ // Город
+								"map": "1_11_106",
+								"x": -57174.09765625,
+								"y": -11030.224609375,
+								"z": 2261.380615234375
+							},
+							{ // Верх
+								"map": "1_11_107",
+								"x": -39645.9296875,
+								"y": -32920.984375,
+								"z": 5747
+							},
+							{ // Низ
+								"map": "1_11_107",
+								"x": -54117.34375,
+								"y": -33036.95703125,
+								"z": 3641
+							},
+							{ // Право
+								"map": "1_11_107",
+								"x": -48233.5078125,
+								"y": -15323.9140625,
+								"z": 2335
+							}
+						]
+					},
+					{
+						"huntingZoneId": 36,
+						"templateId": 1271,
+						"logDiff": 12000,
+						"name": "Viace (Tor Exsul)",
+						"name_RU": "Виас (Тор-Эксул)",
+						"locations": [
+							{ // Верх
+								"map": "1_11_108",
+								"x": -42415.36328125,
+								"y": -2268.126953125,
+								"z": 1358
+							},
+							{ // Низ
+								"map": "1_11_108",
+								"x": -54771.265625,
+								"y": 5073.52783203125,
+								"z": 532
+							},
+							{ // Стенка (скрытая)
+								"map": "1_11_108",
+								"x": -46189.1015625,
+								"y": 21588.0078125,
+								"z": 2124
+							},
+							{ // Центр
+								"map": "1_11_108",
+								"x": -48526.40234375,
+								"y": 10940.763671875,
+								"z": 1224
+							}
+						]
+					},
+					{
+						"huntingZoneId": 38,
+						"templateId": 1271,
+						"name": "Viace (Sienna Canyon)",
+						"name_RU": "Виас (Каньон Сиенна)",
+						"locations": [
+							{ // Лево
+								"map": "1_11_113",
+								"x": -78563.046875,
+								"y": -17928.904296875,
+								"z": 760
+							},
+							{ // Нога (скрытая)
+								"map": "1_11_113",
+								"x": -83303.9140625,
+								"y": -2022.65673828125,
+								"z": 1640
+							},
+							{ // Право
+								"map": "1_11_113",
+								"x": -87275.515625,
+								"y": 8747.421875,
+								"z": 1681
+							},
+							{ // Стенка (скрытая)
+								"map": "1_11_113",
+								"x": -98762.34375,
+								"y": 4458.322265625,
+								"z": -76
+							}
+						]
+					}
+				]
+			},
+			// Val Palrada (3:20)
+			{
+				"logDiff": 12000,
+				"name": "Val Palrada",
+				"name_RU": "Вал-Палрада",
+				"zoneId": 7013,
+				"npcs": [
+					{
+						"huntingZoneId": 40,
+						"templateId": 1271,
+						"name": "Vaneva (Quarantine Zone / Frontera)",
+						"name_RU": "Ваннева (Зона карантина / Фронтера)",
+						"locations": [
+							{ // Город
+								"map": "1_14_156",
+								"x": -42640.51171875,
+								"y": 57220.22265625,
+								"z": 211
+							},
+							{ // Верх
+								"map": "1_14_157",
+								"x": -29464.81640625,
+								"y": 54129.65234375,
+								"z": -1335
+							},
+							{ // Лево
+								"map": "1_14_157",
+								"x": -42874.5859375,
+								"y": 40590.69140625,
+								"z": 798
+							},
+							{ // Телега (скрытая)
+								"map": "1_14_157",
+								"x": -57433.78515625,
+								"y": 53246.94140625,
+								"z": 769
+							}
+						]
+					},
+					{
+						"huntingZoneId": 41,
+						"templateId": 1271,
+						"name": "Vaneva (Feral Valley)",
+						"name_RU": "Ваннева (Свирепая долина)",
+						"locations": [
+							{ // Верх
+								"map": "1_14_158",
+								"x": -18690.990234375,
+								"y": 62581.203125,
+								"z": 890
+							},
+							{ // ЛПН
+								"map": "1_14_158",
+								"x": -60612.07421875,
+								"y": 60869.015625,
+								"z": 1046
+							},
+							{ // Низ
+								"map": "1_14_158",
+								"x": -45236.69921875,
+								"y": 72467.7734375,
+								"z": 1300
+							},
+							{ // Храм
+								"map": "1_14_158",
+								"x": -64208.40234375,
+								"y": 56272.61328125,
+								"z": 1867
+							},
+							{ // Центр
+								"map": "1_14_158",
+								"x": -32422.732421875,
+								"y": 65711.203125,
+								"z": 1730
+							}
+						]
+					}
+				]
+			},
+			// Lorcada (4:10)
+			{
+				"logDiff": 15000,
+				"name": "Lorcada",
+				"name_RU": "Лоркада",
+				"zoneId": 7022,
+				"npcs": [
+					{
+						"huntingZoneId": 51,
+						"templateId": 1271,
+						"name": "Loahcun (Vale of Spires)",
+						"name_RU": "Лоакун (Долина пиков)",
+						"locations": [
+							{ // Центр
+								"map": "1_19_207",
+								"x": 5400.9296875,
+								"y": 54325.875,
+								"z": 7058.24853515625
+							},
+							{ // Пещера (скрытая)
+								"map": "1_19_207",
+								"x": 15448.6904296875,
+								"y": 44000.99609375,
+								"z": 7773.88916015625
+							},
+							{ // Келс (скрытая)
+								"map": "1_19_207",
+								"x": 8363.1474609375,
+								"y": 34555.359375,
+								"z": 9075.857421875
+							}
+						]
+					},
+					{
+						"huntingZoneId": 52,
+						"templateId": 1271,
+						"name": "Locarnum (Plain of the Damned / Habere)",
+						"name_RU": "Лоакун (Долина Проклятых / Хабере)",
+						"locations": [
+							{ // Город
+								"map": "1_19_206",
+								"x": -6838.263671875,
+								"y": 61654.515625,
+								"z": 5999.72802734375
+							},
+							{ // Право
+								"map": "1_19_208",
+								"x": 7181.7470703125,
+								"y": 68015.5390625,
+								"z": 7168.74853515625
+							},
+							{ // Лево
+								"map": "1_19_208",
+								"x": -13143.005859375,
+								"y": 35963.203125,
+								"z": 4441.07421875
+							},
+							{ // Центр
+								"map": "1_19_208",
+								"x": -4465.12451171875,
+								"y": 44090.390625,
+								"z": 4910.76171875
+							},
+							{ // Кузня (скрытая)
+								"map": "1_19_208",
+								"x": -20198.322265625,
+								"y": 43151.140625,
+								"z": 2915.336669921875
+							},
+							{ // Низ
+								"map": "1_19_208",
+								"x": -21198.37109375,
+								"y": 52498.8515625,
+								"z": 3827.3037109375
+							}
+						]
+					}
+				]
+			},
+			// Sylvanoth (4:10)
+			{
+				"logDiff": 15000,
+				"name": "Sylvanoth",
+				"name_RU": "Силванот",
+				"zoneId": 7021,
+				"npcs": [
+					{
+						"huntingZoneId": 54,
+						"templateId": 1271,
+						"name": "Silvette (Seeliewood / Scythera Fae)",
+						"name_RU": "Силвета (Силивуд / Скитера-Фэй)",
+						"locations": [
+							{ // Город
+								"map": "1_20_221",
+								"x": -57687.92578125,
+								"y": -26859.861328125,
+								"z": 2502.43310546875
+							},
+							{ // Низ
+								"map": "1_20_223",
+								"x": -86778.46875,
+								"y": -5051.73876953125,
+								"z": 1604.75
+							}
+						]
+					},
+					{
+						"huntingZoneId": 55,
+						"templateId": 1271,
+						"name": "Silvette (Darkquaver Woods / Dragonfall)",
+						"name_RU": "Силвета (Дрожащий лес / Дрэгонфолл)",
+						"locations": [
+							{ // Город
+								"map": "1_20_224",
+								"x": -38736.12109375,
+								"y": 10156.4462890625,
+								"z": 4880.25
+							},
+							{ // Центр
+								"map": "1_20_222",
+								"x": -58015.640625,
+								"y": -5387.87451171875,
+								"z": 1528.18212890625
+							}
+						]
+					},
+					{
+						"huntingZoneId": 56,
+						"templateId": 1271,
+						"name": "Silvette (Susurrus Woods)",
+						"name_RU": "Силвета (Шепчущие леса)",
+						"locations": [
+							{ // Верх
+								"map": "1_20_225",
+								"x": -43959.62109375,
+								"y": 18201.412109375,
+								"z": 2487.75
+							},
+							{ // Низ
+								"map": "1_20_225",
+								"x": -70955.5859375,
+								"y": 33496.3984375,
+								"z": 2151.25
+							}
+						]
+					},
+					{
+						"huntingZoneId": 57,
+						"templateId": 1271,
+						"name": "Silvette (Amena Quatla)",
+						"name_RU": "Силвета (Амена-Кватла)",
+						"locations": [
+							{ // Верх
+								"map": "1_20_226",
+								"x": -49302.51171875,
+								"y": 34425.53515625,
+								"z": 3024.778076171875
+							},
+							{ // Низ
+								"map": "1_20_226",
+								"x": -63893.0625,
+								"y": 51037.66796875,
+								"z": 4075.749755859375
+							}
+						]
+					}
+				]
+			},
+			// Val Tirkai (5:00)
+			{
+				"logDiff": 18000,
+				"name": "Val Tirkai",
+				"name_RU": "Вал-Тиркай",
+				"zoneId": 7023,
+				"npcs": [
+					{
+						"huntingZoneId": 45,
+						"templateId": 1271,
+						"name": "Lotica (Thrallhold / Pathfinder Post)",
+						"name_RU": "Лотика (Питомник аргонов / Аванпост следопытов)",
+						"locations": [
+							{ // Город
+								"map": "1_21_231",
+								"x": 13430.0751953125,
+								"y": -26734.95703125,
+								"z": 155.32815551757812
+							},
+							{ // Три башни (скрытая)
+								"map": "1_21_233",
+								"x": 25913.83203125,
+								"y": -27882.630859375,
+								"z": -400.2799072265625
+							},
+							{ // Лестница (скрытая)
+								"map": "1_21_233",
+								"x": 20208.1640625,
+								"y": -54620.21875,
+								"z": -2731.306640625
+							},
+							{ // Низ
+								"map": "1_21_233",
+								"x": 3705.982177734375,
+								"y": -49702.00390625,
+								"z": -4742.25
+							},
+							{ // Верх
+								"map": "1_21_233",
+								"x": 23733.25,
+								"y": -44887.078125,
+								"z": -3897.24951171875
+							}
+						]
+					},
+					{
+						"huntingZoneId": 47,
+						"templateId": 1271,
+						"name": "Lotica (Tirkai Forest)",
+						"name_RU": "Лотика (Лес Тиркай)",
+						"locations": [
+							{ // Низ
+								"map": "1_21_232",
+								"x": -10827.015625,
+								"y": -33385.9765625,
+								"z": -1672.0228271484375
+							},
+							{ // Верх
+								"map": "1_21_232",
+								"x": 707.2947387695312,
+								"y": -26388.091796875,
+								"z": 612.3023071289062
+							},
+							{ // Вышка (скрытая)
+								"map": "1_21_232",
+								"x": -7782.90673828125,
+								"y": -38698.0234375,
+								"z": -1178.329833984375
+							},
+							{ // Пещера (скрытая)
+								"map": "1_21_232",
+								"x": 9427.1396484375,
+								"y": -40902.36328125,
+								"z": -3532.749755859375
+							},
+							{ // Гора (скрытая)
+								"map": "1_21_232",
+								"x": -22306.478515625,
+								"y": -21575.310546875,
+								"z": 1417.809326171875
+							}
+						]
+					}
+				]
+			},
+			// Helkan District (5:00)
+			{
+				"logDiff": 18000,
+				"name": "Helkan District",
+				"name_RU": "Район Хелкан",
+				"zoneId": 8001,
+				"npcs": [
+					{
+						"huntingZoneId": 48,
+						"templateId": 1271,
+						"name": "Hecurn (Khanovar Front / Zulfikar Fortress)",
+						"name_RU": "Хелкун (Хановарские предместья / Зульфикарская крепость)",
+						"locations": [
+							{ // Город
+								"map": "1_23_251",
+								"x": 33935.94921875,
+								"y": -5965.1923828125,
+								"z": 1148.5855712890625
+							},
+							{ // Цитадель
+								"map": "1_23_252",
+								"x": 42889.9765625,
+								"y": 2017.087158203125,
+								"z": 1306.2498779296875
+							},
+							{ // Крепость
+								"map": "1_23_252",
+								"x": 72426.734375,
+								"y": -8776.748046875,
+								"z": 199.7501220703125
+							},
+							{ // Крепость (скрытая)
+								"map": "1_23_252",
+								"x": 68642.59375,
+								"y": 4652.01513671875,
+								"z": 775.7406616210938
+							},
+							{ // Право-верх (скрытая)
+								"map": "1_23_252",
+								"x": 62926.95703125,
+								"y": 2724.40576171875,
+								"z": -13.853206634521484
+							},
+							{ // Тунель (скрытая)
+								"map": "1_23_252",
+								"x": 59167.234375,
+								"y": 11119.01953125,
+								"z": 2375.974609375
+							},
+							{ // Кабина (скрытая)
+								"map": "1_23_252",
+								"x": 49638.2578125,
+								"y": -7478.734375,
+								"z": 55.05164337158203
+							},
+							{ // Право-низ (скрытая)
+								"map": "1_23_252",
+								"x": 38892.48828125,
+								"y": 9808.236328125,
+								"z": 1024.17333984375
+							}
+						]
+					}
+				]
+			},
+			// Helkan District (5:00)
+			{
+				"logDiff": 18000,
+				"name": "Val Kaeli",
+				"name_RU": "Вал-Кэли",
+				"zoneId": 8001,
+				"npcs": [
+					{
+						"huntingZoneId": 49,
+						"templateId": 1271,
+						"name": "Locarnum (Argonea)",
+						"name_RU": "Тезлуар (Аргония)",
+						"locations": [
+							{ // Наверху (скрытая)
+								"map": "1_22_249",
+								"x": 50990.90234375,
+								"y": 35466.44921875,
+								"z": 4776.86279296875
+							},
+							{ // Внизу (скрытая)
+								"map": "1_22_249",
+								"x": 56034.31640625,
+								"y": 30144.595703125,
+								"z": 629.7499389648438
+							},
+							{ // Юж. платформа
+								"map": "1_22_249",
+								"x": 44283.98046875,
+								"y": 27693.04296875,
+								"z": 2355.5380859375
+							},
+							{ // Портал (скрытая)
+								"map": "1_22_249",
+								"x": 75651.5859375,
+								"y": 27657.955078125,
+								"z": 4205.9619140625
+							},
+							{ // Портал верх (скрытая)
+								"map": "1_22_249",
+								"x": 66116.96875,
+								"y": 25654.060546875,
+								"z": 4922.0546875
+							}
+						]
+					},
+					{
+						"huntingZoneId": 50,
+						"templateId": 1271,
+						"name": "Locarnum (Granarkus)",
+						"name_RU": "Тезлуар (Гранаркус)",
+						"locations": [
+							{ // Лево
+								"map": "1_22_250",
+								"x": 45688.25,
+								"y": 48044.06640625,
+								"z": 4179.2490234375
+							},
+							{ // Право
+								"map": "1_22_250",
+								"x": 60308.44140625,
+								"y": 61926.48828125,
+								"z": 5497.2158203125
+							},
+							{ // Спуск (скрытая)
+								"map": "1_22_250",
+								"x": 36521.13671875,
+								"y": 60875.94921875,
+								"z": 3416.048828125
+							},
+							{ // Платформа
+								"map": "1_22_250",
+								"x": 67056.03125,
+								"y": 64125.23828125,
+								"z": 4695.14306640625
+							}
+						]
+					}
+				]
+			},
+			// Other
+			{
+				"npcs": [
+					// Secret store
+					{
+						"huntingZoneId": 63,
+						"templateId": 1271,
+						"name": "Mystery Merchant (Velika 1)",
+						"name_RU": "Тайный Магазин (Велика 1)"
+					},
+					{
+						"huntingZoneId": 63,
+						"templateId": 1279,
+						"name": "Mystery Merchant (Velika 2)",
+						"name_RU": "Тайный Магазин (Велика 2)"
+					},
+					{
+						"huntingZoneId": 72,
+						"templateId": 1271,
+						"name": "Mystery Merchant (Allemantheia)",
+						"name_RU": "Тайный Магазин (Аллемантея)"
+					},
+					{
+						"huntingZoneId": 84,
+						"templateId": 1271,
+						"name": "Mystery Merchant (Kaiator)",
+						"name_RU": "Тайный Магазин (Кайатор)"
+					},
+					{
+						"huntingZoneId": 183,
+						"templateId": 1271,
+						"name": "Mystery Merchant (Highwatch)",
+						"name_RU": "Тайный Магазин (Верхний Дозор)"
+					}
+				]
+			}
+		]
+	}
 };
+
 
 module.exports = function MigrateSettings(from_ver, to_ver, settings) {
 	if (from_ver === undefined) {
-		// Migrate legacy config file
 		return { ...DefaultSettings, ...settings };
 	} else if (from_ver === null) {
-		// No config file exists, use default settings
 		return DefaultSettings;
 	} else {
-		// Migrate from older version (using the new system) to latest one
-		if (from_ver + 1 < to_ver) { // Recursively upgrade in one-version steps
+		if (from_ver + 1 < to_ver) {
 			settings = MigrateSettings(from_ver, from_ver + 1, settings);
 			return MigrateSettings(from_ver + 1, to_ver, settings);
 		}
-		// If we reach this point it's guaranteed that from_ver === to_ver - 1, so we can implement
-		// a switch for each version step that upgrades to the next version. This enables us to
-		// upgrade from any version to the latest version without additional effort!
 		const oldsettings = settings;
 		switch (to_ver) {
 			default:
 				settings = Object.assign(DefaultSettings, {});
 				for (const option in oldsettings) {
-					if (["itemId", "merchants", "goblins", "bosses"].includes(option)) continue;
-					if (settings[option]) {
+					if (option == "itemId") continue;
+					if (["merchants", "goblins", "world_bosses", "raid_bosses", "others"].includes(option) && oldsettings[option] !== undefined) {
+						settings[option] = MigrateList(settings[option], oldsettings[option]);
+					} else if (settings[option]) {
 						settings[option] = oldsettings[option];
 					}
 				}
@@ -790,3 +2322,26 @@ module.exports = function MigrateSettings(from_ver, to_ver, settings) {
 		return settings;
 	}
 };
+
+function MigrateList(settings, oldsettings) {
+	if (Array.isArray(settings)) {
+		for (const i of Object.keys(settings)) {
+			settings[i] = MigrateList(settings[i], oldsettings[i]);
+		}
+		return settings;
+	}
+	if (oldsettings === undefined) {
+		oldsettings = settings;
+	}
+	for (const option of Object.keys(settings)) {
+		if (oldsettings[option] !== undefined) {
+			if (option == "logTime") {
+				settings[option] = oldsettings[option];
+			}
+			if (Array.isArray(settings[option])) {
+				settings[option] = MigrateList(settings[option], oldsettings[option]);
+			}
+		}
+	}
+	return settings;
+}

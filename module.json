@@ -1,16 +1,19 @@
 {
-    "name": "Boss-Helper",
+    "name": "Boss-Helper NG",
     "options": {
-        "niceName": "Boss-Helper",
-        "guiName": "Boss-Helper",
+        "niceName": "BH",
+        "guiName": "Boss-Helper NG",
         "settingsFile": "config.json",
         "settingsMigrator": "settings_migrator.js",
-        "settingsVersion": 16
+        "settingsVersion": 18
     },
     "author": "HSDN / ZC / mopihu / Owyn / Lambda11",
     "description": "Displays information and notifications about spawning of merchants, world bosses and event monsters.",
     "servers": ["https://raw.githubusercontent.com/hsdn/Boss-Helper/master/"],
     "supportUrl": "https://github.com/hsdn/Boss-Helper/issues",
-    "version": "100.2",
+    "dependencies": {
+        "notifier": "https://raw.githubusercontent.com/SerenTera/tera-notifier/master/module.json"
+    },
+    "version": "101.2",
     "disableAutoUpdate": false
 }
