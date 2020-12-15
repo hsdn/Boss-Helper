@@ -206,7 +206,7 @@ module.exports = function BossHelper(mod) {
 		currentChannel = Number(event.channel);
 	});
 
-	mod.hook("S_SPAWN_NPC", 11, (event) => {
+	mod.hook("S_SPAWN_NPC", mod.majorPatchVersion >= 101 ? 12 : 11, (event) => {
 		if (!mod.settings.enabled) return;
 
 		whichNpc(event.huntingZoneId, event.templateId);
