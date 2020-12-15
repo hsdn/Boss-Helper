@@ -53,7 +53,7 @@ Toolbox(/8) | Command Description | Описание команды
 
 ## More Information
 
-* The module has built-in functionality of https://github.com/Lambda11/bam-hp-bar (**fixed Ortan**):   
+* The module has built-in functionality of Lambda11's BAM-HP-Bar module (with **fixed Ortan**):   
   ![](https://i.imgur.com/kLNyQJL.png)
 * Merchant NPC with marker (easily visible in the distance):   
   ![](https://i.imgur.com/tdIJKJv.png)
