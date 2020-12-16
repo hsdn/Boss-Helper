@@ -22,7 +22,7 @@ const strings = {
 		"Stop search": "Остановить поиск",
 		"Teleport to specified position": "Переместиться в указанную позицию",
 		"Use command": "Используйте команду",
-		"or skill &quot;Apex Urgency&quot; for teleport there": "или скил &quot;Энергия пробуждения&quot; для телепортации туда",
+		"or racial skill for teleport there": "или расовый скил для телепортации туда",
 		"Enabled": "Вкл.",
 		"Disabled": "Выкл.",
 		"Alert messages": "Предупреждения",
@@ -393,7 +393,7 @@ module.exports = function BossHelper(mod) {
 				MSG.chat(`${MSG.BLU(M("Found"))} ${mapLink}`);
 
 				if (!mod.settings.teleport) {
-					MSG.chat(`${M("Use command")} ${MSG.BLU(`${commands[npc.type]} to ${searchZoneLocations[npc.type][seekPos - 1].index + 1}`)} ${M("or skill &quot;Apex Urgency&quot; for teleport there")}.`);
+					MSG.chat(`${M("Use command")} ${MSG.BLU(`${commands[npc.type]} to ${searchZoneLocations[npc.type][seekPos - 1].index + 1}`)} ${M("or racial skill for teleport there")}.`);
 				}
 
 				stopScan();
