@@ -22,6 +22,7 @@ const strings = {
 		"Stop search": "Остановить поиск",
 		"Teleport to specified position": "Переместиться в указанную позицию",
 		"Use command": "Используйте команду",
+		"or skill &quot;Apex Urgency&quot; for teleport there": "или скил &quot;Энергия пробуждения&quot; для телепортации туда",
 		"Enabled": "Вкл.",
 		"Disabled": "Выкл.",
 		"Alert messages": "Предупреждения",
@@ -75,6 +76,11 @@ module.exports = function BossHelper(mod) {
 	const spawnedNpcs = new Map();
 	const obtainedMerchants = {};
 	const playerLocation = { "x": 0, "y": 0, "z": 0 };
+	const commands = {
+		"world_bosses": "wb",
+		"raid_bosses": "rb",
+		"merchants": "mm"
+	};
 
 	let language = null;
 	let party = false;
@@ -169,7 +175,7 @@ module.exports = function BossHelper(mod) {
 		"$default": () => MSG.chat(`${MSG.RED(M("Unknown parameter"))}. ${M("Use command")}: ${MSG.BLU("bh help")}`)
 	});
 
-	mod.command.add(["mm", "торг"], {
+	mod.command.add([commands["merchants"], "торг"], {
 		"to": arg => toZoneLocation("merchants", arg),
 		"loc": () => listZoneLocations("merchants"),
 		"scan": () => startScan("merchants"),
@@ -271,7 +277,7 @@ module.exports = function BossHelper(mod) {
 		"$default": () => MSG.chat(`${MSG.RED(M("Unknown parameter"))}. ${M("Use command")}: ${MSG.BLU("bh help")}`)
 	});
 
-	mod.command.add(["wb"], {
+	mod.command.add(commands["world_bosses"], {
 		"to": arg => toZoneLocation("world_bosses", arg),
 		"loc": () => listZoneLocations("world_bosses"),
 		"scan": () => startScan("world_bosses"),
@@ -302,7 +308,7 @@ module.exports = function BossHelper(mod) {
 		"$default": () => MSG.chat(`${MSG.RED(M("Unknown parameter"))}. ${M("Use command")}: ${MSG.BLU("bh help")}`)
 	});
 
-	mod.command.add(["rb"], {
+	mod.command.add(commands["raid_bosses"], {
 		"to": arg => toZoneLocation("raid_bosses", arg),
 		"loc": () => listZoneLocations("raid_bosses"),
 		"scan": () => startScan("raid_bosses"),
@@ -381,10 +387,15 @@ module.exports = function BossHelper(mod) {
 		if (npc) {
 			spawnedNpcs.set(event.gameId, npc);
 
-			if (zoneLocations[npc.type] !== undefined && zoneLocations[npc.type][seekPos - 1] !== undefined) {
-				mapLink = getMapLink(zoneLocations[npc.type][seekPos - 1].map, event.loc, npc.fullName);
+			if (searchZoneLocations[npc.type] !== undefined && searchZoneLocations[npc.type][seekPos - 1] !== undefined) {
+				mapLink = getMapLink(searchZoneLocations[npc.type][seekPos - 1].map, event.loc, npc.fullName);
 
 				MSG.chat(`${MSG.BLU(M("Found"))} ${mapLink}`);
+
+				if (!mod.settings.teleport) {
+					MSG.chat(`${M("Use command")} ${MSG.BLU(`${commands[npc.type]} to ${searchZoneLocations[npc.type][seekPos - 1].index + 1}`)} ${M("or skill &quot;Apex Urgency&quot; for teleport there")}.`);
+				}
+
 				stopScan();
 			}
 
@@ -544,6 +555,7 @@ module.exports = function BossHelper(mod) {
 	}
 
 	function updateZoneLocations() {
+		const indexes = {};
 		zoneLocations = {};
 		searchZoneLocations = {};
 
@@ -553,6 +565,7 @@ module.exports = function BossHelper(mod) {
 
 				if (zoneLocations[entry.type] === undefined) {
 					zoneLocations[entry.type] = [];
+					indexes[entry.type] = 0;
 				}
 
 				if (searchZoneLocations[entry.type] === undefined) {
@@ -561,10 +574,12 @@ module.exports = function BossHelper(mod) {
 
 				entry.locations.forEach(location => {
 					if (search) {
-						searchZoneLocations[entry.type].push({ "name": getName(entry), ...location });
+						searchZoneLocations[entry.type].push({ "name": getName(entry), "index": indexes[entry.type], ...location });
 					}
 
 					zoneLocations[entry.type].push({ "name": getName(entry), search, ...location });
+
+					indexes[entry.type]++;
 				});
 			}
 		});
