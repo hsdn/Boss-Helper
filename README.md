@@ -8,7 +8,8 @@ When an NPC spawnins in the visible range, it will be marked with a marker. Ther
 
 ### Safety
 
-The automatic search function (**scan** command) is easily detectable, therefore, if detected, you can get banned. Use this feature at your own risk!   
+The automatic search function (the **scan** command) is easily detectable, therefore, if detected, you can get banned. Use this feature at your own risk!
+
 Функция автоматического поиска (команда **scan**) является легко детектируемой, следовательно при обнаружении вы можете быть заблокированы. Используйте данную функцию на свой страх и риск!
 
 ## Module Commands
