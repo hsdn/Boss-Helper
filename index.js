@@ -58,6 +58,14 @@ Number.prototype.leadZero = function(i = 1) {
 	return this < 10 * i ? "0".repeat(i) + this : this;
 };
 
+Array.prototype.shuffle = function() {
+	for (let i = this.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[this[i], this[j]] = [this[j], this[i]];
+	}
+	return this;
+};
+
 module.exports = function BossHelper(mod) {
 	const notifier = mod.require.notifier;
 	const MSG = new TeraMessage(mod);
@@ -71,6 +79,7 @@ module.exports = function BossHelper(mod) {
 	let language = null;
 	let party = false;
 	let zoneLocations = {};
+	let searchZoneLocations = {};
 	let playerChannel = 0;
 	let playerTime = 0;
 	let lastPos = null;
@@ -85,15 +94,6 @@ module.exports = function BossHelper(mod) {
 	);
 
 	mod.command.add(["bh", "boss"], {
-		"$none": () => {
-			mod.settings.enabled = !mod.settings.enabled;
-			MSG.chat(mod.settings.enabled ? MSG.BLU(M("Enabled")) : MSG.YEL(M("Disabled")));
-			if (!mod.settings.enabled) {
-				spawnedNpcs.keys().forEach(key => despawnItem(key));
-				spawnedNpcs.clear();
-				stopScan();
-			}
-		},
 		"help": () => {
 			MSG.chat(`${MSG.BLU("bh message")} - ${M("Enable/disable chat messages")}`);
 			MSG.chat(`${MSG.BLU("bh alert")} - ${M("Enable/disable on-screen warning messages")}`);
@@ -157,10 +157,23 @@ module.exports = function BossHelper(mod) {
 				bamHp.unload();
 			}
 		},
+		"$none": () => {
+			mod.settings.enabled = !mod.settings.enabled;
+			MSG.chat(mod.settings.enabled ? MSG.BLU(M("Enabled")) : MSG.YEL(M("Disabled")));
+			if (!mod.settings.enabled) {
+				spawnedNpcs.keys().forEach(key => despawnItem(key));
+				spawnedNpcs.clear();
+				stopScan();
+			}
+		},
 		"$default": () => MSG.chat(`${MSG.RED(M("Unknown parameter"))}. ${M("Use command")}: ${MSG.BLU("bh help")}`)
 	});
 
 	mod.command.add(["mm", "торг"], {
+		"to": arg => toZoneLocation("merchants", arg),
+		"loc": () => listZoneLocations("merchants"),
+		"scan": () => startScan("merchants"),
+		"stop": () => stopScan(),
 		"$none": () => {
 			MSG.chat(`======== ${M("Goblin").toUpperCase()} ========`);
 
@@ -255,26 +268,14 @@ module.exports = function BossHelper(mod) {
 				}
 			});
 		},
-		"loc": () => {
-			if (zoneLocations.merchants !== undefined && zoneLocations.merchants.length > 0) {
-				Object.keys(zoneLocations.merchants).forEach(key => {
-					MSG.chat(`${MSG.YEL(Number(key) + 1)} - ${getMapLink(zoneLocations.merchants[key].map, zoneLocations.merchants[key], zoneLocations.merchants[key].name)}`);
-				});
-			} else {
-				MSG.chat(MSG.RED(M("No positions for this zone")));
-			}
-		},
-		"to": arg => {
-			if (arg && isNumber(arg) && zoneLocations.merchants[arg - 1] !== undefined) {
-				teleport(zoneLocations.merchants[arg - 1], true);
-			}
-		},
-		"scan": () => startScan("merchants"),
-		"stop": () => stopScan(),
 		"$default": () => MSG.chat(`${MSG.RED(M("Unknown parameter"))}. ${M("Use command")}: ${MSG.BLU("bh help")}`)
 	});
 
 	mod.command.add(["wb"], {
+		"to": arg => toZoneLocation("world_bosses", arg),
+		"loc": () => listZoneLocations("world_bosses"),
+		"scan": () => startScan("world_bosses"),
+		"stop": () => stopScan(),
 		"$none": () => {
 			MSG.chat(`======== ${M("World Boss").toUpperCase()} ========`);
 
@@ -298,26 +299,14 @@ module.exports = function BossHelper(mod) {
 				})
 			);
 		},
-		"loc": () => {
-			if (zoneLocations.world_bosses !== undefined && zoneLocations.world_bosses.length > 0) {
-				Object.keys(zoneLocations.world_bosses).forEach(key => {
-					MSG.chat(`${MSG.YEL(Number(key) + 1)} - ${getMapLink(zoneLocations.world_bosses[key].map, zoneLocations.world_bosses[key], zoneLocations.world_bosses[key].name)}`);
-				});
-			} else {
-				MSG.chat(MSG.RED(M("No positions for this zone")));
-			}
-		},
-		"to": arg => {
-			if (arg && isNumber(arg) && zoneLocations.world_bosses[arg - 1] !== undefined) {
-				teleport(zoneLocations.world_bosses[arg - 1], true);
-			}
-		},
-		"scan": () => startScan("world_bosses"),
-		"stop": () => stopScan(),
 		"$default": () => MSG.chat(`${MSG.RED(M("Unknown parameter"))}. ${M("Use command")}: ${MSG.BLU("bh help")}`)
 	});
 
 	mod.command.add(["rb"], {
+		"to": arg => toZoneLocation("raid_bosses", arg),
+		"loc": () => listZoneLocations("raid_bosses"),
+		"scan": () => startScan("raid_bosses"),
+		"stop": () => stopScan(),
 		"$none": () => {
 			MSG.chat(`======== ${M("Raid Boss").toUpperCase()} ========`);
 
@@ -342,22 +331,6 @@ module.exports = function BossHelper(mod) {
 				})
 			);
 		},
-		"loc": () => {
-			if (zoneLocations.raid_bosses !== undefined && zoneLocations.raid_bosses.length > 0) {
-				Object.keys(zoneLocations.raid_bosses).forEach(key => {
-					MSG.chat(`${MSG.YEL(Number(key) + 1)} - ${getMapLink(zoneLocations.raid_bosses[key].map, zoneLocations.raid_bosses[key], zoneLocations.raid_bosses[key].name)}`);
-				});
-			} else {
-				MSG.chat(MSG.RED(M("No positions for this zone")));
-			}
-		},
-		"to": arg => {
-			if (arg && isNumber(arg) && zoneLocations.raid_bosses[arg - 1] !== undefined) {
-				teleport(zoneLocations.raid_bosses[arg - 1], true);
-			}
-		},
-		"scan": () => startScan("raid_bosses"),
-		"stop": () => stopScan(),
 		"$default": () => MSG.chat(`${MSG.RED(M("Unknown parameter"))}. ${M("Use command")}: ${MSG.BLU("bh help")}`)
 	});
 
@@ -375,8 +348,7 @@ module.exports = function BossHelper(mod) {
 	});
 
 	mod.game.on("leave_loading_screen", () => {
-		lastPos = null;
-		seekPos = 0;
+		stopScan();
 	});
 
 	mod.hook("S_CURRENT_CHANNEL", 2, event => {
@@ -409,10 +381,6 @@ module.exports = function BossHelper(mod) {
 		if (npc) {
 			spawnedNpcs.set(event.gameId, npc);
 
-			if (mod.settings.marker) {
-				spawnItem(event.gameId, event.loc);
-			}
-
 			if (zoneLocations[npc.type] !== undefined && zoneLocations[npc.type][seekPos - 1] !== undefined) {
 				mapLink = getMapLink(zoneLocations[npc.type][seekPos - 1].map, event.loc, npc.fullName);
 
@@ -420,7 +388,11 @@ module.exports = function BossHelper(mod) {
 				stopScan();
 			}
 
-			if (mod.settings.alert) {
+			if (mod.settings.marker && (npc.marker === undefined || npc.marker)) {
+				spawnItem(event.gameId, event.loc);
+			}
+
+			if (mod.settings.alert && (npc.alert === undefined || npc.alert)) {
 				MSG.alert((`${M("Found")} ${npc.fullName}`), 44);
 			}
 
@@ -552,37 +524,57 @@ module.exports = function BossHelper(mod) {
 		}
 	});
 
-	function getNpc(huntingZoneId, templateId) {
-		let npc = undefined;
-
-		if (configuredNpcs.find(b => b.huntingZoneId == huntingZoneId && b.templateId == templateId)) {
-			npc = { ...configuredNpcs.find(b => b.huntingZoneId == huntingZoneId && b.templateId == templateId) };
+	function toZoneLocation(npcType, to) {
+		if (to && isNumber(to) && zoneLocations[npcType] !== undefined && zoneLocations[npcType][to - 1] !== undefined) {
+			teleport(zoneLocations[npcType][to - 1], true);
 		}
+	}
 
-		if (npc) {
-			npc.fullName = getName(npc.region) ? `[${getName(npc.region)}] ${getName(npc)}` : getName(npc);
+	function listZoneLocations(npcType) {
+		if (zoneLocations[npcType] !== undefined && zoneLocations[npcType].length > 0) {
+			Object.keys(zoneLocations[npcType]).forEach(key => {
+				const mapLink = getMapLink(zoneLocations[npcType][key].map, zoneLocations[npcType][key], zoneLocations[npcType][key].name);
+				const found = zoneLocations[npcType][key].search ? ` (${M("Found")})` : "";
+
+				MSG.chat(`${MSG.YEL(Number(key) + 1)} - ${mapLink + found}`);
+			});
+		} else {
+			MSG.chat(MSG.RED(M("No positions for this zone")));
 		}
-
-		return npc;
 	}
 
 	function updateZoneLocations() {
 		zoneLocations = {};
+		searchZoneLocations = {};
 
 		configuredNpcs.forEach(entry => {
-			if (entry.locations !== undefined &&
-				entry.region !== undefined &&
-				entry.region.zoneId == mod.game.me.zone &&
-				(!obtainedMerchants[mod.game.me.zone] || obtainedMerchants[mod.game.me.zone].huntingZoneId == entry.huntingZoneId)
-			) {
+			if (entry.locations !== undefined && entry.region !== undefined && entry.region.zoneId == mod.game.me.zone) {
+				const search = obtainedMerchants[mod.game.me.zone] !== undefined && obtainedMerchants[mod.game.me.zone].huntingZoneId == entry.huntingZoneId;
+
 				if (zoneLocations[entry.type] === undefined) {
 					zoneLocations[entry.type] = [];
 				}
 
+				if (searchZoneLocations[entry.type] === undefined) {
+					searchZoneLocations[entry.type] = [];
+				}
+
 				entry.locations.forEach(location => {
-					zoneLocations[entry.type].push({ "name": getName(entry), ...location });
+					if (search) {
+						searchZoneLocations[entry.type].push({ "name": getName(entry), ...location });
+					}
+
+					zoneLocations[entry.type].push({ "name": getName(entry), search, ...location });
 				});
 			}
+		});
+
+		Object.keys(searchZoneLocations).forEach(type => {
+			if (searchZoneLocations[type].length < 1 && zoneLocations[type] !== undefined) {
+				searchZoneLocations[type] = [...zoneLocations[type]];
+			}
+
+			searchZoneLocations[type].shuffle();
 		});
 	}
 
@@ -650,10 +642,10 @@ module.exports = function BossHelper(mod) {
 
 		stopScan();
 
-		if (zoneLocations[npcType] != undefined && zoneLocations[npcType].length > 0) {
+		if (searchZoneLocations[npcType] != undefined && searchZoneLocations[npcType].length > 0) {
 			if (lastPos) seekPos = lastPos;
 
-			MSG.chat(`${M("Scan started")} (${zoneLocations[npcType].length})...`);
+			MSG.chat(`${M("Scan started")} (${searchZoneLocations[npcType].length})...`);
 			mod.setInterval(searchNpc, 5000, npcType);
 		} else {
 			MSG.chat(MSG.RED(M("No positions for this zone")));
@@ -664,10 +656,10 @@ module.exports = function BossHelper(mod) {
 	function searchNpc(npcType) {
 		seekPos++;
 
-		if (seekPos <= zoneLocations[npcType].length) {
-			MSG.chat(`${M("Location")} [${seekPos}/${zoneLocations[npcType].length}]: ${MSG.BLU(zoneLocations[npcType][seekPos - 1].name)}`);
+		if (seekPos <= searchZoneLocations[npcType].length) {
+			MSG.chat(`${M("Location")} [${seekPos}/${searchZoneLocations[npcType].length}]: ${MSG.BLU(searchZoneLocations[npcType][seekPos - 1].name)}`);
 
-			teleport(zoneLocations[npcType][seekPos - 1], mod.settings.teleport);
+			teleport(searchZoneLocations[npcType][seekPos - 1], mod.settings.teleport);
 			lastPos = seekPos;
 		} else {
 			MSG.chat(MSG.RED(M("NPC is not found")));
@@ -720,6 +712,20 @@ module.exports = function BossHelper(mod) {
 				"w": direction
 			});
 		}
+	}
+
+	function getNpc(huntingZoneId, templateId) {
+		let npc = undefined;
+
+		if (configuredNpcs.find(b => b.huntingZoneId == huntingZoneId && b.templateId == templateId)) {
+			npc = { ...configuredNpcs.find(b => b.huntingZoneId == huntingZoneId && b.templateId == templateId) };
+		}
+
+		if (npc) {
+			npc.fullName = getName(npc.region) ? `[${getName(npc.region)}] ${getName(npc)}` : getName(npc);
+		}
+
+		return npc;
 	}
 
 	function getMapLink(map, loc, text) {
