@@ -6,6 +6,11 @@ When an NPC spawnins in the visible range, it will be marked with a marker. Ther
 Отображение информации и уведомлений о появлении указанных NPC в зоне (ивентовый монстр/мировой босс/гильдийный босс/торговец). 
 При появлении NPC в видимом диапазоне, он будет отмечен маркером. Имеются функции телепортации и автоматического поиска NPC. Поддерживаются Русский и Английский языки (определяются автоматически).
 
+### Safety
+
+The automatic search function (**scan** command) is easily detectable, therefore, if detected, you can get banned. Use this feature at your own risk!   
+Функция автоматического поиска (команда **scan**) является легко детектируемой, следовательно при обнаружении вы можете быть заблокированы. Используйте данную функцию на свой страх и риск!
+
 ## Module Commands
 Toolbox(/8) | Command Description | Описание команды
 --- | --- | ---
