@@ -10,7 +10,7 @@ When an NPC spawnins in the visible range, it will be marked with a marker. Ther
 
 The automatic search function (the **scan** command) is easily detectable, therefore, if detected, you can get banned. Please use this feature at your own risk!
 
-Функция автоматического поиска (команда **scan**) является легко детектируемой, следовательно при обнаружении вы можете быть заблокированы. Используйте данную функцию на свой страх и риск!
+Функция автоматического поиска (команда **scan**) является легко детектируемой, следовательно при обнаружении вы можете быть забанены. Используйте данную функцию на свой страх и риск!
 
 ## Module Commands / Команды
 Toolbox(/8) | Command Description | Описание команды
@@ -32,7 +32,7 @@ Toolbox(/8) | Command Description | Описание команды
 **mm&nbsp;scan** | Search for Mystery Merchants in current zone. | Запустить поиск торговцев в текущей зоне.
 **mm&nbsp;stop** | Stop search. | Остановить поиск.
 **mm&nbsp;loc** | Display Mystery Merchants locations of current zone. | Отобразить список позиций тайных торговцев для текущей зоны.
-**mm&nbsp;to&nbsp;&lt;id&gt;** | Teleport to specified position. | Переместиться в указанную позицию.
+**mm&nbsp;to&nbsp;&lt;id&gt;** | Teleport to specified location. | Переместиться в указанную позицию.
 
 * Display respawn times of Mystery Merchants (the **mm** command):   
   ![](https://i.imgur.com/MRSGHDo.png)
@@ -44,7 +44,7 @@ Toolbox(/8) | Command Description | Описание команды
 **wb&nbsp;scan** | Search for World Bosses in current zone. | Запустить поиск мировых боссов в текущей зоне.
 **wb&nbsp;stop** | Stop search. | Остановить поиск.
 **wb&nbsp;loc** | Display World Bosses locations of current zone. | Отобразить список позиций мировых боссов для текущей зоны.
-**wb&nbsp;to&nbsp;&lt;id&gt;** | Teleport to specified position. | Переместиться в указанную позицию.
+**wb&nbsp;to&nbsp;&lt;id&gt;** | Teleport to specified location. | Переместиться в указанную позицию.
 
 * Display respawn times of World Bosses (the **wb** command):   
   ![](https://i.imgur.com/RPXfTFV.png)

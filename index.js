@@ -20,7 +20,7 @@ const strings = {
 		"Display Raid Bosses locations of current zone": "Отобразить список позиций рейдовых боссов для текущей зоны",
 		"Search for Raid Bosses in current zone": "Запустить поиск рейдовых боссов в текущей зоне",
 		"Stop search": "Остановить поиск",
-		"Teleport to specified position": "Переместиться в указанную позицию",
+		"Teleport to specified location": "Переместиться в указанную позицию",
 		"Use command": "Используйте команду",
 		"or racial skill for teleport there": "или расовый скил для телепортации туда",
 		"Enabled": "Вкл.",
@@ -114,19 +114,19 @@ module.exports = function BossHelper(mod) {
 			MSG.chat(`${MSG.BLU("mm loc")} - ${M("Display Mystery Merchants locations of current zone")}`);
 			MSG.chat(`${MSG.BLU("mm scan")} - ${M("Search for Mystery Merchants in current zone")}`);
 			MSG.chat(`${MSG.BLU("mm stop")} - ${M("Stop search")}`);
-			MSG.chat(`${MSG.BLU("mm to ") + MSG.YEL("id")} - ${M("Teleport to specified position")}`);
+			MSG.chat(`${MSG.BLU("mm to ") + MSG.YEL("id")} - ${M("Teleport to specified location")}`);
 			MSG.chat("========");
 			MSG.chat(`${MSG.BLU("rb")} - ${M("Display the spawn times of Raid Bosses")}`);
 			MSG.chat(`${MSG.BLU("rb loc")} - ${M("Display Raid Bosses locations of current zone")}`);
 			MSG.chat(`${MSG.BLU("rb scan")} - ${M("Search for Raid Bosses in current zone")}`);
 			MSG.chat(`${MSG.BLU("rb stop")} - ${M("Stop search")}`);
-			MSG.chat(`${MSG.BLU("rb to ") + MSG.YEL("id")} - ${M("Teleport to specified position")}`);
+			MSG.chat(`${MSG.BLU("rb to ") + MSG.YEL("id")} - ${M("Teleport to specified location")}`);
 			MSG.chat("========");
 			MSG.chat(`${MSG.BLU("wb")} - ${M("Display the spawn times of World Bosses")}`);
 			MSG.chat(`${MSG.BLU("wb loc")} - ${M("Display World Bosses locations of current zone")}`);
 			MSG.chat(`${MSG.BLU("wb scan")} - ${M("Search for World Bosses in current zone")}`);
 			MSG.chat(`${MSG.BLU("wb stop")} - ${M("Stop search")}`);
-			MSG.chat(`${MSG.BLU("wb to ") + MSG.YEL("id")} - ${M("Teleport to specified position")}`);
+			MSG.chat(`${MSG.BLU("wb to ") + MSG.YEL("id")} - ${M("Teleport to specified location")}`);
 		},
 		"alert": () => {
 			mod.settings.alert = !mod.settings.alert;
@@ -150,7 +150,7 @@ module.exports = function BossHelper(mod) {
 		},
 		"clear": () => {
 			MSG.chat(`Boss-Helper: ${MSG.TIP(M("Position markers cleared"))}`);
-			spawnedNpcs.keys().forEach(key => despawnItem(key));
+			spawnedNpcs.keys().forEach(key => despawnMarker(key));
 		},
 		"teleport": () => {
 			mod.settings.teleport = !mod.settings.teleport;
@@ -167,7 +167,7 @@ module.exports = function BossHelper(mod) {
 			mod.settings.enabled = !mod.settings.enabled;
 			MSG.chat(mod.settings.enabled ? MSG.BLU(M("Enabled")) : MSG.YEL(M("Disabled")));
 			if (!mod.settings.enabled) {
-				spawnedNpcs.keys().forEach(key => despawnItem(key));
+				spawnedNpcs.keys().forEach(key => despawnMarker(key));
 				spawnedNpcs.clear();
 				stopScan();
 			}
@@ -400,7 +400,7 @@ module.exports = function BossHelper(mod) {
 			}
 
 			if (mod.settings.marker && (npc.marker === undefined || npc.marker)) {
-				spawnItem(event.gameId, event.loc);
+				spawnMarker(event.gameId, event.loc);
 			}
 
 			if (mod.settings.alert && (npc.alert === undefined || npc.alert)) {
@@ -438,7 +438,7 @@ module.exports = function BossHelper(mod) {
 			saveTime(npc);
 		}
 
-		despawnItem(event.gameId);
+		despawnMarker(event.gameId);
 		spawnedNpcs.delete(event.gameId);
 	});
 
@@ -531,6 +531,8 @@ module.exports = function BossHelper(mod) {
 					delete obtainedMerchants[npc.region.zoneId];
 					updateZoneLocations();
 				}
+
+				saveTime(npc, true);
 				break;
 		}
 	});
@@ -593,17 +595,17 @@ module.exports = function BossHelper(mod) {
 		});
 	}
 
-	function saveTime(npc) {
+	function saveTime(npc, despawn = false) {
 		switch (npc.type) {
 			case "merchants":
 				mod.settings[npc.type].regions.forEach(region => {
 					if (region.npcs.find(b => b.huntingZoneId == npc.huntingZoneId && b.templateId == npc.templateId)) {
 						if (region.logDiff != undefined) {
-							mod.settings[npc.type].logTime = Date.now() - (region.logDiff * 1000);
+							mod.settings[npc.type].logTime = Date.now() - region.logDiff * 1000 - (despawn ? 30 * 60 * 1000 : 0);
 						}
 
 						if (region.logTime != undefined) {
-							region.logTime = Date.now();
+							region.logTime = Date.now() - (despawn ? 30 * 60 * 1000 : 0);
 						}
 					}
 				});
@@ -612,7 +614,7 @@ module.exports = function BossHelper(mod) {
 			case "goblins":
 				mod.settings[npc.type].regions.forEach(region => {
 					if (region.npcs.find(b => b.huntingZoneId == npc.huntingZoneId && b.templateId == npc.templateId) && region.logDiff != undefined) {
-						mod.settings[npc.type].logTime = Date.now() - (region.logDiff * 1000);
+						mod.settings[npc.type].logTime = Date.now() - region.logDiff * 1000;
 					}
 				});
 				break;
@@ -629,7 +631,7 @@ module.exports = function BossHelper(mod) {
 		}
 	}
 
-	function spawnItem(gameId, loc) {
+	function spawnMarker(gameId, loc) {
 		const itemLoc = { ...loc };
 
 		itemLoc.z -= 100;
@@ -644,7 +646,7 @@ module.exports = function BossHelper(mod) {
 		});
 	}
 
-	function despawnItem(gameId) {
+	function despawnMarker(gameId) {
 		if (!spawnedNpcs.has(gameId)) return;
 
 		mod.send("S_DESPAWN_DROPITEM", 4, {
