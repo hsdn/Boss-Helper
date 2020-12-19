@@ -23,6 +23,7 @@ const strings = {
 		"Teleport to specified location": "Переместиться в указанную позицию",
 		"Use command": "Используйте команду",
 		"or racial skill for teleport there": "или расовый скил для телепортации туда",
+		"You are already here": "Вы уже здесь",
 		"Enabled": "Вкл.",
 		"Disabled": "Выкл.",
 		"Alert messages": "Предупреждения",
@@ -390,7 +391,7 @@ module.exports = function BossHelper(mod) {
 			if (searchZoneLocations[npc.type] !== undefined && searchZoneLocations[npc.type][seekPos - 1] !== undefined) {
 				mapLink = getMapLink(searchZoneLocations[npc.type][seekPos - 1].map, event.loc, npc.fullName);
 
-				MSG.chat(`${MSG.BLU(M("Found"))} ${mapLink}`);
+				MSG.chat(`${MSG.BLU(M("Found"))} ${mapLink} ${M("Location")} ${MSG.YEL(searchZoneLocations[npc.type][seekPos - 1].index + 1)}`);
 
 				if (!mod.settings.teleport) {
 					MSG.chat(`${M("Use command")} ${MSG.BLU(`${commands[npc.type]} to ${searchZoneLocations[npc.type][seekPos - 1].index + 1}`)} ${M("or racial skill for teleport there")}.`);
@@ -548,8 +549,9 @@ module.exports = function BossHelper(mod) {
 			Object.keys(zoneLocations[npcType]).forEach(key => {
 				const mapLink = getMapLink(zoneLocations[npcType][key].map, zoneLocations[npcType][key], zoneLocations[npcType][key].name);
 				const found = zoneLocations[npcType][key].search ? ` (${M("Found")})` : "";
+				const here = isNearLocation(zoneLocations[npcType][key]) ? " ***" : "";
 
-				MSG.chat(`${MSG.YEL(Number(key) + 1)} - ${mapLink + found}`);
+				MSG.chat(`${MSG.YEL(Number(key) + 1)} - ${mapLink + found + here}`);
 			});
 		} else {
 			MSG.chat(MSG.RED(M("No positions for this zone")));
@@ -697,6 +699,10 @@ module.exports = function BossHelper(mod) {
 	function teleport(newLoc, instant = false) {
 		if (!mod.settings.enabled) return;
 
+		if (isNearLocation(newLoc)) {
+			return MSG.chat(MSG.YEL(M("You are already here")));
+		}
+
 		let currTime = os.uptime() * 1000 + new Date().getMilliseconds() + 150;
 
 		if (currTime < playerTime) {
@@ -729,6 +735,16 @@ module.exports = function BossHelper(mod) {
 				"w": direction
 			});
 		}
+	}
+
+	function isNearLocation(location) {
+		const d = 800;
+
+		return (
+			location.x - d < playerLocation.x && location.x + d > playerLocation.x &&
+			location.y - d < playerLocation.y && location.y + d > playerLocation.y &&
+			location.z - d < playerLocation.z && location.z + d > playerLocation.z
+		);
 	}
 
 	function getNpc(huntingZoneId, templateId) {
