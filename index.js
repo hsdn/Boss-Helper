@@ -388,6 +388,12 @@ module.exports = function BossHelper(mod) {
 		if (npc) {
 			spawnedNpcs.set(event.gameId, npc);
 
+			if (npc.type === "merchants" && npc.region.zoneId !== undefined) {
+				obtainedMerchants[npc.region.zoneId] = npc;
+			}
+
+			updateZoneLocations();
+
 			if (searchZoneLocations[npc.type] !== undefined && searchZoneLocations[npc.type][seekPos - 1] !== undefined) {
 				mapLink = getMapLink(searchZoneLocations[npc.type][seekPos - 1].map, event.loc, npc.fullName);
 
@@ -415,11 +421,6 @@ module.exports = function BossHelper(mod) {
 				});
 			} else if (mod.settings.notice) {
 				MSG.raids(`${M("Found")} ${npc.fullName}`);
-			}
-
-			if (npc.type === "merchants" && npc.region.zoneId !== undefined) {
-				obtainedMerchants[npc.region.zoneId] = npc;
-				updateZoneLocations();
 			}
 
 			if (mod.settings.hpbar && npc.type === "raid_bosses") {
