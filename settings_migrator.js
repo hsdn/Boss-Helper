@@ -560,7 +560,7 @@ const DefaultSettings = {
 					{
 						"huntingZoneId": 63,
 						"templateId": 1278,
-						"name": "Petam",
+						"name": "Veracun",
 						"name_RU": "Веракун",
 						"locations": [
 							{ // I
@@ -639,7 +639,7 @@ const DefaultSettings = {
 					{
 						"huntingZoneId": 72,
 						"templateId": 1278,
-						"name": "Hemusk",
+						"name": "Alluman",
 						"name_RU": "Аллума",
 						"locations": [
 							{ // I
@@ -706,7 +706,7 @@ const DefaultSettings = {
 					{
 						"huntingZoneId": 84,
 						"templateId": 1278,
-						"name": "Kaylight",
+						"name": "Kaidera",
 						"name_RU": "Кай Тера",
 						"locations": [
 							{ // I
@@ -735,9 +735,9 @@ const DefaultSettings = {
 							},
 							{ // V
 								"map": "1_18_202",
-								"x": 1081.03515625,
-								"y": 6957.7490234375,
-								"z": 4168.42529296875
+								"x": -55.379817962646484,
+								"y": 7207.630859375,
+								"z": 3984.510009765625
 							},
 							{ // VI
 								"map": "1_18_202",
