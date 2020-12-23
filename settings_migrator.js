@@ -2191,9 +2191,15 @@ const DefaultSettings = {
 					{
 						"huntingZoneId": 49,
 						"templateId": 1271,
-						"name": "Locarnum (Argonea)",
-						"name_RU": "Тезлуар (Аргония)",
+						"name": "Locarnum (Argonea / Kanstria)",
+						"name_RU": "Тезлуар (Аргония / Канстрия)",
 						"locations": [
+							{ // Город
+								"map": "1_22_247",
+								"x": 47661.6640625,
+								"y": 17904.271484375,
+								"z": 2330.981689453125
+							},
 							{ // Наверху (скрытая)
 								"map": "1_22_249",
 								"x": 50990.90234375,
@@ -2318,14 +2324,14 @@ module.exports = function MigrateSettings(from_ver, to_ver, settings) {
 			return MigrateSettings(from_ver + 1, to_ver, settings);
 		}
 		const oldsettings = settings;
+		settings = Object.assign(DefaultSettings, {});
 		switch (to_ver) {
 			default:
-				settings = Object.assign(DefaultSettings, {});
 				for (const option in oldsettings) {
 					if (option == "itemId") continue;
 					if (["merchants", "goblins", "world_bosses", "raid_bosses", "others"].includes(option) && oldsettings[option] !== undefined) {
 						settings[option] = MigrateList(settings[option], oldsettings[option]);
-					} else if (settings[option]) {
+					} else if (settings[option] !== undefined) {
 						settings[option] = oldsettings[option];
 					}
 				}
