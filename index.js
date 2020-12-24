@@ -23,7 +23,6 @@ const strings = {
 		"Teleport to specified location": "Переместиться в указанную позицию",
 		"Use command": "Используйте команду",
 		"or racial skill for teleport there": "или расовый скил для телепортации туда",
-		"You are already here": "Вы уже здесь",
 		"Enabled": "Вкл.",
 		"Disabled": "Выкл.",
 		"Alert messages": "Предупреждения",
@@ -392,7 +391,7 @@ module.exports = function BossHelper(mod) {
 				obtainedMerchants[npc.region.zoneId] = npc;
 			}
 
-			updateZoneLocations();
+			updateZoneLocations(false);
 
 			if (searchZoneLocations[npc.type] !== undefined && searchZoneLocations[npc.type][seekPos - 1] !== undefined) {
 				mapLink = getMapLink(searchZoneLocations[npc.type][seekPos - 1].map, event.loc, npc.fullName);
@@ -561,7 +560,7 @@ module.exports = function BossHelper(mod) {
 		}
 	}
 
-	function updateZoneLocations() {
+	function updateZoneLocations(nearCheck = true) {
 		const indexes = {};
 		zoneLocations = {};
 		searchZoneLocations = {};
@@ -580,7 +579,7 @@ module.exports = function BossHelper(mod) {
 				}
 
 				entry.locations.forEach(location => {
-					if (search && !isNearLocation(location)) {
+					if (search && (nearCheck && !isNearLocation(location))) {
 						searchZoneLocations[entry.type].push({ "name": getName(entry), "index": indexes[entry.type], ...location });
 					}
 
