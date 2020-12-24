@@ -546,6 +546,8 @@ module.exports = function BossHelper(mod) {
 	}
 
 	function listZoneLocations(npcType) {
+		updateZoneLocations();
+
 		if (zoneLocations[npcType] !== undefined && zoneLocations[npcType].length > 0) {
 			Object.keys(zoneLocations[npcType]).forEach(key => {
 				const mapLink = getMapLink(zoneLocations[npcType][key].map, zoneLocations[npcType][key], zoneLocations[npcType][key].name);
@@ -578,7 +580,7 @@ module.exports = function BossHelper(mod) {
 				}
 
 				entry.locations.forEach(location => {
-					if (search) {
+					if (search && !isNearLocation(location)) {
 						searchZoneLocations[entry.type].push({ "name": getName(entry), "index": indexes[entry.type], ...location });
 					}
 
@@ -660,6 +662,7 @@ module.exports = function BossHelper(mod) {
 	function startScan(npcType) {
 		if (!mod.settings.enabled) return;
 
+		updateZoneLocations();
 		stopScan();
 
 		if (searchZoneLocations[npcType] != undefined && searchZoneLocations[npcType].length > 0) {
@@ -700,10 +703,6 @@ module.exports = function BossHelper(mod) {
 	function teleport(newLoc, instant = false) {
 		if (!mod.settings.enabled) return;
 
-		if (isNearLocation(newLoc)) {
-			return MSG.chat(MSG.YEL(M("You are already here")));
-		}
-
 		let currTime = os.uptime() * 1000 + new Date().getMilliseconds() + 150;
 
 		if (currTime < playerTime) {
@@ -739,7 +738,7 @@ module.exports = function BossHelper(mod) {
 	}
 
 	function isNearLocation(location) {
-		const d = 800;
+		const d = 1000;
 
 		return (
 			location.x - d < playerLocation.x && location.x + d > playerLocation.x &&
