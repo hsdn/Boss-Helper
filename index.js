@@ -583,7 +583,7 @@ module.exports = function BossHelper(mod) {
 						searchZoneLocations[entry.type].push({ "name": getName(entry), "index": indexes[entry.type], ...location });
 					}
 
-					zoneLocations[entry.type].push({ "name": getName(entry), search, ...location });
+					zoneLocations[entry.type].push({ "name": getName(entry), "index": indexes[entry.type], search, ...location });
 
 					indexes[entry.type]++;
 				});
