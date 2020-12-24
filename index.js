@@ -391,8 +391,6 @@ module.exports = function BossHelper(mod) {
 				obtainedMerchants[npc.region.zoneId] = npc;
 			}
 
-			updateZoneLocations(false);
-
 			if (searchZoneLocations[npc.type] !== undefined && searchZoneLocations[npc.type][seekPos - 1] !== undefined) {
 				mapLink = getMapLink(searchZoneLocations[npc.type][seekPos - 1].map, event.loc, npc.fullName);
 
@@ -401,6 +399,8 @@ module.exports = function BossHelper(mod) {
 				if (!mod.settings.teleport) {
 					MSG.chat(`${M("Use command")} ${MSG.BLU(`${commands[npc.type]} to ${searchZoneLocations[npc.type][seekPos - 1].index + 1}`)} ${M("or racial skill for teleport there")}.`);
 				}
+
+				console.log(searchZoneLocations);
 
 				stopScan();
 			}
@@ -425,6 +425,8 @@ module.exports = function BossHelper(mod) {
 			if (mod.settings.hpbar && npc.type === "raid_bosses") {
 				return bamHp.spawnNpc(event);
 			}
+
+			updateZoneLocations();
 		}
 	});
 
@@ -560,7 +562,7 @@ module.exports = function BossHelper(mod) {
 		}
 	}
 
-	function updateZoneLocations(nearCheck = true) {
+	function updateZoneLocations() {
 		const indexes = {};
 		zoneLocations = {};
 		searchZoneLocations = {};
@@ -579,7 +581,7 @@ module.exports = function BossHelper(mod) {
 				}
 
 				entry.locations.forEach(location => {
-					if (search && (nearCheck && !isNearLocation(location))) {
+					if (search && !isNearLocation(location)) {
 						searchZoneLocations[entry.type].push({ "name": getName(entry), "index": indexes[entry.type], ...location });
 					}
 
