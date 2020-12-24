@@ -400,8 +400,6 @@ module.exports = function BossHelper(mod) {
 					MSG.chat(`${M("Use command")} ${MSG.BLU(`${commands[npc.type]} to ${searchZoneLocations[npc.type][seekPos - 1].index + 1}`)} ${M("or racial skill for teleport there")}.`);
 				}
 
-				console.log(searchZoneLocations);
-
 				stopScan();
 			}
 
