@@ -81,8 +81,9 @@ module.exports = function BossHelper(mod) {
 		"raid_bosses": "rb",
 		"merchants": "mm"
 	};
+	const defaultLanguage = "en";
 
-	let language = null;
+	let language = defaultLanguage;
 	let party = false;
 	let zoneLocations = {};
 	let searchZoneLocations = {};
@@ -342,7 +343,7 @@ module.exports = function BossHelper(mod) {
 
 	mod.game.on("enter_game", () => {
 		if (!mod.settings.language || mod.settings.language == "auto") {
-			language = { "0": "en", "1": "kr", "3": "jp", "4": "de", "5": "fr", "7": "tw", "8": "ru" }[mod.game.language] || "en";
+			language = { "0": "en", "1": "kr", "3": "jp", "4": "de", "5": "fr", "7": "tw", "8": "ru" }[mod.game.language] || defaultLanguage;
 		} else {
 			language = mod.settings.language;
 		}
@@ -678,7 +679,7 @@ module.exports = function BossHelper(mod) {
 	function searchNpc(npcType) {
 		seekPos++;
 
-		if (seekPos <= searchZoneLocations[npcType].length) {
+		if (searchZoneLocations[npcType] != undefined && seekPos <= searchZoneLocations[npcType].length) {
 			MSG.chat(`${M("Location")} [${seekPos}/${searchZoneLocations[npcType].length}]: ${MSG.BLU(searchZoneLocations[npcType][seekPos - 1].name)}`);
 
 			teleport(searchZoneLocations[npcType][seekPos - 1], mod.settings.teleport);
