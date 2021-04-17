@@ -84,6 +84,7 @@ module.exports = function BossHelper(mod) {
 	const defaultLanguage = "en";
 
 	let language = defaultLanguage;
+	let serverId = null;
 	let party = false;
 	let zoneLocations = {};
 	let searchZoneLocations = {};
@@ -185,13 +186,13 @@ module.exports = function BossHelper(mod) {
 			MSG.chat(`======== ${M("Goblin").toUpperCase()} ========`);
 
 			mod.settings.goblins.regions.forEach(region => {
-				if (region.logDiff == undefined) return;
+				if (region.logDiff === undefined) return;
 				const name = getName(region);
 
-				if (mod.settings.goblins.logTime == 0) {
+				if (!mod.settings.goblins.logTime[serverId]) {
 					MSG.chat(` ${MSG.BLU(name)} ${MSG.GRY(M("no data"))}`);
 				} else {
-					let nextTime = mod.settings.goblins.logTime + region.logDiff * 1000;
+					let nextTime = mod.settings.goblins.logTime[serverId] + region.logDiff * 1000;
 
 					while (Date.now() > nextTime) {
 						nextTime += 24 * 60 * 60 * 1000;
@@ -234,14 +235,14 @@ module.exports = function BossHelper(mod) {
 				const obtainedName = obtainedMerchants[Object.keys(obtainedMerchants).filter(x => group.zoneIds.includes(Number(x)))];
 
 				if (group.logTime !== undefined && group.logIntervalMin !== undefined && group.logIntervalMax !== undefined) {
-					if (group.logTime == 0) {
+					if (!group.logTime[serverId]) {
 						MSG.chat(` ${MSG.BLU(name)} ${MSG.GRY(M("no data"))}`);
 					} else {
-						const nextTimeMin = group.logTime + group.logIntervalMin * 1000;
-						const nextTimeMax = group.logTime + group.logIntervalMax * 1000;
+						const nextTimeMin = group.logTime[serverId] + group.logIntervalMin * 1000;
+						const nextTimeMax = group.logTime[serverId] + group.logIntervalMax * 1000;
 
-						if (group.logTime < Date.now() && group.logTime + 30 * 60 * 1000 >= Date.now()) {
-							MSG.chat(` ${MSG.PIK(obtainedName ? obtainedName.fullName : name)} ${M("spawned at")} ${MSG.TIP(getTime(group.logTime))}`);
+						if (group.logTime[serverId] < Date.now() && group.logTime[serverId] + 30 * 60 * 1000 >= Date.now()) {
+							MSG.chat(` ${MSG.PIK(obtainedName ? obtainedName.fullName : name)} ${M("spawned at")} ${MSG.TIP(getTime(group.logTime[serverId]))}`);
 						} else if (Date.now() < nextTimeMax) {
 							if (nextTimeMin == nextTimeMax) {
 								MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTimeMin))}`);
@@ -249,13 +250,17 @@ module.exports = function BossHelper(mod) {
 								MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTimeMin))} ~ ${MSG.TIP(getTime(nextTimeMax))}`);
 							}
 						} else {
-							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(group.logTime))}`);
+							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(group.logTime[serverId]))}`);
 						}
 					}
 				} else if (group.logDiff !== undefined) {
-					const logTime = group.logTime || mod.settings.merchants.logTime;
+					let logTime = mod.settings.merchants.logTime[serverId];
 
-					if (logTime == 0) {
+					if (group.logTime !== undefined) {
+						logTime = group.logTime[serverId];
+					}
+
+					if (!logTime) {
 						MSG.chat(` ${MSG.BLU(name)} ${MSG.GRY(M("no data"))}`);
 					} else {
 						let nextTime = logTime + group.logDiff * 1000;
@@ -292,15 +297,15 @@ module.exports = function BossHelper(mod) {
 
 					const name = getName(boss);
 
-					if (boss.logTime == 0) {
+					if (!boss.logTime[serverId]) {
 						MSG.chat(` ${MSG.BLU(name)} ${MSG.GRY(M("no data"))}`);
 					} else {
-						const nextTime = boss.logTime + 5 * 60 * 60 * 1000;
+						const nextTime = boss.logTime[serverId] + 5 * 60 * 60 * 1000;
 
 						if (Date.now() < nextTime) {
 							MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTime))}`);
 						} else {
-							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(boss.logTime))}`);
+							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(boss.logTime[serverId]))}`);
 						}
 					}
 				})
@@ -323,16 +328,16 @@ module.exports = function BossHelper(mod) {
 
 					const name = getName(boss);
 
-					if (boss.logTime == 0) {
+					if (!boss.logTime[serverId]) {
 						MSG.chat(` ${MSG.BLU(name)} ${MSG.GRY(M("no data"))}`);
 					} else {
-						const nextTimeMax = boss.logTime + (5 * 60 * 60 + 30 * 60) * 1000;
+						const nextTimeMax = boss.logTime[serverId] + (5 * 60 * 60 + 30 * 60) * 1000;
 						const nextTimeMin = nextTimeMax - 60 * 60 * 1000;
 
 						if (Date.now() < nextTimeMax) {
 							MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTimeMin))} ~ ${MSG.TIP(getTime(nextTimeMax))}`);
 						} else {
-							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(boss.logTime))}`);
+							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(boss.logTime[serverId]))}`);
 						}
 					}
 				})
@@ -347,6 +352,10 @@ module.exports = function BossHelper(mod) {
 		} else {
 			language = mod.settings.language;
 		}
+
+		serverId = mod.game.me.serverId;
+
+		migrateConfiguration();
 	});
 
 	mod.game.me.on("change_zone", () => {
@@ -605,12 +614,12 @@ module.exports = function BossHelper(mod) {
 			case "merchants":
 				mod.settings[npc.type].regions.forEach(region => {
 					if (region.npcs.find(b => b.huntingZoneId == npc.huntingZoneId && b.templateId == npc.templateId)) {
-						if (region.logDiff != undefined) {
-							mod.settings[npc.type].logTime = Date.now() - region.logDiff * 1000 - (despawn ? 30 * 60 * 1000 : 0);
+						if (region.logDiff !== undefined) {
+							mod.settings[npc.type].logTime[serverId] = Date.now() - region.logDiff * 1000 - (despawn ? 30 * 60 * 1000 : 0);
 						}
 
-						if (region.logTime != undefined) {
-							region.logTime = Date.now() - (despawn ? 30 * 60 * 1000 : 0);
+						if (region.logTime !== undefined) {
+							region.logTime[serverId] = Date.now() - (despawn ? 30 * 60 * 1000 : 0);
 						}
 					}
 				});
@@ -618,8 +627,8 @@ module.exports = function BossHelper(mod) {
 
 			case "goblins":
 				mod.settings[npc.type].regions.forEach(region => {
-					if (region.npcs.find(b => b.huntingZoneId == npc.huntingZoneId && b.templateId == npc.templateId) && region.logDiff != undefined) {
-						mod.settings[npc.type].logTime = Date.now() - region.logDiff * 1000;
+					if (region.npcs.find(b => b.huntingZoneId == npc.huntingZoneId && b.templateId == npc.templateId) && region.logDiff !== undefined) {
+						mod.settings[npc.type].logTime[serverId] = Date.now() - region.logDiff * 1000;
 					}
 				});
 				break;
@@ -629,8 +638,8 @@ module.exports = function BossHelper(mod) {
 				mod.settings[npc.type].regions.forEach(region => {
 					const boss = region.npcs.find(b => b.huntingZoneId == npc.huntingZoneId && b.templateId == npc.templateId);
 
-					if (boss && boss.logTime != undefined) {
-						boss.logTime = Date.now();
+					if (boss && boss.logTime !== undefined) {
+						boss.logTime[serverId] = Date.now();
 					}
 				});
 		}
@@ -737,9 +746,7 @@ module.exports = function BossHelper(mod) {
 		}
 	}
 
-	function isNearLocation(location) {
-		const d = 1000;
-
+	function isNearLocation(location, d = 1000) {
 		return (
 			location.x - d < playerLocation.x && location.x + d > playerLocation.x &&
 			location.y - d < playerLocation.y && location.y + d > playerLocation.y &&
@@ -791,6 +798,46 @@ module.exports = function BossHelper(mod) {
 			"wait": false,
 			"sound": "Notification.IM"
 		});
+	}
+
+	function migrateConfiguration() {
+		if (mod.settings.merchants.logTime !== undefined && isNumber(mod.settings.merchants.logTime)) {
+			mod.settings.merchants.logTime = { [serverId]: mod.settings.merchants.logTime };
+		}
+
+		mod.settings.goblins.regions.forEach(region => {
+			if (mod.settings.goblins.logTime !== undefined && isNumber(mod.settings.goblins.logTime)) {
+				mod.settings.goblins.logTime = { [serverId]: mod.settings.goblins.logTime };
+			}
+		});
+
+		mod.settings.merchants.regions.forEach((region, regionIndex) => {
+			const entry = mod.settings.merchants.regions[regionIndex];
+
+			if (entry.logTime !== undefined && isNumber(entry.logTime)) {
+				entry.logTime = { [serverId]: entry.logTime };
+			}
+		});
+
+		mod.settings.world_bosses.regions.forEach((region, regionIndex) =>
+			region.npcs.forEach((boss, bossIndex) => {
+				const entry = mod.settings.world_bosses.regions[regionIndex].npcs[bossIndex];
+
+				if (entry.logTime !== undefined && isNumber(entry.logTime)) {
+					entry.logTime = { [serverId]: entry.logTime };
+				}
+			})
+		);
+
+		mod.settings.raid_bosses.regions.forEach((region, regionIndex) =>
+			region.npcs.forEach((boss, bossIndex) => {
+				const entry = mod.settings.raid_bosses.regions[regionIndex].npcs[bossIndex];
+
+				if (entry.logTime !== undefined && isNumber(entry.logTime)) {
+					entry.logTime = { [serverId]: entry.logTime };
+				}
+			})
+		);
 	}
 };
 

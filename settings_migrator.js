@@ -19,7 +19,7 @@ const DefaultSettings = {
 				"zoneId": 7004,
 				"npcs": [
 					{
-						"logTime": 0,
+						"logTime": {},
 						"huntingZoneId": 10,
 						"templateId": 99,
 						"name": "Divine Reaver (Serpentis Isle)",
@@ -40,7 +40,7 @@ const DefaultSettings = {
 						]
 					},
 					{
-						"logTime": 0,
+						"logTime": {},
 						"huntingZoneId": 4,
 						"templateId": 5011,
 						"name": "Tempest Kanash (Fyrmount)",
@@ -86,7 +86,7 @@ const DefaultSettings = {
 				"zoneId": 7014,
 				"npcs": [
 					{
-						"logTime": 0,
+						"logTime": {},
 						"huntingZoneId": 38,
 						"templateId": 35,
 						"name": "Nyxarras (Sienna Canyon)",
@@ -120,7 +120,7 @@ const DefaultSettings = {
 				"zoneId": 7021,
 				"npcs": [
 					{
-						"logTime": 0,
+						"logTime": {},
 						"huntingZoneId": 57,
 						"templateId": 33,
 						"name": "Betsael (Amena Quatla)",
@@ -166,7 +166,7 @@ const DefaultSettings = {
 				"zoneId": 7022,
 				"npcs": [
 					{
-						"logTime": 0,
+						"logTime": {},
 						"huntingZoneId": 51,
 						"templateId": 7011,
 						"name": "Linyphi (Vale of Spires)",
@@ -199,7 +199,7 @@ const DefaultSettings = {
 						]
 					},
 					{
-						"logTime": 0,
+						"logTime": {},
 						"huntingZoneId": 52,
 						"templateId": 9050,
 						"name": "Yunaras Snaggletooth (Plain of the Damned)",
@@ -247,7 +247,7 @@ const DefaultSettings = {
 					{
 						"huntingZoneId": 26,
 						"templateId": 5001,
-						"logTime": 0,
+						"logTime": {},
 						"name": "Ortan (Blessing Basin)",
 						"name_RU": "Ортан (Блаженное озеро)"
 					}
@@ -261,7 +261,7 @@ const DefaultSettings = {
 					{
 						"huntingZoneId": 39,
 						"templateId": 501,
-						"logTime": 0,
+						"logTime": {},
 						"name": "Hazard (Quarantine Zone)",
 						"name_RU": "Хазар (Зона карантина)"
 					}
@@ -275,7 +275,7 @@ const DefaultSettings = {
 					{
 						"huntingZoneId": 51,
 						"templateId": 4001,
-						"logTime": 0,
+						"logTime": {},
 						"name": "Cerrus",
 						"name_RU": "Кэлос"
 					}
@@ -477,7 +477,7 @@ const DefaultSettings = {
 
 	/* =============================== MERCHANT GOBLINS =============================== */
 	"goblins": {
-		"logTime": 0,
+		"logTime": {},
 		"regions": [
 			// Allemantheia
 			{
@@ -546,11 +546,11 @@ const DefaultSettings = {
 
 	/* =============================== MERCHANTS =============================== */
 	"merchants": {
-		"logTime": 0,
+		"logTime": {},
 		"regions": [
 			// Velika
 			{
-				"logTime": 0,
+				"logTime": {},
 				"logIntervalMin": 16200,
 				"logIntervalMax": 18000,
 				"name": "Around the Velika",
@@ -629,7 +629,7 @@ const DefaultSettings = {
 			},
 			// Allemantheia
 			{
-				"logTime": 0,
+				"logTime": {},
 				"logIntervalMin": 16200,
 				"logIntervalMax": 18000,
 				"name": "Around the Allemantheia",
@@ -696,7 +696,7 @@ const DefaultSettings = {
 			},
 			// Kaiator
 			{
-				"logTime": 0,
+				"logTime": {},
 				"logIntervalMin": 16200,
 				"logIntervalMax": 18000,
 				"name": "Around the Kaiator",
@@ -763,7 +763,7 @@ const DefaultSettings = {
 			},
 			// Island of Dawn
 			{
-				"logTime": 0,
+				"logTime": {},
 				"logIntervalMin": 10800,
 				"logIntervalMax": 14400,
 				"name": "Island of Dawn",
@@ -842,7 +842,7 @@ const DefaultSettings = {
 			},
 			// Val Oriyn
 			{
-				"logTime": 0,
+				"logTime": {},
 				"logIntervalMin": 18000,
 				"logIntervalMax": 18000,
 				"name": "Val Oriyn",
