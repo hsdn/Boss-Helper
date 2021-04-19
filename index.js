@@ -232,7 +232,7 @@ module.exports = function BossHelper(mod) {
 
 			regionGroups.forEach(group => {
 				const name = group.fullName.join(" / ");
-				const obtainedName = obtainedMerchants[Object.keys(obtainedMerchants).filter(x => group.zoneIds.includes(Number(x)))];
+				const obtainedName = obtainedMerchants[serverId][Object.keys(obtainedMerchants[serverId]).filter(x => group.zoneIds.includes(Number(x)))];
 
 				if (group.logTime !== undefined && group.logIntervalMin !== undefined && group.logIntervalMax !== undefined) {
 					if (!group.logTime[serverId]) {
@@ -355,6 +355,10 @@ module.exports = function BossHelper(mod) {
 
 		serverId = mod.game.me.serverId;
 
+		if (obtainedMerchants[serverId] === undefined) {
+			obtainedMerchants[serverId] = {};
+		}
+
 		migrateConfiguration();
 	});
 
@@ -398,7 +402,7 @@ module.exports = function BossHelper(mod) {
 			spawnedNpcs.set(event.gameId, npc);
 
 			if (npc.type === "merchants" && npc.region.zoneId !== undefined) {
-				obtainedMerchants[npc.region.zoneId] = npc;
+				obtainedMerchants[serverId][npc.region.zoneId] = npc;
 			}
 
 			if (searchZoneLocations[npc.type] !== undefined && searchZoneLocations[npc.type][seekPos - 1] !== undefined) {
@@ -530,7 +534,7 @@ module.exports = function BossHelper(mod) {
 				}
 
 				if (npc.type === "merchants" && npc.region.zoneId !== undefined) {
-					obtainedMerchants[npc.region.zoneId] = npc;
+					obtainedMerchants[serverId][npc.region.zoneId] = npc;
 					updateZoneLocations();
 				}
 
@@ -539,7 +543,7 @@ module.exports = function BossHelper(mod) {
 
 			case "SMT_WORLDSPAWN_NOTIFY_DESPAWN":
 				if (npc.type === "merchants" && npc.region.zoneId !== undefined) {
-					delete obtainedMerchants[npc.region.zoneId];
+					delete obtainedMerchants[serverId][npc.region.zoneId];
 					updateZoneLocations();
 				}
 
@@ -577,7 +581,7 @@ module.exports = function BossHelper(mod) {
 
 		configuredNpcs.forEach(entry => {
 			if (entry.locations !== undefined && entry.region !== undefined && entry.region.zoneId == mod.game.me.zone) {
-				const search = obtainedMerchants[mod.game.me.zone] !== undefined && obtainedMerchants[mod.game.me.zone].huntingZoneId == entry.huntingZoneId;
+				const search = obtainedMerchants[serverId][mod.game.me.zone] !== undefined && obtainedMerchants[serverId][mod.game.me.zone].huntingZoneId == entry.huntingZoneId;
 
 				if (zoneLocations[entry.type] === undefined) {
 					zoneLocations[entry.type] = [];
