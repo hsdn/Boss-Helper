@@ -419,6 +419,26 @@ const DefaultSettings = {
 						"name_RU": "[Эксодор] Бэкис"
 					},
 
+					// Exodor monsters
+					{
+						"huntingZoneId": 2020,
+						"templateId": 7000,
+						"name": "[Exodor] Tomb Robber Bari",
+						"name_RU": "[Эксодор] Гробокопатель Бари"
+					},
+					{
+						"huntingZoneId": 2020,
+						"templateId": 7001,
+						"name": "[Exodor] Tomb Robber Robin",
+						"name_RU": "[Эксодор] Гробокопатель Робин"
+					},
+					{
+						"huntingZoneId": 2020,
+						"templateId": 7002,
+						"name": "[Exodor] Tomb Robber Gibi",
+						"name_RU": "[Эксодор] Гробокопатель Гиби"
+					},
+
 					// Caiman
 					{
 						"huntingZoneId": 26,
