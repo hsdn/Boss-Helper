@@ -489,6 +489,18 @@ const DefaultSettings = {
 						"templateId": 200003,
 						"name": "(Event) Tiny Santa",
 						"name_RU": "(Ивент) Крошечный Санта"
+					},
+					{
+						"huntingZoneId": 1023,
+						"templateId": 240035,
+						"name": "(Event) Argon Vanguard",
+						"name_RU": "(Ивент) Аргонский передовой отряд"
+					},
+					{
+						"huntingZoneId": 1023,
+						"templateId": 240036,
+						"name": "(Event) Argon Vanguard",
+						"name_RU": "(Ивент) Аргонский передовой отряд"
 					}
 				]
 			}

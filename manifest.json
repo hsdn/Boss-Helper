@@ -2,8 +2,8 @@
     "files": {
         "README.md": "ce11a384a0ed48da95fd999f6f677458805767b9dcab5ec91b2f0d886422d661",
         "index.js": "344cc47fddc2bc590545ebcd97c3ca42f6b377125c1638eefdc6cd2affa2a5c6",
-        "module.json": "0f9fbe98fb7880c335c60ef4af6b97e9f2a218efa6ef1c1f7adc085602b029c4",
-        "settings_migrator.js": "ec53cf901771bf4794e8a4a40fcdf950ad31db49ba06f7e681132c38d5c1c00b"
+        "module.json": "48d412263826c49ed65b86fad1401a1992d67413cc98e5ec706cb96465c27a66",
+        "settings_migrator.js": "00cb7ad7a5f5597c271b5cc3dec4dcd83d33a53445d5abe72a5230177f2b2910"
     },
     "defs": {
         "C_CHAT": 1,

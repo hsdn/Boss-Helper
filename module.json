@@ -5,7 +5,7 @@
         "guiName": "Boss-Helper NG",
         "settingsFile": "config.json",
         "settingsMigrator": "settings_migrator.js",
-        "settingsVersion": 24
+        "settingsVersion": 25
     },
     "author": "HSDN / ZC / mopihu / Owyn / Lambda11",
     "description": "Displays information and notifications about spawning of merchants, world bosses and event monsters.",
@@ -14,6 +14,6 @@
     "dependencies": {
         "notifier": "https://raw.githubusercontent.com/SerenTera/tera-notifier/master/module.json"
     },
-    "version": "101.2",
+    "version": "107.2",
     "disableAutoUpdate": false
 }
