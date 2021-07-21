@@ -152,7 +152,7 @@ module.exports = function BossHelper(mod) {
 		},
 		"clear": () => {
 			MSG.chat(`Boss-Helper: ${MSG.TIP(M("Position markers cleared"))}`);
-			spawnedNpcs.keys().forEach(key => despawnMarker(key));
+			spawnedNpcs.forEach(key => despawnMarker(key));
 		},
 		"teleport": () => {
 			mod.settings.teleport = !mod.settings.teleport;
@@ -169,7 +169,7 @@ module.exports = function BossHelper(mod) {
 			mod.settings.enabled = !mod.settings.enabled;
 			MSG.chat(mod.settings.enabled ? MSG.BLU(M("Enabled")) : MSG.YEL(M("Disabled")));
 			if (!mod.settings.enabled) {
-				spawnedNpcs.keys().forEach(key => despawnMarker(key));
+				spawnedNpcs.forEach(key => despawnMarker(key));
 				spawnedNpcs.clear();
 				stopScan();
 			}
@@ -609,7 +609,9 @@ module.exports = function BossHelper(mod) {
 				searchZoneLocations[type] = [...zoneLocations[type]];
 			}
 
-			searchZoneLocations[type].shuffle();
+			if (type === "merchants") {
+				searchZoneLocations[type].shuffle();
+			}
 		});
 	}
 
