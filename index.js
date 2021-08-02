@@ -1001,14 +1001,14 @@ class TeraMessage {
 	}
 
 	party(msg) {
-		this.mod.send("S_CHAT", 3, {
+		this.mod.send("S_CHAT", this.mod.majorPatchVersion >= 108 ? 4 : 3, {
 			"channel": 21,
 			"message": msg
 		});
 	}
 
 	raids(msg) {
-		this.mod.send("S_CHAT", 3, {
+		this.mod.send("S_CHAT", this.mod.majorPatchVersion >= 108 ? 4 : 3, {
 			"channel": 25,
 			"message": msg
 		});
