@@ -1,4 +1,6 @@
+/* eslint-disable no-param-reassign */
 const os = require("os");
+const Vec3 = require("tera-vec3");
 
 const strings = {
 	"ru": {
@@ -75,7 +77,7 @@ module.exports = function BossHelper(mod) {
 	const configuredNpcs = [];
 	const spawnedNpcs = new Map();
 	const obtainedMerchants = {};
-	const playerLocation = { "x": 0, "y": 0, "z": 0 };
+	const playerLocation = new Vec3(0, 0, 0);
 	const commands = {
 		"world_bosses": "wb",
 		"raid_bosses": "rb",
@@ -86,6 +88,7 @@ module.exports = function BossHelper(mod) {
 	let language = defaultLanguage;
 	let serverId = null;
 	let party = false;
+	let fallProtect = false;
 	let zoneLocations = {};
 	let searchZoneLocations = {};
 	let playerChannel = 0;
@@ -177,7 +180,7 @@ module.exports = function BossHelper(mod) {
 		"$default": () => MSG.chat(`${MSG.RED(M("Unknown parameter"))}. ${M("Use command")}: ${MSG.BLU("bh help")}`)
 	});
 
-	mod.command.add([commands["merchants"], "торг"], {
+	mod.command.add(commands["merchants"], {
 		"to": arg => toZoneLocation("merchants", arg),
 		"loc": () => listZoneLocations("merchants"),
 		"scan": () => startScan("merchants"),
@@ -247,7 +250,7 @@ module.exports = function BossHelper(mod) {
 							if (nextTimeMin == nextTimeMax) {
 								MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTimeMin))}`);
 							} else {
-								MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTimeMin))} ~ ${MSG.TIP(getTime(nextTimeMax))}`);
+								MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTimeMin, nextTimeMax))}`);
 							}
 						} else {
 							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(group.logTime[serverId]))}`);
@@ -335,7 +338,7 @@ module.exports = function BossHelper(mod) {
 						const nextTimeMin = nextTimeMax - 60 * 60 * 1000;
 
 						if (Date.now() < nextTimeMax) {
-							MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTimeMin))} ~ ${MSG.TIP(getTime(nextTimeMax))}`);
+							MSG.chat(` ${MSG.BLU(name)} ${M("next")} ${MSG.TIP(getTime(nextTimeMin, nextTimeMax))}`);
 						} else {
 							MSG.chat(` ${MSG.BLU(name)} ${M("last")} ${MSG.GRY(getTime(boss.logTime[serverId]))}`);
 						}
@@ -387,6 +390,12 @@ module.exports = function BossHelper(mod) {
 
 		Object.assign(playerLocation, event.dest);
 
+		if (fallProtect && (event.type == 2 || event.type == 10)) {
+			fallProtect = false;
+
+			return false;
+		}
+
 		if (correctedTime) {
 			return true;
 		}
@@ -418,7 +427,7 @@ module.exports = function BossHelper(mod) {
 			}
 
 			if (mod.settings.marker && (npc.marker === undefined || npc.marker)) {
-				spawnMarker(event.gameId, event.loc);
+				mod.setTimeout(() => spawnMarker(event.gameId, event.loc), 1000);
 			}
 
 			if (mod.settings.alert && (npc.alert === undefined || npc.alert)) {
@@ -517,7 +526,7 @@ module.exports = function BossHelper(mod) {
 					const nextTimeMax = Date.now() + (5 * 60 * 60 + 30 * 60) * 1000;
 					const nextTimeMin = nextTimeMax - 60 * 60 * 1000;
 
-					MSG.chat(`${MSG.RED(npc.fullName)} ${M("next")} ${MSG.TIP(getTime(nextTimeMin))} ~ ${MSG.TIP(getTime(nextTimeMax))}`);
+					MSG.chat(`${MSG.RED(npc.fullName)} ${M("next")} ${MSG.TIP(getTime(nextTimeMin, nextTimeMax))}`);
 				}
 
 				saveTime(npc);
@@ -535,18 +544,18 @@ module.exports = function BossHelper(mod) {
 
 				if (npc.type === "merchants" && npc.region.zoneId !== undefined) {
 					obtainedMerchants[serverId][npc.region.zoneId] = npc;
-					updateZoneLocations();
 				}
 
+				updateZoneLocations();
 				saveTime(npc);
 				break;
 
 			case "SMT_WORLDSPAWN_NOTIFY_DESPAWN":
 				if (npc.type === "merchants" && npc.region.zoneId !== undefined) {
 					delete obtainedMerchants[serverId][npc.region.zoneId];
-					updateZoneLocations();
 				}
 
+				updateZoneLocations();
 				saveTime(npc, true);
 				break;
 		}
@@ -685,6 +694,7 @@ module.exports = function BossHelper(mod) {
 
 			MSG.chat(`${M("Scan started")} (${searchZoneLocations[npcType].length})...`);
 			mod.setInterval(searchNpc, 5000, npcType);
+			holdCharacter();
 		} else {
 			MSG.chat(MSG.RED(M("No positions for this zone")));
 			stopScan();
@@ -698,6 +708,8 @@ module.exports = function BossHelper(mod) {
 			MSG.chat(`${M("Location")} [${seekPos}/${searchZoneLocations[npcType].length}]: ${MSG.BLU(searchZoneLocations[npcType][seekPos - 1].name)}`);
 
 			teleport(searchZoneLocations[npcType][seekPos - 1], mod.settings.teleport);
+			holdCharacter();
+
 			lastPos = seekPos;
 		} else {
 			MSG.chat(MSG.RED(M("NPC is not found")));
@@ -711,8 +723,23 @@ module.exports = function BossHelper(mod) {
 		}
 
 		mod.clearAllIntervals();
+		unholdCharacter();
+
 		lastPos = null;
 		seekPos = 0;
+	}
+
+	function holdCharacter() {
+		mod.send("S_ADMIN_HOLD_CHARACTER", 2, {
+			"hold": true
+		});
+	}
+
+	function unholdCharacter() {
+		mod.send("S_CLEAR_ALL_HOLDED_ABNORMALITY", 1, {});
+		mod.send("S_ADMIN_HOLD_CHARACTER", 2, {
+			"hold": false
+		});
 	}
 
 	function teleport(newLoc, instant = false) {
@@ -724,13 +751,16 @@ module.exports = function BossHelper(mod) {
 			currTime = playerTime + 50;
 		}
 
+		fallProtect = true;
 		playerTime = currTime;
 
 		const direction = Math.atan2(newLoc.y - playerLocation.y, newLoc.x - playerLocation.x);
-		const modLoc = {};
+		const modLoc = new Vec3(0, 0, 0);
 
 		Object.assign(modLoc, newLoc);
 		Object.assign(playerLocation, modLoc);
+
+		modLoc.z += 10;
 
 		mod.send("C_PLAYER_LOCATION", 5, {
 			"loc": modLoc,
@@ -752,12 +782,8 @@ module.exports = function BossHelper(mod) {
 		}
 	}
 
-	function isNearLocation(location, d = 1000) {
-		return (
-			location.x - d < playerLocation.x && location.x + d > playerLocation.x &&
-			location.y - d < playerLocation.y && location.y + d > playerLocation.y &&
-			location.z - d < playerLocation.z && location.z + d > playerLocation.z
-		);
+	function isNearLocation(loc, d = 50) {
+		return playerLocation.dist3D(new Vec3(loc.x, loc.y, loc.z)) / 25 <= d;
 	}
 
 	function getNpc(huntingZoneId, templateId) {
@@ -782,11 +808,23 @@ module.exports = function BossHelper(mod) {
 		return entry[`name_${language.toUpperCase()}`] || entry[`name_${language}`] || entry.name;
 	}
 
-	function getTime(thisTime) {
-		const time = new Date(thisTime);
-		const timeString = `${(time.getMonth() + 1).leadZero()}/${time.getDate().leadZero()} ${time.getHours().leadZero()}:${time.getMinutes().leadZero()}`;
+	function getTime(thisTimeOne, thisTimeTwo = null) {
+		if (thisTimeTwo === null) {
+			thisTimeTwo = thisTimeOne;
+		}
 
-		return time > Date.now() && time < Date.now() + 30 * 60 * 1000 ? MSG.YEL(timeString) : timeString;
+		const timeOne = new Date(thisTimeOne);
+		const timeTwo = new Date(thisTimeTwo);
+		const timeStringOne = `${(timeOne.getMonth() + 1).leadZero()}/${timeOne.getDate().leadZero()} ${timeOne.getHours().leadZero()}:${timeOne.getMinutes().leadZero()}`;
+		const timeStringTwo = `${(timeTwo.getMonth() + 1).leadZero()}/${timeTwo.getDate().leadZero()} ${timeTwo.getHours().leadZero()}:${timeTwo.getMinutes().leadZero()}`;
+
+		if (thisTimeOne === thisTimeTwo) {
+			return timeOne > Date.now() && timeOne < Date.now() + 30 * 60 * 1000 ? MSG.YEL(timeStringOne) : timeStringOne;
+		} else if (timeOne > Date.now() && timeOne < Date.now() + 30 * 60 * 1000 || timeTwo > Date.now() && timeTwo < Date.now() + 30 * 60 * 1000) {
+			return MSG.YEL(`${timeStringOne} ~ ${timeStringTwo}`);
+		} else {
+			return `${timeStringOne} ~ ${timeStringTwo}`;
+		}
 	}
 
 	function isNumber(value) {

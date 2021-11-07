@@ -14,6 +14,6 @@
     "dependencies": {
         "notifier": "https://raw.githubusercontent.com/SerenTera/tera-notifier/master/module.json"
     },
-    "version": "107.2",
+    "version": "110.3",
     "disableAutoUpdate": false
 }
