@@ -976,7 +976,7 @@ class BamHpBar {
 				}
 			});
 
-			this.hook("S_EACH_SKILL_RESULT", 14, event => {
+			this.hook("S_EACH_SKILL_RESULT", 15, event => {
 				if (event.target === this.gageInfo.id && event.type === 1) {
 					this.gageInfo.curHp -= event.value;
 					this.updateHp();
