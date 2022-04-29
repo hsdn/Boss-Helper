@@ -665,7 +665,7 @@ module.exports = function BossHelper(mod) {
 
 		itemLoc.z -= 100;
 
-		mod.send("S_SPAWN_DROPITEM", 9, {
+		mod.send("S_SPAWN_DROPITEM", mod.majorPatchVersion >= 99 ? 9 : 8, {
 			"gameId": gameId * 10n,
 			"loc": itemLoc,
 			"item": mod.settings.itemId,
