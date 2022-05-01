@@ -1,7 +1,7 @@
 {
     "files": {
         "README.md": "ce11a384a0ed48da95fd999f6f677458805767b9dcab5ec91b2f0d886422d661",
-        "index.js": "a38efc06fdce69f7f48607e3e6dfaaf3d18056e834cbedf10db98dbcb60f641a",
+        "index.js": "22737b67826ca19c044697ddf3f17c2659e0a2cccf44e367cc0bd004464db54a",
         "module.json": "51a5e0d097dd803c9d46017f3375e5ad73fda85cc32bfde0062abac8c674c159",
         "settings_migrator.js": "00cb7ad7a5f5597c271b5cc3dec4dcd83d33a53445d5abe72a5230177f2b2910"
     },
@@ -16,7 +16,7 @@
         "S_DESPAWN_DROPITEM": 4,
         "S_DESPAWN_NPC": 3,
         "S_DUNGEON_EVENT_MESSAGE": 2,
-        "S_EACH_SKILL_RESULT": 15,
+        "S_EACH_SKILL_RESULT": 14,
         "S_INSTANT_MOVE": 3,
         "S_NOTIFY_GUILD_QUEST_URGENT": 1,
         "S_NPC_STATUS": 2,

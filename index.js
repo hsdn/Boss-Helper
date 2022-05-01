@@ -976,7 +976,7 @@ class BamHpBar {
 				}
 			});
 
-			this.hook("S_EACH_SKILL_RESULT", 15, event => {
+			this.hook("S_EACH_SKILL_RESULT", this.mod.majorPatchVersion >= 110 ? 15 : 14, event => {
 				if (event.target === this.gageInfo.id && event.type === 1) {
 					this.gageInfo.curHp -= event.value;
 					this.updateHp();
