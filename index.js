@@ -61,13 +61,13 @@ Number.prototype.leadZero = function(i = 1) {
 	return this < 10 * i ? "0".repeat(i) + this : this;
 };
 
-Array.prototype.__shuffle = function() {
-	for (let i = this.length - 1; i > 0; i--) {
+function arrayShuffle(array) {
+	for (let i = array.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
-		[this[i], this[j]] = [this[j], this[i]];
+		[array[i], array[j]] = [array[j], array[i]];
 	}
-	return this;
-};
+	return array;
+}
 
 module.exports = function BossHelper(mod) {
 	const notifier = mod.require.notifier;
@@ -619,7 +619,7 @@ module.exports = function BossHelper(mod) {
 			}
 
 			if (type === "merchants") {
-				searchZoneLocations[type].__shuffle();
+				arrayShuffle(searchZoneLocations[type]);
 			}
 		});
 	}
