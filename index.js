@@ -61,7 +61,7 @@ Number.prototype.leadZero = function(i = 1) {
 	return this < 10 * i ? "0".repeat(i) + this : this;
 };
 
-Array.prototype.shuffle = function() {
+Array.prototype.__shuffle = function() {
 	for (let i = this.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
 		[this[i], this[j]] = [this[j], this[i]];
@@ -619,7 +619,7 @@ module.exports = function BossHelper(mod) {
 			}
 
 			if (type === "merchants") {
-				searchZoneLocations[type].shuffle();
+				searchZoneLocations[type].__shuffle();
 			}
 		});
 	}
