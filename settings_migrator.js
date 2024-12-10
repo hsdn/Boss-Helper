@@ -501,6 +501,47 @@ const DefaultSettings = {
 						"templateId": 240036,
 						"name": "(Event) Argon Vanguard",
 						"name_RU": "(Ивент) Аргонский передовой отряд"
+					},
+
+					// Event Menma's
+					// Habere
+					{
+						"huntingZoneId": 52,
+						"templateId": 99999997,
+						"name": "(Event) Santa",
+						"name_RU": "(Ивент) Полный санта"
+					},
+					{
+						"huntingZoneId": 52,
+						"templateId": 99999998,
+						"name": "(Event) Mini santa",
+						"name_RU": "(Ивент) Крошечный санта"
+					},
+					// Acarum
+					{
+						"huntingZoneId": 32,
+						"templateId": 99999997,
+						"name": "(Event) Santa",
+						"name_RU": "(Ивент) Полный санта"
+					},
+					{
+						"huntingZoneId": 32,
+						"templateId": 99999998,
+						"name": "(Event) Mini santa",
+						"name_RU": "(Ивент) Крошечный санта"
+					},
+					// Bleakrock
+					{
+						"huntingZoneId": 34,
+						"templateId": 99999997,
+						"name": "(Event) Santa",
+						"name_RU": "(Ивент) Полный санта"
+					},
+					{
+						"huntingZoneId": 34,
+						"templateId": 99999998,
+						"name": "(Event) Mini santa",
+						"name_RU": "(Ивент) Крошечный санта"
 					}
 				]
 			}
