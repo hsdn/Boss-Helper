@@ -504,6 +504,12 @@ const DefaultSettings = {
 					},
 
 					// Event Menma's
+					{
+						"huntingZoneId": 54,
+						"templateId": 101,
+						"name": "(Event) Sakura Ghilliedhu",
+						"name_RU": "(Ивент) Древень Сакуры"
+					},
 					// Habere
 					{
 						"huntingZoneId": 52,
