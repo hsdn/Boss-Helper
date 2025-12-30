@@ -503,6 +503,20 @@ const DefaultSettings = {
 						"name_RU": "(Ивент) Аргонский передовой отряд"
 					},
 
+					// Event Agaia
+					{
+						"huntingZoneId": 1023,
+						"templateId": 99999997,
+						"name": "(Event) Santa",
+						"name_RU": "(Ивент) Полный санта"
+					},
+					{
+						"huntingZoneId": 1023,
+						"templateId": 99999998,
+						"name": "(Event) Mini Santa",
+						"name_RU": "(Ивент) Крошечный санта"
+					},
+
 					// Event Menma's
 					{
 						"huntingZoneId": 54,
